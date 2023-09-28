@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Router, RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 import { MainComponent } from './main/main.component';
 
@@ -10,8 +10,12 @@ const routes : Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'market',
+        redirectTo: 'home',
         pathMatch: 'full',
+      },
+      {
+        path: 'home',
+        loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
       },
       {
         path: 'market',
@@ -20,10 +24,9 @@ const routes : Routes = [
       {
         path: 'profile',
         loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule),
-        pathMatch: 'full',
       },
       {
-        path: 'wallet',
+        path: 'wallets',
         loadChildren: () => import('./wallets/wallets.module').then(m => m.WalletsModule),
       }
     ]

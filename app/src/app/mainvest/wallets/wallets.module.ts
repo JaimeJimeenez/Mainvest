@@ -6,7 +6,7 @@ import { WalletsComponent } from './wallets.component';
 
 @NgModule({
   imports: [WalletsRoutingModule],
-  exports: [WalletsComponent],
+  exports: [],
   declarations: [WalletsComponent],
   providers: [],
 })

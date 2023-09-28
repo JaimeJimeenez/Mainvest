@@ -6,7 +6,7 @@ import { MarketComponent } from './market.component';
 
 @NgModule({
   imports: [MarketRoutingModule],
-  exports: [MarketComponent],
+  exports: [],
   declarations: [MarketComponent],
   providers: [],
 })
