@@ -1,5 +1,5 @@
 <div class="menu--nav">
-  <ul class="menu--options flex list-none items-center gap-8">
+  <ul class="menu--options flex list-none items-end gap-8">
     <li routerLink="market" class="menu--title text-2xl">Mainvest</li>
     <li routerLink="board">Tablón</li>
     <li routerLink="market">Mercado</li>
@@ -20,6 +20,7 @@
     </div>
   </ng-container>
   <ng-container *ngIf="isLogIn">
-    <i class="menu--profile--options--profile fa-solid fa-user" routerLink="profile"></i>
+    <i class="menu--profile--options--profile flex items-center fa-solid fa-user" routerLink="profile"></i>
+    <div class="menu--profile--options--logout">Log out</div>
   </ng-container>
 </div>
