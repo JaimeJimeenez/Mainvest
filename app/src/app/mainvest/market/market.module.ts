@@ -5,9 +5,9 @@ import { MarketRoutingModule } from './market-routing.module';
 import { MarketComponent } from './market.component';
 
 @NgModule({
-  imports: [MarketRoutingModule],
+  imports: [ MarketRoutingModule ],
   exports: [],
-  declarations: [MarketComponent],
+  declarations: [ MarketComponent ],
   providers: [],
 })
 export class MarketModule { }
