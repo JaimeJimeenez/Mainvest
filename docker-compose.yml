@@ -22,13 +22,13 @@ services:
     container_name: mainvest-database
     environment:
       POSTGRES_USER: root
-      POSTGRES_PASSWORD: 'mainvest'
+      POSTGRES_PASSWORD: mainvest
       POSTGRES_DB: mainvest
-      PGPORT: 5433
+      PGPORT: 5432
     expose:
-      - 5433
+      - 5432
     ports:
-      - "5433:5433"
+      - "5432:5432"
     networks:
       - mainvest-net
 networks:
