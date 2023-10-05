@@ -5,7 +5,7 @@ const client = new Client(CONFIG.mysqlConfig);
 
 await client.connect();
 
-const result = await client.query('Select NOW()');
+const result = await client.query('Select * from users');
 console.log(result);
 
 await client.end();
