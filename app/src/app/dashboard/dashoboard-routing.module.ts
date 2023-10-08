@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { MainComponent } from './main/main.component';
+import { authGuardGuard } from '../service/auth/auth-guard.service';
 
 const routes : Routes = [
   {
@@ -16,6 +17,7 @@ const routes : Routes = [
       {
         path: 'board',
         loadChildren: () => import('./board/board.module').then(m => m.BoardModule),
+        canActivate: [authGuardGuard],
       },
       {
         path: 'market',
@@ -24,10 +26,12 @@ const routes : Routes = [
       {
         path: 'profile',
         loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule),
+        canActivate: [authGuardGuard],
       },
       {
         path: 'wallets',
         loadChildren: () => import('./wallets/wallets.module').then(m => m.WalletsModule),
+        canActivate: [authGuardGuard],
       }
     ]
   }
@@ -40,5 +44,5 @@ const routes : Routes = [
   exports: [RouterModule],
   declarations: [],
 })
-export class MainvestRoutingModule { }
+export class DashboardRoutingModule { }
 

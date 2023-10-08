@@ -11,7 +11,7 @@
     <i class="menu--profile--options--search--icon fa-solid fa-magnifying-glass"></i>
     <input class="menu--profile--options--search--input bg-slate-200 pl-8 rounded-xl" placeholder="Buscar" />
   </div>
-  <ng-container *ngIf="!isLogIn">
+  <ng-container *ngIf="!user.isAuth">
     <div class="menu--profile--options--signup">
       <span routerLink="signup"> Sign up </span>
     </div>
@@ -19,7 +19,7 @@
       <span routerLink="login"> Log in </span>
     </div>
   </ng-container>
-  <ng-container *ngIf="isLogIn">
-    <i class="menu--profile--options--profile fa-solid fa-user" routerLink="profile"></i>
+  <ng-container *ngIf="user.isAuth">
+    <i class="menu--profile--options--profile flex items-center fa-solid fa-user" routerLink="profile"></i>
   </ng-container>
 </div>

@@ -4,6 +4,4 @@ import { Component } from '@angular/core';
   selector: 'mainvest-main',
   templateUrl: './main.component.html',
 })
-export class MainComponent {
-
-}
+export class MainComponent {}

@@ -1,35 +1,24 @@
-const { Client } = require('pg');
-
-const CONFIG = require('./config/config');
-
-const client = new Client(CONFIG);
-
-client.connect();
-
-client.query('Select * from users', (error, result) => {
-    if (!error)
-        console.log(result.rows);
-    else console.log(error.message);
-    client.end;
-});
-
-
-
-/*
-'use strict'
+require('dotenv').config();
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const morgan = require('morgan');
-
-const CONFIG = require('./config/config');
+const cors = require('cors');
 
 const app = express();
+const port = process.env.PORT || 52300;
 
 app.use(bodyParser.json());
-app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({ extended : true }));
+app.use(cors());
 
-app.listen(CONFIG.port, () => {
-    console.log('Server listening at port: ' + CONFIG.mysqlConfig.port);
-});*/
+app.use((request, response, next) => {
+  response.header('Access-Control-Allow-Origin', '*');
+  response.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  response.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+
+app.use('/auth', require('./routes/auth'));
+
+app.listen(port, () => {
+  console.log(`Server listening at port ${port}`);
+});

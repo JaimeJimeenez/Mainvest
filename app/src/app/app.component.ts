@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, computed, effect, inject, OnInit } from '@angular/core';
+import { AuthService } from './service/auth/auth.service';
 
 @Component({
   selector: 'mainvest-root',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'mainvest';
+
 }
