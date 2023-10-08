@@ -11,7 +11,7 @@ services:
     working_dir: /app
     ports:
       - 4200:4200
-      - 5300:5300
+      - 52300:52300
     depends_on:
       - mainvest-database
     networks:
@@ -24,11 +24,11 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: mainvest
       POSTGRES_DB: mainvest
-      PGPORT: 5432
+      PGPORT: 5433
     expose:
-      - 5432
+      - 5433
     ports:
-      - "5432:5432"
+      - "5433:5433"
     networks:
       - mainvest-net
 networks:

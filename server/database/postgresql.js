@@ -1,11 +1,22 @@
-const Client = require('pg');
-const CONFIG = require('../config/config');
+const { query } = require('../database/connection/connection');
 
-const client = new Client(CONFIG.mysqlConfig);
+async function executeQuery(sql, params) {
+    try {
+        const data = await query(sql, params);
+        return {
+            status : 200,
+            success : 'true',
+            message : 'query is successfully',
+            data 
+        }
+    } catch(error) {
+        return {
+            status : 500,
+            success : 'false',
+            error,
+            req_query : sql,
+        }
+    }
+}
 
-await client.connect();
-
-const result = await client.query('Select * from users');
-console.log(result);
-
-await client.end();
+module.exports = executeQuery;
