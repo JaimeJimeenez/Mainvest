@@ -7,3 +7,13 @@ export interface User {
   isAdmin: boolean,
   isAuth: boolean
 };
+
+export const initUser : User = {
+    id: '',
+    username: '',
+    password: '',
+    email: '',
+    isActive: false,
+    isAdmin: false,
+    isAuth: false,
+}
