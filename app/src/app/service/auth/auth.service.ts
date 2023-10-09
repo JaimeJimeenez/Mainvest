@@ -2,26 +2,22 @@ import { Injectable } from '@angular/core';
 
 import * as bcrypt from 'bcryptjs';
 
-import { User } from 'src/app/interface/auth/user.interface';
+import { User, initUser } from 'src/app/interface/auth/user.interface';
 import { LoginDataService } from '../requests/auth/login-data.service';
 import { Login } from 'src/app/interface/auth/login.interface';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private _user : User = {
-    id: '',
-    username: '',
-    password : '',
-    email: '',
-    isActive: false,
-    isAdmin: false,
-    isAuth : false,
-  }
+  private _user : User  = initUser;
 
-  constructor(private loginData : LoginDataService) { }
+  constructor(
+    private loginData : LoginDataService,
+    private router : Router,
+  ) { }
 
   get user() : User {
     return this._user;
@@ -48,5 +44,12 @@ export class AuthService {
         })
         .catch((error) => reject(error));
     });
+  }
+
+  logout() : void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this._user = initUser;
+    this.router.navigate(['/dashboard/market']);
   }
 }

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
 import { AuthComponent } from './auth.component';
+import { LogoutComponent } from './logout/logout.component';
 
 const routes : Routes = [
   {
@@ -14,14 +15,16 @@ const routes : Routes = [
         component: LoginComponent,
       },
       {
+        path: 'logout',
+        component: LogoutComponent,
+      },
+      {
         path: '**',
         redirectTo: 'login',
-      }
+      },
     ]
   },
-]
-
-
+];
 
 @NgModule({
   imports: [ RouterModule.forChild(routes) ],
