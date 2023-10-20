@@ -23,7 +23,7 @@ export class LoginDataService {
         (apiResponse : any = {}) => {
           const { result, token } = apiResponse;
           if (result.status === 200) {
-            const login : Login = { user : result.data[0], token : token }
+            const login : Login = { user : result.data[0], token }
             resolve(login);
           }
           reject(result.message);

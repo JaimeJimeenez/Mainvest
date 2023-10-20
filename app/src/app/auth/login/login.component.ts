@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 
 import { AuthService } from 'src/app/service/auth/auth.service';
 
-
 @Component({
   selector: 'mainvest-login',
   templateUrl: './login.component.html',
@@ -19,8 +18,8 @@ export class LoginComponent {
     private auth : AuthService
   ) {
     this.loginForm = new FormGroup({
-      username : new FormControl('usuario1', [Validators.required]),
-      password : new FormControl('contrasena1', [Validators.required]),
+      username : new FormControl('', [Validators.required]),
+      password : new FormControl('', [Validators.required]),
     })
   }
 
@@ -29,10 +28,9 @@ export class LoginComponent {
 
     this.auth.canLogIn(username, password)
       .then((success) => {
-        if (!success) {
-          this.showAlert = true;
-          setTimeout(() => this.showAlert = false, 2500);
-        } else this.router.navigate(['/dashboard/market']);
+        if (success) this.router.navigate(['/dashboard/market']);
+        this.showAlert = true;
+        setTimeout(() => this.showAlert = false, 2500);
       })
       .catch((error) => console.log(error));
   }

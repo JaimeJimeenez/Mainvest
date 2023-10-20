@@ -1,43 +1,40 @@
-<div class="login--header sm:mx-auto sm:w-full sm:max-w-sm">
-  <h2 class="login--header--description text-center text-2xl font-bold"> Iniciar sesión </h2>
-</div>
-<ng-container *ngIf="showAlert">
+<div class="login--container border-slate-500">
+  <div class="login--title text-2xl sm:text-3xl text-center">
+    Iniciar sesión
+  </div>
+  <ng-container *ngIf="showAlert">
   <div class="bg-red-100 border border-red-400 text-red-700 mt-4 px-4 py-3 rounded relative" role="alert">
     <span class="block sm:inline">Nombre de usuario o contraseña incorrectos</span>
   </div>
 </ng-container>
-<br>
 <div class="login--form sm:mx-auto sm:w-full sm:max-w-sm">
   <form class="space-y-6" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <div>
-      <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Nombre de usuario</label>
-      <div class="mt-2">
-        <input formControlName="username" id="username" name="username" type="text" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-      </div>
+    <div class="login--form--username">
+      <label for="username" class="block text-sm font-medium leading-6 text-gray-900">
+        Nombre de usuario
+      </label>
+      <input formControlName="username" id="username" name="username" type="text" class="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+    </div>
+    <div class="login--form--password">
+      <label for="password" class="block text-sm font-medium leading-6 text-gray-900">
+        Contraseña
+      </label>
+      <input formControlName="password" id="password" name="password" type="password" class="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
     </div>
 
-    <div>
-      <div class="flex items-center">
-        <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Contraseña</label>
-      </div>
-      <div class="mt-2">
-        <input formControlName="password" id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-      </div>
-    </div>
-
-    <div>
-      <button
-        type="submit"
-        [disabled]="!loginForm.valid"
-        class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-          Sign in
-        </button>
-    </div>
+    <button
+      type="submit"
+      [disabled]="!loginForm.valid"
+      class="login--form--button rounded-md text-sm bg-blue-ribbon-600 hover:bg-blue-ribbon-500 text-white shadow-sm"
+    >
+      Log in
+    </button>
   </form>
-
   <p class="mt-4 text-center text-sm text-gray-500">
     ¿No tienes cuenta?
-    <span routerLink="/signin" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Crear cuenta</span>
+    <span routerLink="/auth/signup" class="font-semibold leading-6 text-blue-ribbon-600 hover:text-blue-ribbon-500 cursor-pointer">Crear cuenta</span>
   </p>
 </div>
+
+
 
