@@ -1,0 +1,68 @@
+<div class="signup--container border-slate-500">
+  <div class="signup--title text-2xl sm:text-3xl text-center">
+    Registro
+  </div>
+  <ng-container *ngIf="showAlert">
+  <div class="bg-red-100 border border-red-400 text-red-700 mt-4 px-4 py-3 rounded relative" role="alert">
+    <span class="block sm:inline">{{ errorInfo }}</span>
+  </div>
+</ng-container>
+<div class="signup--form sm:mx-auto sm:w-full sm:max-w-sm">
+  <form class="space-y-6" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+    <div class="signup--form--username">
+      <label for="username" class="signup--form--label text-sm text-gray-900">
+        Nombre de usuario
+      </label>
+      <input
+        formControlName="username"
+        id="username"
+        name="username"
+        type="text"
+        placeholder="Usuario de 8 a 16 caracteres"
+        class="signup--form--input text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+      >
+    </div>
+    <div class="signup--form--email">
+      <label for="email" class=" signup--form--label text-sm text-gray-900">
+        Email
+      </label>
+      <input
+        type="email"
+        formControlName="email"
+        id="email"
+        placeholder="Email del usuario"
+        username="email"
+        class="signup--form--input text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+      >
+    </div>
+    <div class="signup--form--password">
+      <label for="password" class="signup--form--label text-sm text-gray-900">
+        Contraseña
+      </label>
+      <input
+        formControlName="password"
+        id="password"
+        name="password"
+        placeholder="Contraseña de 8 a 16 caracteres"
+        type="password"
+        class="signup--form--input text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+      >
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="!signUpForm.valid"
+      class="signup--form--button text-sm bg-blue-ribbon-600 hover:bg-blue-ribbon-500 text-white shadow-sm"
+    >
+      Registrarse
+    </button>
+  </form>
+  <p class="mt-4 text-center text-sm text-gray-500">
+    O
+    <span
+      routerLink="/auth/login"
+      class="font-semibold leading-6 text-blue-ribbon-600 hover:text-blue-ribbon-500 cursor-pointer">
+      inicia sesión
+    </span>
+  </p>
+</div>

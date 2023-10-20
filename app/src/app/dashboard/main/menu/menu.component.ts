@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+
+import { ROUTES } from 'src/app/const/routes';
 import { User } from 'src/app/interface/auth/user.interface';
 
 import { AuthService } from 'src/app/service/auth/auth.service';
@@ -11,6 +13,8 @@ import { AuthService } from 'src/app/service/auth/auth.service';
 export class MenuComponent {
   public isLogIn : boolean = false;
   public user : User;
+
+  public routes = ROUTES;
 
   constructor(private auth : AuthService) {
     const userLocal = localStorage.getItem('user');

@@ -1,26 +1,50 @@
 <div class="menu--nav">
-  <ul class="menu--options flex list-none items-center gap-8">
-    <li routerLink="market" class="menu--title text-2xl">Mainvest</li>
-    <li routerLink="board">Tablón</li>
-    <li routerLink="market">Mercado</li>
-    <li routerLink="wallets">Carteras</li>
-  </ul>
-</div>
-<div class="menu--profile--options flex gap-8">
-  <div class="menu--profile--options--search">
-    <i class="menu--profile--options--search--icon fa-solid fa-magnifying-glass"></i>
-    <input class="menu--profile--options--search--input bg-slate-200 pl-8 rounded-xl" placeholder="Buscar" />
+
+  <div class="menu--home text-2xl cursor-pointer hover:text-black-400" routerLink="market">
+    Mainvest
   </div>
-  <ng-container *ngIf="!user.isAuth">
-    <div class="menu--profile--options--signup">
-      <span routerLink="signup"> Sign up </span>
-    </div>
-    <div class="menu--profile--options--login">
-      <span routerLink="login"> Log in </span>
-    </div>
-  </ng-container>
-  <ng-container *ngIf="user.isAuth">
-    <i class="menu--profile--options--profile flex items-center fa-solid fa-user" routerLink="profile"></i>
-    <span routerLink="/auth/logout">Log out</span>
-  </ng-container>
+
+  <nav>
+    <ul class="menu--options flex gap-8">
+      <ng-container *ngFor="let route of routes">
+        <li
+          class="menu--options--route hover:text-black-400 cursor-pointer"
+          routerLink="route.path">
+            {{ route.label }}
+        </li>
+      </ng-container>
+    </ul>
+  </nav>
+
 </div>
+<ng-container *ngIf="!user.isAuth">
+  <div class="menu--auth flex gap-8">
+
+    <button
+      class="menu--auth--signup
+       bg-blue-ribbon-600 text-white shadow-lg shadow-indigo-500/40 hover:bg-blue-ribbon-500 rounded"
+      routerLink="/auth/signup">
+        Sign up
+    </button>
+    <button
+      class="menu--auth--login
+       bg-black-950 text-white shadow-lg shadow-indigo-500/40 hover:bg-black-900 rounded"
+      routerLink="/auth/login">
+        Log in
+    </button>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="user.isAuth">
+  <div class="menu--profile flex gap-8">
+    <i
+      class="menu--profile--options--profile flex items-center fa-solid fa-user cursor-pointer"
+      routerLink="profile"></i>
+    <button
+      class="menu--auth--login
+     bg-black-950 text-white shadow-lg shadow-indigo-500/40 hover:bg-black-900 rounded"
+      routerLink="/auth/logout">
+        Log out
+  </button>
+  </div>
+</ng-container>
