@@ -9,7 +9,7 @@
       <ng-container *ngFor="let route of routes">
         <li
           class="menu--options--route hover:text-black-400 cursor-pointer"
-          routerLink="route.path">
+          routerLink="{{ route.path }}">
             {{ route.label }}
         </li>
       </ng-container>

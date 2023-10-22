@@ -2,15 +2,15 @@ import { IRoutes } from "../interface/main/iRoutes";
 
 export const ROUTES : IRoutes[] = [
   {
-    path : '/market',
+    path : '/dashboard/market',
     label : 'Mercado',
   },
   {
-    path : '/board',
+    path : '/dashboard/board',
     label : 'Tablón',
   },
   {
-    path : '/wallets',
+    path : '/dashboard/wallets',
     label : 'Carteras',
   }
 ]

@@ -11,7 +11,6 @@ import { AuthService } from 'src/app/service/auth/auth.service';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent {
-  public isLogIn : boolean = false;
   public user : User;
 
   public routes = ROUTES;

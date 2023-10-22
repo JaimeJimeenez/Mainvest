@@ -23,10 +23,6 @@ const routes : Routes = [
         path: 'logout',
         component: LogoutComponent,
       },
-      {
-        path: '**',
-        redirectTo: 'login',
-      },
     ]
   },
 ];
