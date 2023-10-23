@@ -20,10 +20,10 @@ class DAOAuth {
         }
     }
 
-    async signUp(username, password, email) {
+    async signUp(username, name, password, email) {
         try {
-            const sql = 'Insert into users (username, password, email, isAdmin, isActive) values ($1, $2, $3, false, true)';
-            return await executeQuery(sql, [ username, password, email ]);
+            const sql = 'Insert into users (username, name, password, email, isAdmin, isActive) values ($1, $2, $3, $4, false, true)';
+            return await executeQuery(sql, [ username, name, password, email ]);
         } catch (error) {
             console.error(error.message);
         }
