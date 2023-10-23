@@ -1,39 +1,56 @@
-<div class="login--container border-slate-500">
+<div class="login--container border-slate-500 bg-gray-800 rounded-md">
+
   <div class="login--title text-2xl sm:text-3xl text-center">
     Iniciar sesión
   </div>
-  <ng-container *ngIf="showAlert">
-  <div class="bg-red-100 border border-red-400 text-red-700 mt-4 px-4 py-3 rounded relative" role="alert">
-    <span class="block sm:inline">Nombre de usuario o contraseña incorrectos</span>
-  </div>
-</ng-container>
-<div class="login--form sm:mx-auto sm:w-full sm:max-w-sm">
-  <form class="space-y-6" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <div class="login--form--username">
-      <label for="username" class="block text-sm font-medium leading-6 text-gray-900">
-        Nombre de usuario
-      </label>
-      <input formControlName="username" id="username" name="username" type="text" class="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-    </div>
-    <div class="login--form--password">
-      <label for="password" class="block text-sm font-medium leading-6 text-gray-900">
-        Contraseña
-      </label>
-      <input formControlName="password" id="password" name="password" type="password" class="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-    </div>
 
-    <button
-      type="submit"
-      [disabled]="!loginForm.valid"
-      class="login--form--button rounded-md text-sm bg-blue-ribbon-600 hover:bg-blue-ribbon-500 text-white shadow-sm"
-    >
-      Log in
-    </button>
-  </form>
-  <p class="mt-4 text-center text-sm text-gray-500">
-    ¿No tienes cuenta?
-    <span routerLink="/auth/signup" class="font-semibold leading-6 text-blue-ribbon-600 hover:text-blue-ribbon-500 cursor-pointer">Crear cuenta</span>
-  </p>
+  <ng-container *ngIf="showAlert">
+    <div class="bg-red-100 border border-red-400 text-red-700 mt-4 px-4 py-3 rounded relative" role="alert">
+      <span class="block sm:inline">Nombre de usuario o contraseña incorrectos</span>
+    </div>
+  </ng-container>
+
+  <div class="login--form sm:mx-auto sm:w-full sm:max-w-sm">
+    
+    <form class="space-y-6" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="login--form--group mt-4 group">
+        <input
+          type="text"
+          formControlName="username"
+          class="login--input text-sm text-white border-gray-600 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          placeholder=" "/>
+        <label
+          class="login--label peer-focus:font-medium text-sm text-gray-500 transform -translate-y-6 scale-75 peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+            Nombre de usuario
+        </label>
+      </div>
+
+      <div class="login--form--group group">
+        <input
+          type="password"
+          formControlName="password"
+          class="login--input text-sm text-white border-gray-600 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          placeholder=" "/>
+        <label
+          class="login--label peer-focus:font-medium text-sm text-gray-500 transform -translate-y-6 scale-75 peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+            Contraseña
+        </label>
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="!loginForm.valid"
+        class="login--form--button rounded-md text-sm bg-blue-ribbon-600 hover:bg-blue-ribbon-500 text-white shadow-sm"
+      >
+        Log in
+      </button>
+    </form>
+
+    <p class="mt-4 text-center text-sm text-gray-500">
+      ¿No tienes cuenta?
+      <span routerLink="/auth/signup" class="font-semibold leading-6 text-blue-ribbon-600 hover:text-blue-ribbon-500 cursor-pointer">Crear cuenta</span>
+    </p>
+  </div>
 </div>
 
 

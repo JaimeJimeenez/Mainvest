@@ -20,15 +20,16 @@ export class SignupComponent {
   ) {
     this.signUpForm = new FormGroup({
       username : new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(16)]),
+      name : new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(16)]),
       email : new FormControl('', [ Validators.required, Validators.email]),
       password : new FormControl('', [ Validators.required, Validators.minLength(8), Validators.maxLength(16)]),
     });
   }
 
   onSubmit() {
-    const { username, password, email } = this.signUpForm.value;
+    const { username, name, password, email } = this.signUpForm.value;
 
-    this.auth.signUp(username, password, email)
+    this.auth.signUp(username, name, password, email)
       .then((success) => {
         if (success) this.router.navigate(['dashboard/market']);
         if (!success) {

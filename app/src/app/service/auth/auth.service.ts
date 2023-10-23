@@ -51,9 +51,9 @@ export class AuthService {
     });
   }
 
-  signUp(username : string, password : string, email : string) : Promise<boolean> {
+  signUp(username : string, name : string, password : string, email : string) : Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
-      this.signUpData.signUp(username, bcrypt.hashSync(password, 10), email)
+      this.signUpData.signUp(username, name, bcrypt.hashSync(password, 10), email)
         .then((response : Login) => {
           if (!response.token.length)
             resolve(false);

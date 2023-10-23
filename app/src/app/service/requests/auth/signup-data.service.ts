@@ -11,13 +11,13 @@ export class SignupDataService {
 
   constructor(private httpClient : HttpClient) { }
 
-  signUp(username : string, password : string, email : string) : Promise<Login> {
+  signUp(username : string, name : string, password : string, email : string) : Promise<Login> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
 
     return new Promise((resolve, reject) => {
-      this.httpClient.post(`${enviroment.baseUrl}/auth/signup`, { username, password, email }, { headers }).subscribe(
+      this.httpClient.post(`${enviroment.baseUrl}/auth/signup`, { username, name, password, email }, { headers }).subscribe(
         (apiResponse : any = {}) => {
           const { result, token } = apiResponse;
           if (result.status === 200) {

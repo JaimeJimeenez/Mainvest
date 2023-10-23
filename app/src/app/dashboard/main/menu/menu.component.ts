@@ -1,17 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { ROUTES } from 'src/app/const/routes';
 import { User } from 'src/app/interface/auth/user.interface';
 
 import { AuthService } from 'src/app/service/auth/auth.service';
+import { initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'mainvest-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss']
 })
-export class MenuComponent {
-  public isLogIn : boolean = false;
+export class MenuComponent implements OnInit {
   public user : User;
 
   public routes = ROUTES;
@@ -23,4 +23,7 @@ export class MenuComponent {
     this.user = this.auth.user;
   }
 
+  ngOnInit(): void {
+    initFlowbite();
+  }
 }

@@ -1,50 +1,83 @@
 <div class="menu--nav">
-
-  <div class="menu--home text-2xl cursor-pointer hover:text-black-400" routerLink="market">
+  <div class="menu--home text-2xl cursor-pointer hover:text-blue-ribbon-500" routerLink="market">
+    <i class="fa-sharp fa-solid fa-bitcoin-sign"></i>
     Mainvest
   </div>
-
   <nav>
     <ul class="menu--options flex gap-8">
       <ng-container *ngFor="let route of routes">
         <li
-          class="menu--options--route hover:text-black-400 cursor-pointer"
-          routerLink="route.path">
+          class="menu--options--route hover:text-blue-ribbon-500 cursor-pointer"
+          routerLink="{{ route.path }}">
             {{ route.label }}
         </li>
       </ng-container>
     </ul>
   </nav>
-
 </div>
+
 <ng-container *ngIf="!user.isAuth">
   <div class="menu--auth flex gap-8">
-
-    <button
-      class="menu--auth--signup
-       bg-blue-ribbon-600 text-white shadow-lg shadow-indigo-500/40 hover:bg-blue-ribbon-500 rounded"
-      routerLink="/auth/signup">
-        Sign up
-    </button>
     <button
       class="menu--auth--login
-       bg-black-950 text-white shadow-lg shadow-indigo-500/40 hover:bg-black-900 rounded"
+        text-white hover:bg-black-800 rounded"
       routerLink="/auth/login">
         Log in
+    </button>
+    <button
+      class="menu--auth--signup
+       bg-blue-ribbon-600 text-white hover:bg-blue-ribbon-500 rounded"
+      routerLink="/auth/signup">
+        Sign up
     </button>
   </div>
 </ng-container>
 
 <ng-container *ngIf="user.isAuth">
-  <div class="menu--profile flex gap-8">
-    <i
-      class="menu--profile--options--profile flex items-center fa-solid fa-user cursor-pointer"
-      routerLink="profile"></i>
-    <button
-      class="menu--auth--login
-     bg-black-950 text-white shadow-lg shadow-indigo-500/40 hover:bg-black-900 rounded"
-      routerLink="/auth/logout">
-        Log out
+  <div class="menu--profile dropdown-center">
+
+  <button type="button" class="relative mr-3 inline-flex items-center px-2 py-1 text-sm font-medium text-center text-white rounded-lg  focus:ring-4 focus:outline-none focus:ring-blue-300">
+    <i class="fa-solid fa-bell hover:text-blue-800"></i>
+    <span class="sr-only">Notifications</span>
+    <div class="absolute inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-500 rounded-full -top-2 -right-1 dark:border-gray-900">8</div>
   </button>
+
+    <button class="flex items-center gap-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="fa fa-user"></i>
+      <span class="hover:text-blue-ribbon-500" >Jaime Jiménez Nieto</span>
+    </button>
+    <ul class="dropdown-menu bg-gray-800">
+      <li
+        class="menu--profile--options hover:bg-blue-ribbon-500"
+        routerLink="/profile"
+      >
+          Mi perfil
+      </li>
+      <li
+        class="menu--profile--options hover:bg-blue-ribbon-500"
+        routerLink="/notifications"
+      >
+          Notificaciones
+      </li>
+      <li
+        class="menu--profile--options hover:bg-blue-ribbon-500"
+        routerLink="wallets"
+      >
+          Mis carteras
+      </li>
+      <li> <hr class="dropdown-divider"></li>
+      <li
+        class="menu--profile--options hover:bg-blue-ribbon-500"
+        routerLink="/settings"
+      >
+          Ajustes
+      </li>
+      <li
+        class="menu--profile--options hover:bg-blue-ribbon-500"
+        routerLink="/auth/logout"
+      >
+        Log out
+      </li>
+    </ul>
   </div>
 </ng-container>
