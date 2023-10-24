@@ -1,0 +1,17 @@
+<div>
+  <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500">
+    <ng-container *ngFor="let option of menuOptions; let i = index">
+      <li
+        class="submenu--option mr-4 hover:border-b-2 hover:text-blue-ribbon-500 hover:border-b-blue-ribbon-500 cursor-pointer"
+        (click)="onSelectedOption(option)"
+        >
+          <div href="#" class="inline-flex items-center justify-center p-3 border-b-2 border-transparent rounded-t-lg group">
+            {{option.text}}
+          </div>
+        <i [ngClass]=option.icon></i>
+      </li>
+    </ng-container>
+  </ul>
+</div>
+
+

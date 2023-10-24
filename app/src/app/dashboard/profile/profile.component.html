@@ -1,28 +1,42 @@
 <div class="profile--header">
-  <div class="profile--info">
-    <i
-      class="profile--icon fa-solid fa-user fa-2x border-2 border-slate-600"
-      routerLink="profile"
-    ></i>
-    <div class="profile--data">
-      <div class="profile--username text-xl">
-        Jaimejimenz
-      </div>
-      <div class="profile--name"> Jaime Jiménez Nieto </div>
-    </div>
+  <mainvest-profile-info></mainvest-profile-info>
+</div>
+<div class="profile--submenu ml-2">
+  <mainvest-submenu
+    [menuOptions]="menuOptions"
+    (selectedOption)="onSubmenuSelected($event)"
+  ></mainvest-submenu>
+  <div class="profile--options flex p-3 content-end items-end">
+    <ng-container *ngIf="!isMyProfile">
+      <button
+        type="button"
+        class="profile--options--follow bg-blue-ribbon-600 text-white shadow-lg shadow-indigo-500/40 hover:bg-blue-ribbon-500 rounded"
+      >Follow</button>
+    </ng-container>
+    <ng-container *ngIf="isMyProfile">
+      <button
+        type="button"
+        class="rofile--options--settings bg-black-900 text-white shadow-lg shadow-indigo-500/40 hover:bg-black-800 rounded"
+      ><i class="fa fa-solid fa-gear"></i></button>
+    </ng-container>
   </div>
+</div>
+
+<!--
   <div class="profile--options">
+  <ng-container *ngIf="!isMyProfile">
     <button
       type="button"
       class="profile--options--follow bg-blue-ribbon-600 text-white shadow-lg shadow-indigo-500/40 hover:bg-blue-ribbon-500 rounded"
     >Follow</button>
+  </ng-container>
+  <ng-container *ngIf="isMyProfile">
     <button
       type="button"
       class="profile--options--settings bg-black-900 text-white shadow-lg shadow-indigo-500/40 hover:bg-black-800 rounded"
-      
     >
       <i class="fa-solid fa-gear"></i>
     </button>
-  </div>
+  </ng-container>
 </div>
-
+-->

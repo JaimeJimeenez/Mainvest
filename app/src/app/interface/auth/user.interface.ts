@@ -1,5 +1,6 @@
 export interface User {
   id: string,
+  name : string,
   username: string,
   password: string,
   email: string,
@@ -10,6 +11,7 @@ export interface User {
 
 export const initUser : User = {
     id: '',
+    name : '',
     username: '',
     password: '',
     email: '',
