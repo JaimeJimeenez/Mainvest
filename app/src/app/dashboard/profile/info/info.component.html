@@ -1,0 +1,15 @@
+<div class="profile--info">
+  <i
+    class="profile--icon fa-solid fa-user fa-3x border-2 border-slate-600"
+    routerLink="profile"
+  ></i>
+  <div class="profile--data">
+    <div class="profile--username text-xl">
+      {{ user?.username }}
+    </div>
+    <div class="profile--name"> {{ user?.name}} </div>
+  </div>
+</div>
+<div class="profile--money">
+  <mainvest-card-money></mainvest-card-money>
+</div>

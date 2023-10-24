@@ -1,6 +1,6 @@
 :host {
   display: flex;
-  padding: 24px;
+  padding: 16px 24px;
   justify-content: space-between;
   position: fixed;
   top: 0;
@@ -43,3 +43,27 @@
     color: white;
   }
 }
+
+.menu--form {
+  &--group {
+    display: flex;
+    gap: 8px;
+  }
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu--input {
+  display: block;
+  width: 100%;
+  background: transparent;
+  border-width: 0px;
+  border-bottom-width: 1px;
+  appearance: none;
+}
+
+

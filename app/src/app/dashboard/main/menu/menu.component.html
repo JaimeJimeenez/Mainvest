@@ -16,6 +16,24 @@
   </nav>
 </div>
 
+<div class="menu--search centered">
+  <form>
+    <div class="menu--form--group">
+      <input
+        type="text"
+        class="menu--input text-sm text-white rounded-md border-gray-600"
+        placeholder="Buscar"
+      >
+      <button
+        type="submit"
+        class="rounded-md text-sm px-4 py-2 bg-blue-ribbon-600 hover:bg-blue-ribbon-500"
+      >
+        Search
+      </button>
+    </div>
+  </form>
+</div>
+
 <ng-container *ngIf="!user.isAuth">
   <div class="menu--auth flex gap-8">
     <button
@@ -44,12 +62,12 @@
 
     <button class="flex items-center gap-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
       <i class="fa fa-user"></i>
-      <span class="hover:text-blue-ribbon-500" >Jaime Jiménez Nieto</span>
+      <span class="hover:text-blue-ribbon-500" >{{ user.name }}</span>
     </button>
     <ul class="dropdown-menu bg-gray-800">
       <li
         class="menu--profile--options hover:bg-blue-ribbon-500"
-        routerLink="/profile"
+        routerLink="/dashboard/profile"
       >
           Mi perfil
       </li>
