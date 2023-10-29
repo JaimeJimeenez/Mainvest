@@ -22,7 +22,7 @@
           placeholder=" "/>
         <label
           class="signup--label peer-focus:font-medium text-sm text-gray-500 transform -translate-y-6 scale-75 peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-            Nombre y apellidos (8 - 16)
+            Nombre y apellidos*
         </label>
       </div>
 
@@ -46,7 +46,7 @@
           placeholder=" "/>
         <label
           class="signup--label peer-focus:font-medium text-sm text-gray-500 transform -translate-y-6 scale-75 peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-            Nombre de usuario (8 - 16)
+            Nombre de usuario*
         </label>
       </div>
 
@@ -59,7 +59,7 @@
           placeholder=" "/>
         <label
           class="signup--label peer-focus:font-medium text-sm text-gray-500 transform -translate-y-6 scale-75 peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-            Contraseña (8 - 16)
+            Contraseña*
         </label>
       </div>
 
@@ -70,9 +70,12 @@
       >
         Sign up
       </button>
+      <p class="helper-text-explanation mt-2 text-sm text-center text-gray-500">
+        (*) Entre 8 a 16 caracteres
+      </p>
     </form>
 
-    <p class="mt-4 text-center text-sm text-gray-500">
+    <p class="mt-2 text-center text-sm text-gray-500">
       O
       <span routerLink="/auth/login" class="font-semibold leading-6 text-blue-ribbon-600 hover:text-blue-ribbon-500 cursor-pointer">Inicia sesión</span>
     </p>

@@ -1,0 +1,65 @@
+<div class="profile--settings--header">
+  Ajustes
+  <button
+    type="button"
+    class="erase--user bg-red-600 p-2 rounded-md"
+  >Eliminar cuenta</button>
+</div>
+<div class="profile--setting--form">
+  <form class="space-y-6" [formGroup]="settingsForm" (ngSubmit)="onSubmit()">
+    <div class="profile--settings--form--group mt-4 group">
+      <input
+        type="text"
+        formControlName="username"
+        class="profile--settings--input text-sm text-white border-gray-600 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+        placeholder=" "/>
+      <label
+        class="profile--settings--label peer-focus:font-medium text-sm text-gray-500 transform -translate-y-6 scale-75 peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+          Nombre de usuario
+      </label>
+      <p id="helper-text-explanation" class="mt-2 text-sm text-gray-500">
+        El nombre de usuario debe tener un mínimo de 8 carácteres y un máximo de 16
+      </p>
+    </div>
+
+    <div class="profile--settings--form--group group">
+      <input
+        type="password"
+        formControlName="newPassword"
+        class="profile--settings--input text-sm text-white border-gray-600 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+        placeholder=" "/>
+      <label
+        class="profile--settings--label peer-focus:font-medium text-sm text-gray-500 transform -translate-y-6 scale-75 peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+          Nueva contraseña
+      </label>
+      <p id="helper-text-explanation" class="mt-2 text-sm text-gray-500">
+        La nueva contraseña debe tener un mínimo de 8 carácteres y un máximo de 16
+      </p>
+    </div>
+
+    <div class="profile--settings--form--group group">
+      <input
+        type="password"
+        formControlName="newPasswordAgain"
+        class="profile--settings--input text-sm text-white border-gray-600 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+        placeholder=" "/>
+      <label
+        class="profile--settings--label peer-focus:font-medium text-sm text-gray-500 transform -translate-y-6 scale-75 peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+          Repetir nueva contraseña
+      </label>
+    </div>
+
+    <ng-container *ngIf="showAlert">
+      <span class="block sm:inline text-sm text-red-700">{{ alertMessage }}</span>
+    </ng-container>
+
+    <button
+      type="submit"
+      [disabled]="!settingsForm.valid"
+      class="profile--settings--form--button rounded-md text-sm disabled:bg-blue-ribbon-400 bg-blue-ribbon-600 hover:bg-blue-ribbon-500 text-white shadow-sm"
+    >
+      Actualizar
+    </button>
+  </form>
+</div>
+

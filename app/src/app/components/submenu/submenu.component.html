@@ -1,17 +1,32 @@
-<div>
+<div class="submenu--options">
   <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500">
     <ng-container *ngFor="let option of menuOptions; let i = index">
-      <li
-        class="submenu--option mr-4 hover:border-b-2 hover:text-blue-ribbon-500 hover:border-b-blue-ribbon-500 cursor-pointer"
-        (click)="onSelectedOption(option)"
-        >
-          <div href="#" class="inline-flex items-center justify-center p-3 border-b-2 border-transparent rounded-t-lg group">
-            {{option.text}}
-          </div>
-        <i [ngClass]=option.icon></i>
-      </li>
+        <li
+          class="submenu--option mr-4 hover:border-b-2 hover:text-blue-ribbon-500 hover:border-b-blue-ribbon-500 cursor-pointer"
+          (click)="onSelectedOption(option)"
+          >
+            <div href="#" class="inline-flex items-center justify-center p-3 border-b-2 border-transparent rounded-t-lg group">
+              {{option.label}}
+            </div>
+          <i [ngClass]=option.icon></i>
+        </li>
     </ng-container>
   </ul>
 </div>
-
-
+<div class="submenu--users flex p-3">
+  <ng-container *ngIf="!isUsersProfile">
+    <button
+      type="button"
+      class="profile--options--follow p-3 bg-blue-ribbon-600 text-white shadow-lg shadow-indigo-500/40 hover:bg-blue-ribbon-500 rounded"
+    >Follow</button>
+  </ng-container>
+  <ng-container *ngIf="isUsersProfile">
+    <button
+      type="button"
+      class="bg-black-900 text-white shadow-lg shadow-indigo-500/40 rounded"
+      (click)="onSelectedUsersOptions()"
+    >
+      <i class="submenu--option fa fa-solid fa-gear hover:text-blue-ribbon-500"></i>
+    </button>
+  </ng-container>
+</div>
