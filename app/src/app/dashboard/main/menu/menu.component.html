@@ -21,7 +21,7 @@
     <div class="menu--form--group">
       <input
         type="text"
-        class="menu--input text-sm text-white rounded-md border-gray-600"
+        class="menu--input text-sm text-white rounded-md border-b-2 border-gray-700"
         placeholder="Buscar"
       >
       <button
@@ -67,7 +67,7 @@
     <ul class="dropdown-menu bg-gray-800">
       <li
         class="menu--profile--options hover:bg-blue-ribbon-500"
-        routerLink="/dashboard/profile"
+        routerLink="/dashboard/profile/posts"
       >
           Mi perfil
       </li>
@@ -86,7 +86,9 @@
       <li> <hr class="dropdown-divider"></li>
       <li
         class="menu--profile--options hover:bg-blue-ribbon-500"
-        routerLink="/settings"
+        routerLink="/dashboard/profile/settings"
+        data-bs-toggle="modal"
+        data-bs-target="#settingsAuthModal"
       >
           Ajustes
       </li>
