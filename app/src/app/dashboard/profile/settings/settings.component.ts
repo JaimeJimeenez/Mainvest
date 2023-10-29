@@ -73,6 +73,17 @@ export class SettingsComponent {
     });
   }
 
+  eraseUser() : void {
+    this.settings.eraseUser(this.auth.user.username)
+    .then((success) => {
+      if (success)
+        this._removeLocalStorage();
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
+
   onSubmit() : void {
     const { username, newPassword, newPasswordAgain } = this.settingsForm.value;
     if (!username && !newPassword && !newPasswordAgain) return;

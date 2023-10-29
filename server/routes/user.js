@@ -34,5 +34,15 @@ router.post('/updatePassword', async (request, response) => {
     }
 });
 
+router.post('/erase', async (request, response) => {
+    try {
+        const { username } = request.body;
+        const result = await daoUser.eraseUser(username);
+        response.json({ result });
+    } catch (error) {
+        response.json(error);
+    }
+});
+
 
 module.exports = router;
