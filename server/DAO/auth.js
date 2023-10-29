@@ -4,7 +4,7 @@ class DAOAuth {
 
     async login(username) {
         try {
-            const sql = 'Select * from users where username = $1';
+            const sql = 'Select * from users where username = $1 and isActive = true';
             return await executeQuery(sql, [ username ]);
         } catch (error) {
             console.error(error.message);

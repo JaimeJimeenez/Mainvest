@@ -3,7 +3,11 @@
   <button
     type="button"
     class="erase--user bg-red-600 p-2 rounded-md"
-  >Eliminar cuenta</button>
+    data-bs-toggle="modal"
+    data-bs-target="#eraseModal"
+  >
+    Eliminar cuenta
+  </button>
 </div>
 <div class="profile--setting--form">
   <form class="space-y-6" [formGroup]="settingsForm" (ngSubmit)="onSubmit()">
@@ -63,3 +67,19 @@
   </form>
 </div>
 
+<div class="modal fad" id="eraseModal" tabindex="-1" aria-labelledby="eraseModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-gray-800">
+      <div class="modal-header border-b-gray-700">
+        <h1 class="modal-title fs-5 text-red-700" id="exampleModalLabel">¿Eliminar usuario?</h1>
+      </div>
+      <div class="modal-body border-t-gray-700">
+        Se eliminará este usuario
+      </div>
+      <div class="modal-footer border-t-gray-700">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" (click)="eraseUser()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>

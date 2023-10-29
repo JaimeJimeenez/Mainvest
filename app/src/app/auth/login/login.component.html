@@ -4,14 +4,8 @@
     Iniciar sesión
   </div>
 
-  <ng-container *ngIf="showAlert">
-    <div class="bg-red-100 border border-red-400 text-red-700 mt-4 px-4 py-3 rounded relative" role="alert">
-      <span class="block sm:inline">Nombre de usuario o contraseña incorrectos</span>
-    </div>
-  </ng-container>
-
   <div class="login--form sm:mx-auto sm:w-full sm:max-w-sm">
-    
+
     <form class="space-y-6" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="login--form--group mt-4 group">
         <input
@@ -36,6 +30,11 @@
             Contraseña
         </label>
       </div>
+
+
+    <ng-container *ngIf="showAlert">
+      <span class="block sm:inline text-sm text-red-700">Nombre de usuario o contraseña incorrectos</span>
+    </ng-container>
 
       <button
         type="submit"

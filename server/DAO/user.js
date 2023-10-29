@@ -19,6 +19,15 @@ class DAOUser {
             console.error(error.message);
         }
     }
+
+    async eraseUser(username) {
+        try {
+            const sql = 'Update users set isActive = false where username = $1';
+            return await executeQuery(sql, [ username ]);
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
 }
 
 module.exports = DAOUser;

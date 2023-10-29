@@ -17,4 +17,8 @@ export class SettingsService {
   updatePassword(username : string, password : string) : Promise<boolean> {
     return this.settingsData.updatePassword(username, bcrypt.hashSync(password, 10));
   }
+
+  eraseUser(username : string) : Promise<boolean> {
+    return this.settingsData.eraseUser(username);
+  }
 }
