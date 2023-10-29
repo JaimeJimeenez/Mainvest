@@ -24,10 +24,6 @@ export class SubmenuComponent {
     }, 0);
   }
 
-  ngOnInit() : void {
-    console.log(this.menuOptions);
-  }
-
   onSelectedOption(selected : IRoutes) : void {
     const option : number = this.menuOptions.indexOf(selected);
     this._updateSubmenu(option);

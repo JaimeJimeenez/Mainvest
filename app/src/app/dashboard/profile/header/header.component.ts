@@ -13,7 +13,7 @@ import { ROUTES_PROFILES } from 'src/app/const/routes';
 })
 export class HeaderComponent {
   @Input() user : User | null = null;
-  public isUsersProfile : boolean = true;
+  public isUsersProfile : boolean = false;
   public menuOptions : IRoutes[];
   public profileOptions : IRoutes[] = [];
 
@@ -22,6 +22,7 @@ export class HeaderComponent {
     if (userLocal) {
       const user = JSON.parse(userLocal);
       this.user = user;
+      this.isUsersProfile = this.isUsersProfile || user?.isadmin;
     }
 
     this.menuOptions = ROUTES_PROFILES;
