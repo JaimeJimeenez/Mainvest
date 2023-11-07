@@ -1,14 +1,10 @@
-<div class="profile--header">
-  <mainvest-profile-info
-    [user]="user"
-  ></mainvest-profile-info>
-</div>
 <div class="profile--submenu ml-2">
   <mainvest-submenu
     [menuOptions]="menuOptions"
     [userOptions]="profileOptions"
     (selectedOption)="onSubmenuSelected($event)"
     [isUsersProfile]="isUsersProfile"
+    [credits]="100"
   ></mainvest-submenu>
 </div>
 

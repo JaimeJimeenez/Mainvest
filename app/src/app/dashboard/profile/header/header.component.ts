@@ -33,13 +33,19 @@ export class HeaderComponent {
   }
 
   private _assignMenuOptions() : void {
+    const user : IRoutes = {
+      label : this.user!.username,
+      icon: 'fa-solid fa-user',
+      path: '/dashboard/profile/posts',
+    };
     const myWallets : IRoutes = {
       label: 'Mis carteras',
       icon: 'fa-solid fa-wallet',
       path: '/dashboard/profile/wallets'
-    }
-    if (this.menuOptions.length !== 4)
-      this.menuOptions.splice(1, 0, myWallets);
+    };
+    this.menuOptions.unshift(user);
+    if (this.menuOptions.length !== 5)
+      this.menuOptions.splice(2, 0, myWallets);
   }
 
   private _assignUsersOptions() : void {
@@ -63,7 +69,7 @@ export class HeaderComponent {
   }
 
   onSubmenuSelected(option : number) : void {
-    if (option !== 4)
+    if (option !== 5)
       this.router.navigate([this.menuOptions[option].path]);
     else if (this.isUsersProfile)
       this.router.navigate(['/dashboard/profile/settings']);
