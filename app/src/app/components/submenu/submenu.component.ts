@@ -1,19 +1,29 @@
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { IMenuOptions } from 'src/app/interface/iMenuOptions';
+import { Component, EventEmitter, Input, Output, LOCALE_ID  } from '@angular/core';
+import { CommonModule, registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es'
+
 import { IRoutes } from 'src/app/interface/main/iRoutes';
+
+registerLocaleData(localeEs, 'es-EUR');
 
 @Component({
   standalone: true,
   imports: [CommonModule],
   selector: 'mainvest-submenu',
   templateUrl: './submenu.component.html',
-  styleUrls: ['./submenu.component.scss']
+  styleUrls: ['./submenu.component.scss'],
+  providers: [
+    {
+      provide: LOCALE_ID,
+      useValue: 'es-EUR',
+    }
+  ]
 })
 export class SubmenuComponent {
   @Input() menuOptions : IRoutes[] = [];
   @Input() userOptions : IRoutes[] = [];
   @Input() isUsersProfile : boolean = false;
+  @Input() credits : number = 0;
   @Output() selectedOption = new EventEmitter<number>();
 
   public optionSelected : number = 0;
@@ -31,8 +41,8 @@ export class SubmenuComponent {
   }
 
   onSelectedUsersOptions() : void {
-    this.selectedOption.emit(4);
-    this._updateUsersOptions(4);
+    this.selectedOption.emit(5);
+    this._updateUsersOptions(5);
   }
 
   private _updateUsersOptions(option : number) : void {

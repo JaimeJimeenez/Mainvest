@@ -5,15 +5,15 @@
           class="submenu--option mr-4 hover:border-b-2 hover:text-blue-ribbon-500 hover:border-b-blue-ribbon-500 cursor-pointer"
           (click)="onSelectedOption(option)"
           >
+          <i [ngClass]=option.icon></i>
             <div href="#" class="inline-flex items-center justify-center p-3 border-b-2 border-transparent rounded-t-lg group">
               {{option.label}}
             </div>
-          <i [ngClass]=option.icon></i>
         </li>
     </ng-container>
   </ul>
 </div>
-<div class="submenu--users flex p-3">
+<div class="submenu--users flex p-3 gap-5">
   <ng-container *ngIf="!isUsersProfile">
     <button
       type="button"
@@ -21,6 +21,7 @@
     >Follow</button>
   </ng-container>
   <ng-container *ngIf="isUsersProfile">
+    <div class="submenu--credits">Saldo actual: {{ credits | currency:'EUR' }}</div>
     <button
       type="button"
       class="bg-black-900 text-white shadow-lg shadow-indigo-500/40 rounded"
