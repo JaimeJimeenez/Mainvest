@@ -1,2 +1,5 @@
 <mainvest-menu></mainvest-menu>
 <router-outlet></router-outlet>
+<ng-container *ngIf="showLoading()">
+  <mainvest-loader></mainvest-loader>
+</ng-container>
