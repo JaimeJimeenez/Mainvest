@@ -2,11 +2,18 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { WalletsComponent } from './wallets.component';
+import { NewWalletComponent } from './new-wallet/new-wallet.component';
 
 const routes : Routes = [
   {
     path: '',
     component: WalletsComponent,
+    children: [
+      {
+        path: 'new',
+        component: NewWalletComponent
+      }
+    ]
   }
 ]
 

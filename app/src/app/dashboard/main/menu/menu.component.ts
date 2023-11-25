@@ -4,14 +4,13 @@ import { ROUTES } from 'src/app/const/routes';
 import { User } from 'src/app/interface/auth/user.interface';
 
 import { AuthService } from 'src/app/service/auth/auth.service';
-import { initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'mainvest-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss']
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent {
   public user : User;
 
   public routes = ROUTES;
@@ -21,9 +20,5 @@ export class MenuComponent implements OnInit {
     if (userLocal)
       this.auth.user = JSON.parse(userLocal);
     this.user = this.auth.user;
-  }
-
-  ngOnInit(): void {
-    initFlowbite();
   }
 }

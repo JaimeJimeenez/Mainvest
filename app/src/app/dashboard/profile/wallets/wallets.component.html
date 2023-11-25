@@ -5,27 +5,9 @@
   <button
     type="button"
     class="create--wallet text-gray-500 hover:border-b-2 hover:text-blue-ribbon-500 hover:border-b-blue-ribbon-500"
-    data-bs-toggle="modal"
-    data-bs-target="#newWalletModal"
+    routerLink="/dashboard/wallets/new"
   >
     <i class="fa-solid fa-plus"></i>
     Nueva cartera
   </button>
-</div>
-
-<div class="modal fade" id="newWalletModal" tabindex="-1" aria-labelledby="eraseModal" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content bg-gray-800">
-      <div class="modal-header border-b-gray-700">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Nueva cartera</h1>
-      </div>
-      <div class="modal-body border-t-gray-700">
-        Se eliminará este usuario
-      </div>
-      <div class="modal-footer border-t-gray-700">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
-      </div>
-    </div>
-  </div>
 </div>

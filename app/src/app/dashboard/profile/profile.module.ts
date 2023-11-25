@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { ProfileRoutingModule } from './profile-routing.module';
 
 import { ProfileComponent } from './profile.component';
-import { ProfileInfoComponent } from './header/info/info.component';
 import { SubmenuComponent } from 'src/app/components/submenu/submenu.component';
 import { CardMoneyComponent } from 'src/app/components/card-money/card-money.component';
 import { SettingsComponent } from './settings/settings.component';
@@ -27,6 +26,14 @@ import { PostsComponent } from './posts/posts.component';
     ProfileRoutingModule
   ],
   exports: [],
-  declarations: [ ProfileComponent, ProfileInfoComponent, SettingsComponent, HeaderComponent, WalletsComponent, SharedWalletsComponent, LikedPostsComponent, PostsComponent ],
+  declarations: [
+    ProfileComponent,
+    SettingsComponent,
+    HeaderComponent,
+    WalletsComponent,
+    SharedWalletsComponent,
+    LikedPostsComponent,
+    PostsComponent
+  ],
 })
 export class ProfileModule { }

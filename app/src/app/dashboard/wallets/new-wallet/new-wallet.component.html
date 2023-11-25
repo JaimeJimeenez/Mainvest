@@ -1,0 +1,92 @@
+<div class="wallets--new--header">
+  <div class="wallets--new--header--title">
+    Nueva cartera
+  </div>
+</div>
+
+<div class="wallets--container">
+  <div class="wallets--form rounded-md sm:w-full">
+    <form class="space-y-6" [formGroup]="newWalletForm" (ngSubmit)="onSubmit()">
+      <div class="wallets--form--group mt-4 group">
+        <input
+          type="text"
+          formControlName="name"
+          class="wallets--input text-sm text-white border-gray-600 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          placeholder=" "/>
+        <label
+          class="wallets--label peer-focus:font-medium text-sm text-gray-500 transform -translate-y-6 scale-75 peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+            Nombre de cartera
+        </label>
+      </div>
+
+      <div class="wallets--form--assets">
+        <div class="wallets--form--assets--title">
+          Activos financieros
+          <button
+            type="button"
+            class="wallets--form--new--button text-sm  shadow-sm text-white"
+            (click)="onNewFinancialAsset()"
+          >
+            <i class="fa-solid fa-plus hover:text-blue-ribbon-600"></i>
+          </button>
+        </div>
+      </div>
+
+
+      <div class="asset--list" formArrayName="assets">
+        <ng-container [formGroupName]="i" *ngFor="let assetGroup of assets.controls; let i = index">
+          <div class="asset--info">
+            <div class="asset--name">
+              <label for="assetName" class="pr-2">Activo:</label>
+              <select
+                class="asset--select peer-focus:font-medium text-sm text-gray-500 peer-focus:text-blue-600 peer-placeholder-shown:scale-100
+                peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                formControlName="assetName"
+                (change)="onSelectChange($event, i)"
+              >
+                <ng-container *ngFor="let asset of optionsAsset[i]">
+                  <option [value]="asset">{{asset}}</option>
+                </ng-container>
+              </select>
+            </div>
+            <div class="asset--buy">
+              <span class="asset--buy--text">Comprar:</span>
+              <div class="asset--buy--form--group">
+                <input
+                  type="text"
+                  formControlName="assetValue"
+                  class="asset--input text-sm text-white border-gray-600 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                />
+                <label
+                  class="asset--label peer-focus:font-medium text-sm text-gray-500 transform -translate-y-6 scale-75 peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                    Valor - {{ assetsValues[i] | number:'1.3'}}
+                </label>
+              </div>
+            </div>
+            <div class="asset--total">
+              <span class="asset--total--text">Total: </span>
+              <span [ngClass]="{'text-red-600': showAlert}" class="asset--total__value">{{ purchasedShares[i] | number: '1.3'}}</span>
+            </div>
+            <div class="asset--erase">
+              <button
+                class="asset--erase--button rounded-md"
+                (click)="onRemoveAsset(i)"
+              >
+               <i class="fa-solid fa-trash hover:text-red-500"></i>
+              </button>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
+      <div class="wallets--buttons">
+        <button
+          type="submit"
+          [disabled]="!newWalletForm.valid || showAlert"
+          class="wallets--form--button rounded-md text-sm bg-blue-ribbon-600 hover:bg-blue-ribbon-500 text-white shadow-sm"
+        >Crear cartera</button>
+      </div>
+    </form>
+  </div>
+</div>

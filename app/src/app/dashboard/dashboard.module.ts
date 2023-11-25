@@ -9,7 +9,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    RouterModule
+    RouterModule,
   ],
   declarations: [MainComponent, MenuComponent],
 })

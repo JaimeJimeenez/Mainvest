@@ -6,7 +6,8 @@ export interface User {
   email: string,
   isActive: boolean,
   isAdmin: boolean,
-  isAuth: boolean
+  isAuth: boolean,
+  money: number,
 };
 
 export const initUser : User = {
@@ -18,4 +19,5 @@ export const initUser : User = {
     isActive: false,
     isAdmin: false,
     isAuth: false,
+    money: 0,
 }

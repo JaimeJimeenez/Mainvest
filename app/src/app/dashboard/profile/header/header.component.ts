@@ -43,9 +43,10 @@ export class HeaderComponent {
       icon: 'fa-solid fa-wallet',
       path: '/dashboard/profile/wallets'
     };
-    this.menuOptions.unshift(user);
-    if (this.menuOptions.length !== 5)
+    if (this.menuOptions.length !== 5) {
+      this.menuOptions.unshift(user);
       this.menuOptions.splice(2, 0, myWallets);
+    }
   }
 
   private _assignUsersOptions() : void {
