@@ -1,0 +1,174 @@
+:host {
+  display: flex;
+  padding: 24px;
+  color: white;
+  flex-direction: column;
+}
+
+.wallets--new {
+
+  &--header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    border-bottom-width: 1px;
+    --tw-border-opacity: 1;
+    border-color: rgb(75 85 99 / var(--tw-border-opacity));
+
+    &--title {
+      padding: 0.75rem;
+    }
+  }
+}
+
+.wallets,
+.asset {
+  &--container {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    height: fit-content;
+  }
+
+  &--form {
+    width: 60%;
+    margin-top: 25px;
+    border-radius: 6px;
+    border-width: 1px;
+    --tw-border-opacity: 1;
+    border-color: rgb(75 85 99 / var(--tw-border-opacity));
+    padding: 0px 12px 12px 12px;
+
+    &--group {
+      position: relative;
+      z-index: 0;
+      width: 100%;
+      margin-bottom: 24px;
+    }
+
+    &--button {
+      display: flex;
+      width: 25%;
+      justify-content: center;
+      padding: 6px 12px;
+      font-weight: 600;
+    }
+
+    &--assets {
+      &--title {
+        display: flex;
+        justify-content: space-between;
+        border-bottom-width: 1px;
+        --tw-border-opacity: 1;
+        border-color: rgb(75 85 99 / var(--tw-border-opacity));
+        padding: 0px 12px 12px 12px;
+      }
+    }
+  }
+
+  &--input {
+    display: block;
+    padding: 10px 0px;
+    width: 100%;
+    background: transparent;
+    border-width: 0px;
+    border-bottom-width: 1px;
+    appearance: none;
+  }
+
+  &--label {
+    position: absolute;
+    transition-duration: 300ms;
+    z-index: -10;
+    top: 12px;
+    transform-origin: 0;
+  }
+
+  &--buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &--name {
+    display: flex;
+    align-items: center;
+  }
+
+  &--buy--form {
+    width: 50%;
+    margin-top: 25px;
+    border-radius: 6px;
+    border-width: 1px;
+    --tw-border-opacity: 1;
+    border-color: rgb(75 85 99 / var(--tw-border-opacity));
+    padding: 0px 12px 12px 12px;
+
+    &--group {
+      position: relative;
+      z-index: 0;
+    }
+  }
+}
+
+.wallets--assets {
+  display: flex;
+  width: 50%;
+}
+
+.asset--select {
+  width: 150px;
+  padding: 10px 5px;
+  border-radius: 0px;
+  background: transparent;
+  border-width: 0px;
+  border-bottom-width: 1px;
+  appearance: none;
+  border-bottom-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(75 85 99 / var(--tw-border-opacity));
+}
+
+.asset {
+
+  &--list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &--info {
+    display: flex;
+    padding: 0px 0px 20px 10px;
+    gap: 15px;
+    justify-content: space-between;
+  }
+
+  &--buy {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &--total {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &--erase {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &--button {
+      display: flex;
+      width: 25%;
+      justify-content: center;
+      padding: 6px 12px;
+      font-weight: 600;
+    }
+  }
+}
