@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { NewWalletDataService } from '../requests/wallet/new-wallet-data.service';
 import { IAssetWallet, IWallet } from 'src/app/interface/financial/iWallet';
 import { AddAssetsDataService } from '../requests/wallet/add-assets-data.service';
+import { Observable } from 'rxjs';
+import { GetWalletsDataService } from '../requests/wallet/get-wallets-data.service';
+import { AssetsWalletDataService } from '../requests/wallet/assets-wallet-data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +14,8 @@ export class WalletService {
   constructor(
     private newWalletData : NewWalletDataService,
     private addAssetsData : AddAssetsDataService,
+    private getWalletsData : GetWalletsDataService,
+    private assetsWalletData : AssetsWalletDataService,
   ) { }
 
   createWallet(idUser : number, name : string) : Promise<number> {
@@ -25,5 +30,13 @@ export class WalletService {
       this.addAssetsData.addAssetsToWallet(idWallet, assets)
         .then((apiResponse : boolean) => resolve(apiResponse));
     })
+  }
+
+  getWallets(idUser : number) : Observable<any> {
+    return this.getWalletsData.getWallets(idUser);
+  }
+
+  getAssetsByWallet(idWallet : number) : Observable<any> {
+    return this.assetsWalletData.getAssets(idWallet);
   }
 }

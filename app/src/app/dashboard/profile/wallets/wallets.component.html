@@ -11,3 +11,10 @@
     Nueva cartera
   </button>
 </div>
+<div class="profile--wallets--list">
+  <ng-container *ngFor="let wallet of wallets">
+    <div class="profile--wallets--wallet">
+      {{ wallet }}
+    </div>
+  </ng-container>
+</div>

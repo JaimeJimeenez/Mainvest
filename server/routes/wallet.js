@@ -25,4 +25,24 @@ router.post('/add_assets', async (request, response) => {
     }
 });
 
+router.get('/list/:id', async (request, response) => {
+    try {
+        const { id } = request.params;
+        const result = await daoWallet.getWallets(id);
+        response.json(result);
+    } catch (error) {
+        response.json(error);
+    }
+});
+
+router.get('/assets_wallet/:id', async (request, response) => {
+    try {
+        const { id } = request.params;
+        const result = await daoWallet.getAssets(id);
+        response.json(result);
+    } catch (error) {
+        response.json(error);
+    }
+})
+
 module.exports = router;
