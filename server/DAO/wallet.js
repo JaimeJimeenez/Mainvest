@@ -14,7 +14,7 @@ class DAOWallet {
     async addAssets(idWallet, assets) {
         try {
             const placeholders = assets.map((_, index) => `($${index * 3 + 1}, $${index * 3 + 2}, $${index * 3 + 3})`).join(', ');
-            const sql = `INSERT INTO assets_wallets (id_wallet, name, amount) VALUES ${placeholders}`;
+            const sql = `Insert into assets_wallets (id_wallet, name, amount) values ${placeholders}`;
             const values = assets.flatMap(asset => [idWallet, asset.name, asset.amount]);
             
             return await executeQuery(sql, values);
@@ -24,6 +24,25 @@ class DAOWallet {
         }
     }
     
+    async getWallets(idUser) {
+        try {
+            const sql = 'Select * from wallets where id_user = $1;';
+            return await executeQuery(sql, [idUser]);
+        } catch (error) {
+            console.error('Something wrong happened: ', error);
+            throw error;
+        }
+    }
+
+    async getAssets(idWallet) {
+        try {
+            const sql = 'Select * from assets_wallets where id_wallet = $1;';
+            return await executeQuery(sql, [idWallet]);
+        } catch(error) {
+            console.error('Something wrong happened: ', error);
+            throw error;
+        }
+    }
 }
 
 module.exports = DAOWallet;
