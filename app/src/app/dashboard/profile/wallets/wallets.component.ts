@@ -4,7 +4,7 @@ import { ASSETS } from 'src/app/const/financial_assets';
 import { IAsset } from 'src/app/interface/financial/iAssets';
 
 import { IAssetWallet, IWallet } from 'src/app/interface/financial/iWallet';
-import { Wallet } from 'src/app/lib/wallet';
+import { FinancialAsset } from 'src/app/lib/financial_asset';
 import { DateService } from 'src/app/service/common/date.service';
 import { FinancialAssetsDataService } from 'src/app/service/requests/common/financial-assets-data.service';
 import { WalletService } from 'src/app/service/wallet/wallet.service';
@@ -16,8 +16,10 @@ import { WalletService } from 'src/app/service/wallet/wallet.service';
 })
 export class WalletsComponent {
   private _idUser : number = 0;
+  private _sharesValues : Map<string, IAsset> = new Map<string, IAsset>();
 
   public wallets : IWallet[] = [];
+  public walletsInfo : Array<{ name : string; total : number; numberOfAssets : number}> = [];
   public benefitsWallets : number[] = [];
 
   constructor(
@@ -25,12 +27,13 @@ export class WalletsComponent {
     private date : DateService,
     private financialAssetsData : FinancialAssetsDataService,
   ) {
+
     this._getIdUser();
     this._getWalletsByUser();
-    this._getFinancialAssets();
   }
 
   private async _getWalletsByUser() : Promise<void> {
+    await this._getFinancialAssets();
     const wallets = await lastValueFrom(this.wallet.getWallets(this._idUser));
     for (let wallet of wallets) {
       const assetsByWallet : any[] = await lastValueFrom(this.wallet.getAssetsByWallet(wallet.id));
@@ -44,6 +47,20 @@ export class WalletsComponent {
       });
       this.wallets.push({ name: wallet.name, assets : assetsList });
     }
+    this.wallets.forEach((wallet) => {
+      let total : number = 0;
+      wallet.assets.forEach((asset) => {
+        const actualAsseet = this._sharesValues.get(asset.name);
+        if (actualAsseet !== undefined)
+          total += FinancialAsset.getTotalSharesOfAsset(actualAsseet.adj_close, asset.amount);
+      });
+      const info : any = {
+        name : wallet.name,
+        total,
+        numberOfAssets : wallet.assets.length
+      };
+      this.walletsInfo.push(info);
+    });
   }
 
   private async _getFinancialAssets() : Promise<void> {
@@ -54,6 +71,8 @@ export class WalletsComponent {
         firstDay,
         lastDay
       ));
+    this._sharesValues = FinancialAsset.getAverageFinancialAssetsData(dataAssets);
+    console.log(this._sharesValues);
   }
 
   private _getIdUser() : void {
