@@ -14,6 +14,7 @@ import { WalletsComponent } from './wallets/wallets.component';
 import { SharedWalletsComponent } from './shared-wallets/shared-wallets.component';
 import { LikedPostsComponent } from './liked-posts/liked-posts.component';
 import { PostsComponent } from './posts/posts.component';
+import { SearchComponent } from 'src/app/components/search/search.component';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { PostsComponent } from './posts/posts.component';
     SubmenuComponent,
     ReactiveFormsModule,
     CardMoneyComponent,
+    SearchComponent,
     ProfileRoutingModule
   ],
   exports: [],
