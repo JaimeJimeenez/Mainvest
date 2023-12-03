@@ -43,6 +43,16 @@ class DAOWallet {
             throw error;
         }
     }
+
+    async removeWallet(id) {
+        try {
+            const sql = 'Delete from wallets where id = $1;';
+            return await executeQuery(sql, [id]);
+        } catch(error) {
+            console.error('Something wrong happened: ', error);
+            throw error;
+        }
+    }
 }
 
 module.exports = DAOWallet;

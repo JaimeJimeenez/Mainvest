@@ -28,6 +28,15 @@ class DAOUser {
             console.error(error.message);
         }
     }
+
+    async addMoney(id, money) {
+        try {
+            const sql = 'Update users set money = money + $1 where id = $2';
+            return await executeQuery(sql, [money, id]);
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
 }
 
 module.exports = DAOUser;

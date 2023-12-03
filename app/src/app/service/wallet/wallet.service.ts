@@ -5,6 +5,7 @@ import { AddAssetsDataService } from '../requests/wallet/add-assets-data.service
 import { Observable } from 'rxjs';
 import { GetWalletsDataService } from '../requests/wallet/get-wallets-data.service';
 import { AssetsWalletDataService } from '../requests/wallet/assets-wallet-data.service';
+import { RemoveWalletDataService } from '../requests/wallet/remove-wallet-data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ export class WalletService {
     private addAssetsData : AddAssetsDataService,
     private getWalletsData : GetWalletsDataService,
     private assetsWalletData : AssetsWalletDataService,
+    private eraseWalletData : RemoveWalletDataService
   ) { }
 
   createWallet(idUser : number, name : string) : Promise<number> {
@@ -38,5 +40,12 @@ export class WalletService {
 
   getAssetsByWallet(idWallet : number) : Observable<any> {
     return this.assetsWalletData.getAssets(idWallet);
+  }
+
+  eraseWallet(idWallet : number) : Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      this.eraseWalletData.removeWallet(idWallet)
+        .then((apiResponse : boolean) => resolve(apiResponse));
+    });
   }
 }

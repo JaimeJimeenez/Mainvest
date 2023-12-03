@@ -7,6 +7,7 @@ import { IAssetWallet, IWallet } from 'src/app/interface/financial/iWallet';
 import { FinancialAsset } from 'src/app/lib/financial_asset';
 import { DateService } from 'src/app/service/common/date.service';
 import { FinancialAssetsDataService } from 'src/app/service/requests/common/financial-assets-data.service';
+import { MoneyService } from 'src/app/service/user/money.service';
 import { WalletService } from 'src/app/service/wallet/wallet.service';
 
 @Component({
@@ -17,6 +18,7 @@ import { WalletService } from 'src/app/service/wallet/wallet.service';
 export class WalletsComponent {
   private _idUser : number = 0;
   private _sharesValues : Map<string, IAsset> = new Map<string, IAsset>();
+  private _eraseWalletIndex : number = -1;
 
   public wallets : IWallet[] = [];
   public walletsInfo : Array<{ name : string; total : number; numberOfAssets : number}> = [];
@@ -25,6 +27,7 @@ export class WalletsComponent {
   constructor(
     private wallet : WalletService,
     private date : DateService,
+    private money : MoneyService,
     private financialAssetsData : FinancialAssetsDataService,
   ) {
 
@@ -45,7 +48,7 @@ export class WalletsComponent {
         }
         assetsList.push(asset);
       });
-      this.wallets.push({ name: wallet.name, assets : assetsList });
+      this.wallets.push({ id : wallet.id, name: wallet.name, assets : assetsList });
     }
     this.wallets.forEach((wallet) => {
       let total : number = 0;
@@ -79,5 +82,18 @@ export class WalletsComponent {
     const user : any = localStorage.getItem('user');
     const { id } = JSON.parse(user);
     this._idUser = id;
+  }
+
+  openModal(index : number) : void {
+    this._eraseWalletIndex = index;
+  }
+
+  onEraseWallet() : void {
+    const { id } = this.wallets[this._eraseWalletIndex];
+    const { total } = this.walletsInfo[this._eraseWalletIndex];
+    this.wallets.splice(this._eraseWalletIndex, 1);
+    this.walletsInfo.splice(this._eraseWalletIndex, 1);
+    this.money.addMoney(total, this._idUser);
+    this.wallet.eraseWallet(id);
   }
 }
