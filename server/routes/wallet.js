@@ -43,6 +43,16 @@ router.get('/assets_wallet/:id', async (request, response) => {
     } catch (error) {
         response.json(error);
     }
-})
+});
+
+router.post('/remove', async (request, response) => {
+    try {
+        const { idWallet } = request.body;
+        const result = await daoWallet.removeWallet(idWallet);
+        response.json({ result });
+    } catch (error) {
+        response.json(error);
+    }
+});
 
 module.exports = router;

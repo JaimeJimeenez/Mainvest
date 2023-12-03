@@ -22,7 +22,7 @@ export class HeaderComponent {
     if (userLocal) {
       const user = JSON.parse(userLocal);
       this.user = user;
-      this.isUsersProfile = this.isUsersProfile || user?.isadmin;
+      this.isUsersProfile = true;
     }
 
     this.menuOptions = ROUTES_PROFILES;

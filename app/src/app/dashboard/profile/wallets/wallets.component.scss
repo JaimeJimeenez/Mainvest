@@ -33,6 +33,7 @@
   &--wallet {
     display: flex;
     width: 100%;
+    justify-content: space-between;
     cursor: pointer;
     border-bottom-width: 1px;
     --tw-border-opacity: 1;

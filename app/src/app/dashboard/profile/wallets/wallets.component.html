@@ -12,7 +12,7 @@
   </button>
 </div>
 <div class="profile--wallets--list">
-  <ng-container *ngFor="let wallet of walletsInfo">
+  <ng-container *ngFor="let wallet of walletsInfo; let i = index">
     <div class="profile--wallets--wallet grid grid-cols-6 text-gray-500 hover:border-b-2 hover:border-b-blue-ribbon-500">
       <div class="wallet--name text-white">
         Nombre:
@@ -39,7 +39,12 @@
             Modificar
           </div>
         </div>
-        <div class="wallet--erase hover:border-b-2 hover:text-red-500 hover:border-b-red-500 cursor-pointer">
+        <div
+          class="wallet--erase hover:border-b-2 hover:text-red-500 hover:border-b-red-500 cursor-pointer"
+          (click)="openModal(i)"
+          data-bs-toggle="modal"
+          data-bs-target="#eraseWalletModal"
+        >
           <i class="fa-solid fa-trash"></i>
           <div class="inline-flex items-center justify-center p-2 border-b-2 border-transparent rounded-t-lg">
             Eliminar
@@ -48,4 +53,21 @@
       </div>
     </div>
   </ng-container>
+</div>
+
+<div class="modal fad" id="eraseWalletModal" tabindex="-1" aria-labelledby="eraseWalletModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-gray-800">
+      <div class="modal-header border-b-gray-700">
+        <h1 class="modal-title f-5 text-red-700">Eliminar cartera</h1>
+      </div>
+      <div class="modal-body border-t-gray-700">
+        Al eliminar la cartera se venderán todos los activos pertenecientes a esta cartera.
+      </div>
+      <div class="modal-footer border-t-gray-700">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="onEraseWallet()">Eliminar</button>
+      </div>
+    </div>
+  </div>
 </div>

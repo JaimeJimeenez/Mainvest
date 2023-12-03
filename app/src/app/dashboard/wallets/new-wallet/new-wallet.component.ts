@@ -21,6 +21,7 @@ export class NewWalletComponent {
   private _numberOfAssets : number = 0;
   private _moneyUser : number = 0;
   private _assetsIndex : Map<string, number> = new Map<string, number>();
+  private _total : number = 0;
 
   public newWalletForm : FormGroup;
   public showAlert : boolean = false;
@@ -81,8 +82,8 @@ export class NewWalletComponent {
       if (indexAsset !== undefined)
         this.purchasedShares[indexAsset] =
           FinancialAsset.getTotalSharesOfAsset(this.assetsValues[indexAsset], value);
-      const total = this.purchasedShares.reduce((a, b) => a + b, 0);
-      this.showAlert = this._moneyUser < total;
+      this._total = this.purchasedShares.reduce((a, b) => a + b, 0);
+      this.showAlert = this._moneyUser < this._total;
     })
   }
 
@@ -121,6 +122,7 @@ export class NewWalletComponent {
 
   private _createWallet(name : string, assets : any[]) : IWallet {
     const newWallet : IWallet = {
+      id: -1,
       name,
       assets : []
     };
@@ -129,11 +131,11 @@ export class NewWalletComponent {
       const { assetName, assetValue } = asset;
       const newAsset : IAssetWallet = {
         name : assetName,
-        amount : assetValue,
+        amount : +assetValue,
       }
       newWallet.assets.push(newAsset);
     });
-
+    console.log(newWallet);
     return newWallet;
   }
 
