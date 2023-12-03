@@ -2,14 +2,19 @@
   <div class="profile--wallets--header--title">
     Mis carteras
   </div>
-  <button
-    type="button"
-    class="create--wallet text-gray-500 hover:border-b-2 hover:text-blue-ribbon-500 hover:border-b-blue-ribbon-500"
-    routerLink="/dashboard/wallets/new"
-  >
-    <i class="fa-solid fa-plus"></i>
-    Nueva cartera
-  </button>
+  <div class="profile--wallets--header--options">
+    <div class="profile--wallets--header--search">
+      <mainvest-search></mainvest-search>
+    </div>
+    <button
+      type="button"
+      class="create--wallet text-gray-500 hover:border-b-2 hover:text-blue-ribbon-500 hover:border-b-blue-ribbon-500"
+      routerLink="/dashboard/wallets/new"
+    >
+      <i class="fa-solid fa-plus"></i>
+      Nueva cartera
+    </button>
+  </div>
 </div>
 <div class="profile--wallets--list">
   <ng-container *ngFor="let wallet of walletsInfo; let i = index">

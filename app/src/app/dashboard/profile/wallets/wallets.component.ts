@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { firstValueFrom, lastValueFrom } from 'rxjs';
+import { Subscription, firstValueFrom, lastValueFrom } from 'rxjs';
 import { ASSETS } from 'src/app/const/financial_assets';
 import { IAsset } from 'src/app/interface/financial/iAssets';
 
 import { IAssetWallet, IWallet } from 'src/app/interface/financial/iWallet';
 import { FinancialAsset } from 'src/app/lib/financial_asset';
 import { DateService } from 'src/app/service/common/date.service';
+import { SearchObservableService } from 'src/app/service/observables/search-observable.service';
 import { FinancialAssetsDataService } from 'src/app/service/requests/common/financial-assets-data.service';
 import { MoneyService } from 'src/app/service/user/money.service';
 import { WalletService } from 'src/app/service/wallet/wallet.service';
@@ -19,8 +20,10 @@ export class WalletsComponent {
   private _idUser : number = 0;
   private _sharesValues : Map<string, IAsset> = new Map<string, IAsset>();
   private _eraseWalletIndex : number = -1;
+  private _subscriptionSearch : Subscription;
 
   public wallets : IWallet[] = [];
+  public searchWallets : IWallet[] = [];
   public walletsInfo : Array<{ name : string; total : number; numberOfAssets : number}> = [];
   public benefitsWallets : number[] = [];
 
@@ -29,10 +32,17 @@ export class WalletsComponent {
     private date : DateService,
     private money : MoneyService,
     private financialAssetsData : FinancialAssetsDataService,
+    private searchObservable : SearchObservableService
   ) {
 
     this._getIdUser();
     this._getWalletsByUser();
+
+    this._subscriptionSearch = this.searchObservable.searchData$.subscribe(
+      (value) => {
+        this._searchWallet(value);
+      }
+    )
   }
 
   private async _getWalletsByUser() : Promise<void> {
@@ -84,6 +94,13 @@ export class WalletsComponent {
     this._idUser = id;
   }
 
+  private _searchWallet(wallet: string): void {
+    const searchTermLower = wallet.toLowerCase();
+    this.walletsInfo = this.walletsInfo.filter(
+      (row) => row.name.toLowerCase().includes(searchTermLower)
+    )
+  }
+
   openModal(index : number) : void {
     this._eraseWalletIndex = index;
   }
@@ -95,5 +112,9 @@ export class WalletsComponent {
     this.walletsInfo.splice(this._eraseWalletIndex, 1);
     this.money.addMoney(total, this._idUser);
     this.wallet.eraseWallet(id);
+  }
+
+  ngOnDestroy() {
+    this._subscriptionSearch.unsubscribe;
   }
 }
