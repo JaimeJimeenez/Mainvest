@@ -1,0 +1,41 @@
+:host {
+  display: flex;
+  padding: 24px;
+  color: white;
+  flex-direction: column;
+}
+
+.profile--wallet {
+
+  &--header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    border-bottom-width: 1px;
+    --tw-border-opacity: 1;
+    border-color: rgb(75 85 99 / var(--tw-border-opacity));
+
+    &--title {
+      padding: 0.75rem;
+    }
+  }
+
+  &--wallet {
+    display: flex;
+    padding: 12px;
+    border-bottom-width: 1px;
+    --tw-border-opacity: 1;
+    border-color: rgb(75 85 99 / var(--tw-border-opacity));
+  }
+
+  &--list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    line-height: 1.75rem;
+
+  }
+}

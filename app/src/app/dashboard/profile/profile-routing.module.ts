@@ -7,6 +7,7 @@ import { PostsComponent } from './posts/posts.component';
 import { SharedWalletsComponent } from './shared-wallets/shared-wallets.component';
 import { LikedPostsComponent } from './liked-posts/liked-posts.component';
 import { WalletsComponent } from './wallets/wallets.component';
+import { WalletComponent } from './wallet/wallet.component';
 
 const routes : Routes = [
   {
@@ -32,6 +33,10 @@ const routes : Routes = [
       {
         path: 'settings',
         component: SettingsComponent,
+      },
+      {
+        path: 'wallet/:id',
+        component: WalletComponent
       }
     ]
   },

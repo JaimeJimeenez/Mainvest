@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription, firstValueFrom, lastValueFrom } from 'rxjs';
 import { ASSETS } from 'src/app/const/financial_assets';
 import { IAsset } from 'src/app/interface/financial/iAssets';
@@ -32,7 +33,8 @@ export class WalletsComponent {
     private date : DateService,
     private money : MoneyService,
     private financialAssetsData : FinancialAssetsDataService,
-    private searchObservable : SearchObservableService
+    private searchObservable : SearchObservableService,
+    private router : Router
   ) {
 
     this._getIdUser();
@@ -112,6 +114,11 @@ export class WalletsComponent {
     this.walletsInfo.splice(this._eraseWalletIndex, 1);
     this.money.addMoney(total, this._idUser);
     this.wallet.eraseWallet(id);
+  }
+
+  onShowWallet(index : number) : void {
+    const { id } = this.wallets[index];
+    this.router.navigate([`dashboard/profile/wallet/`, id]);
   }
 
   ngOnDestroy() {
