@@ -1,0 +1,23 @@
+<div class="profile--wallet--header">
+  <div class="profile--wallet--header--title">
+    Cartera: <span class="wallet--name text-gray-600"> {{ wallet.name }}</span>
+  </div>
+</div>
+<div class="profile--wallet--list">
+  <ng-container *ngFor="let asset of wallet.assets; let i = index">
+      <div class="profile--wallet--wallet gap-4 text-gray-500 hover:border-b-2 hover:border-b-blue-ribbon-500">
+        <div class="wallet--name text-white">
+          Nombre:
+          <span class="wallet--name__value text-gray-500"> {{ asset.name }} </span>
+        </div>
+        <div class="wallet--amount text-white">
+          Cantidad:
+          <span class="wallet--values__value text-gray-500"> {{ asset.amount| number: '1.3'}} </span>
+        </div>
+        <div class="wallet--value text-white">
+          Valor actual:
+          <span class="wallet--values__value text-gray-500"> {{ assetsValues[i] | number: '1.3'}} </span>
+        </div>
+      </div>
+  </ng-container>
+</div>

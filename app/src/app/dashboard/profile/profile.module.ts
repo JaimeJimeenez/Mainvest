@@ -15,6 +15,7 @@ import { SharedWalletsComponent } from './shared-wallets/shared-wallets.componen
 import { LikedPostsComponent } from './liked-posts/liked-posts.component';
 import { PostsComponent } from './posts/posts.component';
 import { SearchComponent } from 'src/app/components/search/search.component';
+import { WalletComponent } from './wallet/wallet.component';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { SearchComponent } from 'src/app/components/search/search.component';
     WalletsComponent,
     SharedWalletsComponent,
     LikedPostsComponent,
-    PostsComponent
+    PostsComponent,
+    WalletComponent
   ],
 })
 export class ProfileModule { }

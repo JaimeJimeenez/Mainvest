@@ -23,16 +23,11 @@
         Nombre:
         <span class="wallet--name__value text-gray-500"> {{ wallet.name }} </span>
       </div>
-      <div class="wallet--values text-white">
-        Valor:
-        <span class="wallet--values__value text-gray-500"> {{ wallet.total | number: '1.3'}} </span>
-      </div>
-      <div class="wallet--assets text-white">
-        Número de activos:
-        <span class="wallet--assets__value text-gray-500"> {{ wallet.numberOfAssets }} </span>
-      </div>
       <div class="wallet--settings">
-        <div class="wallet--view hover:border-b-2 hover:text-blue-ribbon-500 hover:border-b-blue-ribbon-500 cursor-pointer">
+        <div
+          class="wallet--view hover:border-b-2 hover:text-blue-ribbon-500 hover:border-b-blue-ribbon-500 cursor-pointer"
+          (click)="onShowWallet(i)"
+        >
           <i class="fa-solid fa-eye"></i>
           <div class="inline-flex items-center justify-center p-2 border-b-2 border-transparent rounded-t-lg">
             Ver cartera
@@ -45,7 +40,7 @@
           </div>
         </div>
         <div
-          class="wallet--erase hover:border-b-2 hover:text-red-500 hover:border-b-red-500 cursor-pointer"
+          class="wallet--era se hover:border-b-2 hover:text-red-500 hover:border-b-red-500 cursor-pointer"
           (click)="openModal(i)"
           data-bs-toggle="modal"
           data-bs-target="#eraseWalletModal"
