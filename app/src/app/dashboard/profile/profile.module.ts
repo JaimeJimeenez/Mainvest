@@ -11,11 +11,9 @@ import { HeaderComponent } from './header/header.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthModule } from 'src/app/auth/auth.module';
 import { WalletsComponent } from './wallets/wallets.component';
-import { SharedWalletsComponent } from './shared-wallets/shared-wallets.component';
 import { LikedPostsComponent } from './liked-posts/liked-posts.component';
 import { PostsComponent } from './posts/posts.component';
 import { SearchComponent } from 'src/app/components/search/search.component';
-import { WalletComponent } from './wallet/wallet.component';
 
 @NgModule({
   imports: [
@@ -34,10 +32,8 @@ import { WalletComponent } from './wallet/wallet.component';
     SettingsComponent,
     HeaderComponent,
     WalletsComponent,
-    SharedWalletsComponent,
     LikedPostsComponent,
     PostsComponent,
-    WalletComponent
   ],
 })
 export class ProfileModule { }

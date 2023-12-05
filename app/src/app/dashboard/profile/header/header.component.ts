@@ -41,7 +41,7 @@ export class HeaderComponent {
     const myWallets : IRoutes = {
       label: 'Mis carteras',
       icon: 'fa-solid fa-wallet',
-      path: '/dashboard/profile/wallets'
+      path: '/dashboard/profile/wallets/'
     };
     if (this.menuOptions.length !== 5) {
       this.menuOptions.unshift(user);

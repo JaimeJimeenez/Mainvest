@@ -1,0 +1,85 @@
+:host {
+  display: flex;
+  padding: 24px;
+  color: white;
+  flex-direction: column;
+}
+
+.profile--wallets {
+
+  &--header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    border-bottom-width: 1px;
+    --tw-border-opacity: 1;
+    border-color: rgb(75 85 99 / var(--tw-border-opacity));
+
+    &--title {
+      padding: 0.75rem;
+    }
+
+    &--options {
+      display: flex;
+    }
+
+    &--search {
+      display: flex;
+      align-items: flex-end;
+      padding: 0.8rem;
+    }
+  }
+
+  &--list {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &--wallet {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    cursor: pointer;
+    border-bottom-width: 1px;
+    --tw-border-opacity: 1;
+    border-color: rgb(75 85 99 / var(--tw-border-opacity));
+    align-items: center;
+  }
+}
+
+.wallet {
+
+  &--name {
+    display: flex;
+    align-items: center;
+  }
+
+  &--values {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &--assets {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  &--settings {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    align-items: center;
+  }
+}
+
+.create--wallet {
+  font-size: 16px;
+  padding: 0.75rem;
+}

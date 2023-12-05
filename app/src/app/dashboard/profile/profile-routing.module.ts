@@ -4,10 +4,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProfileComponent } from './profile.component';
 import { SettingsComponent } from './settings/settings.component';
 import { PostsComponent } from './posts/posts.component';
-import { SharedWalletsComponent } from './shared-wallets/shared-wallets.component';
+import { SharedWalletsComponent } from './wallets/shared-wallets/shared-wallets.component';
 import { LikedPostsComponent } from './liked-posts/liked-posts.component';
 import { WalletsComponent } from './wallets/wallets.component';
-import { WalletComponent } from './wallet/wallet.component';
 
 const routes : Routes = [
   {
@@ -28,16 +27,12 @@ const routes : Routes = [
       },
       {
         path: 'wallets',
-        component: WalletsComponent,
+        loadChildren: () => import('./wallets/wallets.module').then(m => m.WalletsModule)
       },
       {
         path: 'settings',
         component: SettingsComponent,
       },
-      {
-        path: 'wallet/:id',
-        component: WalletComponent
-      }
     ]
   },
 ]

@@ -3,18 +3,18 @@ import { ActivatedRoute } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { ASSETS } from 'src/app/const/financial_assets';
 import { IAsset } from 'src/app/interface/financial/iAssets';
-import { IAssetWallet, IWallet } from 'src/app/interface/financial/iWallet';
+import { IWallet, IAssetWallet } from 'src/app/interface/financial/iWallet';
 import { FinancialAsset } from 'src/app/lib/financial_asset';
 import { DateService } from 'src/app/service/common/date.service';
 import { FinancialAssetsDataService } from 'src/app/service/requests/common/financial-assets-data.service';
 import { WalletService } from 'src/app/service/wallet/wallet.service';
 
 @Component({
-  selector: 'mainvest-wallet',
-  templateUrl: './wallet.component.html',
-  styleUrls: ['./wallet.component.scss']
+  selector: 'mainvest-view-wallet',
+  templateUrl: './view-wallet.component.html',
+  styleUrls: ['./view-wallet.component.scss']
 })
-export class WalletComponent {
+export class ViewWalletComponent {
   private idWallet : string | null = '';
 
   public assetsMap : Map<string, IAsset> = new Map<string, IAsset>();
