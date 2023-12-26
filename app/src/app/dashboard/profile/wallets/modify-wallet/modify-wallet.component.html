@@ -1,1 +1,101 @@
-<p>modify-wallet works!</p>
+<div class="asset--list--header">
+  <div class="asset--list--header--title">
+    Cartera: <span class="wallet--name text-gray-600"> {{ wallet.name }}</span>
+  </div>
+</div>
+<div class="asset--list">
+  <ng-container *ngFor="let asset of wallet.assets; let i = index">
+    <div class="wallet--asset gap-4 hover:border-b-2 hover:border-b-blue-ribbon-500">
+      <div class="wallet--asset--info">
+        <div class="asset--name text-white">
+          Nombre:
+          <span class="asset--name__value text-gray-500">{{ asset.name }} </span>
+        </div>
+        <div class="asset--amount text-white">
+          Cantidad:
+          <span class="asset--amount__value text-gray-500"> {{ asset.amount | number:'1.3' }} </span>
+        </div>
+        <div class="asset--value text-white">
+          Valor actual:
+          <span class="asset--value__value text-gray-500"> {{ assetsValues[i] | number:'1.3' }}</span>
+        </div>
+      </div>
+      <div class="wallet--asset--settings">
+        <div
+          class="asset--shopping hover:border-b-2 hover:text-blue-ribbon-500 hover:border-b-blue-ribbon-500 text-gray-500"
+          (click)="openModal(i)"
+          data-bs-toggle="modal"
+          data-bs-target="#buySellAssetModal"
+        >
+          <i class="fa-solid fa-cart-shopping"></i>
+          <div class="asset--shopping__text inline-flex items-center justify-center p-2 border-b-2 border-transparent rounded-t-lg">
+            Modificar
+          </div>
+        </div>
+        <div
+          class="asset--shopping hover:border-b-2 hover:text-red-500 hover:border-b-red-500 text-gray-500"
+          (click)="openModal(i)"
+          data-bs-toggle="modal"
+          data-bs-target="#eraseAssetModal"
+        >
+        <i class="fa-solid fa-trash"></i>
+          <div class="asset--shopping__text inline-flex items-center justify-center p-2 border-b-2 border-transparent rounded-t-lg">
+            Eliminar
+          </div>
+        </div>
+        <div class="asset--info hover:border-b-2 hover:text-blue-ribbon-500 hover:border-b-blue-ribbon-500 text-gray-500">
+          <i class="fa-solid fa-circle-info"></i>
+          <div class="asset--info__text inline-flex items-center justify-center p-2 border-b-2 border-transparent rounded-t-lg">
+            Información del activo
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<div class="modal fade" id="buySellAssetModal" tabindex="-1" aria-labelledby="buySellassetModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-gray-800">
+      <div class="modal-header border-b-gray-700">
+        <h1 class="modal-title f-5 text-white">Modificar activo</h1>
+      </div>
+      <div class="modal-body border-t-gray-700">
+        <form class="space-y-6" [formGroup]="modifyAssetForm" (ngSubmit)="onSubmit()">
+          <input
+            type="text"
+            formControlName="value"
+            class="asset--input text-sm text-white border-gray-600 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" "/>
+          <label
+            class="asset--label peer-focus:font-medium text-sm text-gray-500 transform -translate-y-6 scale-75 peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >
+            AAPL (Por modificar)
+          </label>
+        </form>
+      </div>
+      <div class="modal-footer border-t-gray-700">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="onBuySellAsset()">Modificar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="eraseAssetModal" tabindex="-1" aria-labelledby="eraseAssetModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-gray-800">
+      <div class="modal-header border-b-gray-700">
+        <h1 class="modal-title f-5 text-red-700">Eliminar activo</h1>
+      </div>
+      <div class="modal-body border-t-gray-700">
+        Al eliminar el activo se venderá la cantidad perteneciente a dicho activo
+      </div>
+      <div class="modal-footer border-t-gray-700">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="onEraseAsset()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -21,7 +21,9 @@
     >Follow</button>
   </ng-container>
   <ng-container *ngIf="isUsersProfile">
-    <div class="submenu--credits">Saldo actual: {{ credits | currency:'EUR' }}</div>
+    <mainvest-card-money
+      [money] = "credits"
+    ></mainvest-card-money>
     <button
       type="button"
       class="bg-black-900 text-white shadow-lg shadow-indigo-500/40 rounded"

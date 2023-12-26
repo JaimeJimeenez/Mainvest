@@ -63,6 +63,16 @@ class DAOWallet {
             throw error;
         }
     }
+
+    async eraseAsset(idWallet, nameAsset) {
+        try {
+            const sql = '';
+            return await executeQuery(sql, [idWallet, nameAsset]);
+        } catch(error) {
+            console.error(`Something wrong hapened ${error}`);
+            throw error;
+        }
+    }
 }
 
 module.exports = DAOWallet;

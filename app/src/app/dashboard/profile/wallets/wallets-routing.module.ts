@@ -26,7 +26,7 @@ const routes: Routes = [
         pathMatch: 'full',
       },
       {
-        path: 'modify-wallet',
+        path: 'modify-wallet/:id',
         component: ModifyWalletComponent,
         pathMatch: 'full'
       },

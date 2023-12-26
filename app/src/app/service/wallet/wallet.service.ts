@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { NewWalletDataService } from '../requests/wallet/new-wallet-data.service';
 import { IAssetWallet, IWallet } from 'src/app/interface/financial/iWallet';
-import { AddAssetsDataService } from '../requests/wallet/add-assets-data.service';
+import { AddAssetsDataService } from '../requests/asset/add-assets-data.service';
 import { Observable } from 'rxjs';
 import { GetWalletsDataService } from '../requests/wallet/get-wallets-data.service';
-import { AssetsWalletDataService } from '../requests/wallet/assets-wallet-data.service';
+import { AssetsWalletDataService } from '../requests/asset/assets-wallet-data.service';
 import { RemoveWalletDataService } from '../requests/wallet/remove-wallet-data.service';
 import { WalletNameDataService } from '../requests/wallet/wallet-name-data.service';
+import { EraseAssetDataService } from '../requests/asset/erase-asset-data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,7 @@ export class WalletService {
     private getWalletsData : GetWalletsDataService,
     private assetsWalletData : AssetsWalletDataService,
     private eraseWalletData : RemoveWalletDataService,
+    private eraseAssetData : EraseAssetDataService,
     private walletNameData : WalletNameDataService
   ) { }
 
@@ -48,10 +50,11 @@ export class WalletService {
     return this.assetsWalletData.getAssets(idWallet);
   }
 
-  eraseWallet(idWallet : number) : Promise<boolean> {
-    return new Promise<boolean>((resolve, reject) => {
-      this.eraseWalletData.removeWallet(idWallet)
-        .then((apiResponse : boolean) => resolve(apiResponse));
-    });
+  eraseWallet(idWallet : number) : Observable<boolean> {
+    return this.eraseWalletData.removeWallet(idWallet);
+  }
+
+  eraseAsset(nameAsset : string, idWallet : number) : Observable<boolean> {
+    return this.eraseAssetData.eraseAsset(idWallet, nameAsset);
   }
 }

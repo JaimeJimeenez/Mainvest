@@ -15,9 +15,6 @@ export class WalletNameDataService {
       'Content-Type': 'application/json',
     });
 
-    console.log(idWallet);
-
-
     return this.httpClient.get(`${enviroment.baseUrl}/wallet/name/${idWallet}`, { headers }).pipe(
       map((response : any = {}) => response.data[0])
     )

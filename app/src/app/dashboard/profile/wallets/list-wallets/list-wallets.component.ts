@@ -106,6 +106,11 @@ export class ListWalletsComponent {
     this.router.navigate([`/dashboard/profile/wallets/view-wallet/`, id]);
   }
 
+  onModifyWallet(index : number) : void {
+    const { id } = this.wallets[index];
+    this.router.navigate([`/dashboard/profile/wallets/modify-wallet/`, id]);
+  }
+
   ngOnDestroy() {
     this._subscriptionSearch.unsubscribe;
   }

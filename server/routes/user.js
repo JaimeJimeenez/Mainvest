@@ -48,7 +48,17 @@ router.post('/add_money', async (request, response) => {
     try {
         const { idUser, money } = request.body;
         const result = await daoUser.addMoney(idUser, money);
-        response.json({ result });
+        response.json(result);
+    } catch (error) {
+        response.json(error);
+    }
+});
+
+router.get('/get_money/:id', async (request, response) => {
+    try {
+        const { id } = request.params;
+        const result = await daoUser.getMoney(id);
+        response.json(result);
     } catch (error) {
         response.json(error);
     }

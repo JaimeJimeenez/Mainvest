@@ -6,18 +6,18 @@ import { enviroment } from 'src/enviroments/enviroment';
 @Injectable({
   providedIn: 'root'
 })
-export class AddMoneyDataService {
+export class GetMoneyDataService {
 
   constructor(private httpClient : HttpClient) { }
 
-  addMoney(money : number, idUser : number) : Observable<boolean> {
+  getMoney(idUser : number) : Observable<number> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
 
-    return this.httpClient.post(`${enviroment.baseUrl}/user/add_money`, { money, idUser }, { headers })
+    return this.httpClient.get(`${enviroment.baseUrl}/user/get_money/${idUser}`, { headers })
       .pipe(
-        map((response : any ) => response.status)
+        map((response : any ) => response.data[0].money)
       );
   }
 }

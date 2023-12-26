@@ -31,7 +31,6 @@ export class ViewWalletComponent {
     private date : DateService,
     private financialAssetsData : FinancialAssetsDataService
   ) {
-
     this._getFinancialAssets();
   }
 
@@ -45,7 +44,6 @@ export class ViewWalletComponent {
         name,
         assets : this._parseAssets(assets),
       }
-      this._parseAssets(assets);
     });
   }
 

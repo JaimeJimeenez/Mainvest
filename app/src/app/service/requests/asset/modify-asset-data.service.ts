@@ -6,17 +6,18 @@ import { enviroment } from 'src/enviroments/enviroment';
 @Injectable({
   providedIn: 'root'
 })
-export class RemoveWalletDataService {
+export class ModifyAssetDataService {
 
-  constructor(private httpClient : HttpClient) {}
+  constructor(private httpClient : HttpClient) { }
 
-  removeWallet(idWallet : number) : Observable<boolean> {
+  modifyAsset(idWallet : number, name : string, amount : number) : Observable<boolean> {
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
+      'Content-Type' : 'application/json'
     });
 
-    return this.httpClient.post(`${enviroment.baseUrl}}/wallet/erase`, { idWallet }, { headers}).pipe(
+    return this.httpClient.post(`${enviroment.baseUrl}}/asset/modify`, {idWallet, name, amount}, { headers}).pipe(
       map((apiResponse : any = {}) => apiResponse.status === 200)
     );
   }
+
 }

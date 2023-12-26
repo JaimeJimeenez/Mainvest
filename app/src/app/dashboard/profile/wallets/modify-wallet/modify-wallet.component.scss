@@ -1,0 +1,78 @@
+:host {
+  display: flex;
+  padding: 24px;
+  color: white;
+  flex-direction: column;
+}
+
+.asset--list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  line-height: 1.75rem;
+
+  &--header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    border-bottom-width: 1px;
+    --tw-border-opacity: 1;
+    border-color: rgb(75 85 99 / var(--tw-border-opacity));
+
+    &--title {
+      padding: 0.75rem;
+    }
+  }
+}
+
+.wallet--asset {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(75 85 99 / var(--tw-border-opacity));
+
+  &--info {
+    display: flex;
+    gap: 16px;
+  }
+
+  &--settings {
+    display: flex;
+    gap: 16px;
+  }
+}
+
+.asset {
+  &--shopping {
+    gap: 8px;
+    cursor: pointer;
+  }
+
+  &--info {
+    gap: 8px;
+    cursor: pointer;
+  }
+
+  &--input {
+    display: block;
+    padding: 10px 0px;
+    width: 100%;
+    background: transparent;
+    border-width: 0px;
+    border-bottom-width: 1px;
+    appearance: none;
+  }
+
+  &--label {
+    position: absolute;
+    transition-duration: 300ms;
+    z-index: -10;
+    top: 12px;
+    transform-origin: 0;
+  }
+}

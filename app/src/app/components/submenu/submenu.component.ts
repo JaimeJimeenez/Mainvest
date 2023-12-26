@@ -3,12 +3,13 @@ import { CommonModule, registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es'
 
 import { IRoutes } from 'src/app/interface/main/iRoutes';
+import { CardMoneyComponent } from '../card-money/card-money.component';
 
 registerLocaleData(localeEs, 'es-EUR');
 
 @Component({
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CardMoneyComponent],
   selector: 'mainvest-submenu',
   templateUrl: './submenu.component.html',
   styleUrls: ['./submenu.component.scss'],
@@ -32,6 +33,7 @@ export class SubmenuComponent {
     setTimeout(() => {
       this._updateSubmenu(0);
     }, 0);
+    console.log(this.credits);
   }
 
   onSelectedOption(selected : IRoutes) : void {
