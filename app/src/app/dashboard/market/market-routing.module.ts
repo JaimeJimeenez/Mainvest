@@ -1,12 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { MarketComponent } from './market.component';
+import { OverviewComponent } from './overview/overview.component';
 
 const routes : Routes = [
   {
     path: '',
-    component: MarketComponent,
+    redirectTo: 'overview',
+    pathMatch: 'full'
+  },
+  {
+    path: 'overview',
+    component: OverviewComponent
   }
 ]
 

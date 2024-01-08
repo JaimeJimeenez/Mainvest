@@ -1,0 +1,21 @@
+<div class="table--header grid grid-cols-5">
+  <div class="table--header--name">
+    <span class="table--header__value">Nombre</span>
+  </div>
+  <div class="table--header--price">
+    <span class="table--header__value">Precio</span>
+  </div>
+  <div class="table--header--change">
+    <span class="table--header__value">Evolución</span>
+  </div>
+  <div class="table--header--volume">
+    <span class="table--header__value">Volumen</span>
+  </div>
+  <div class="table--header--options">
+    <span class="table--header__value">Opciones</span>
+  </div>
+</div>
+
+<ng-container *ngFor="let asset of assets">
+  <mainvest-table-line [asset]="asset"></mainvest-table-line>
+</ng-container>

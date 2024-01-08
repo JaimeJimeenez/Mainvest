@@ -1,0 +1,19 @@
+:host {
+  border-top-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(75 85 99 / var(--tw-border-opacity));
+  padding: 10px 0px;
+}
+
+.asset--info {
+  color: white;
+}
+
+.asset {
+
+  &__value {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+}
