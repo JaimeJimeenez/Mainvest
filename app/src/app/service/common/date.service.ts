@@ -65,4 +65,37 @@ export class DateService {
     return this._isWeekend() || this._isMonday() ? this.getLastDays() : this._getYesterdayAndToday();
   }
 
+  private _getFridayAndSaturdayLastWeek(date: Date): { firstDay: string, lastDay: string } {
+    const fridayLastWeek = new Date(date);
+    fridayLastWeek.setDate(date.getDate() - (date.getDay() === 1 ? 4 : 3));
+
+    const saturdayLastWeek = new Date(fridayLastWeek);
+    saturdayLastWeek.setDate(fridayLastWeek.getDate() + 1);
+
+    return { firstDay: this._parseDateToString(fridayLastWeek), lastDay: this._parseDateToString(saturdayLastWeek) };
+  }
+
+  private _getDayBeforeAndYesterday(date: Date): { firstDay: string, lastDay: string } {
+    const yesterday = new Date(date);
+    yesterday.setDate(date.getDate() - 1);
+
+    const dayBeforeYesterday = new Date(yesterday);
+    dayBeforeYesterday.setDate(yesterday.getDate() - 1);
+
+    return { firstDay: this._parseDateToString(dayBeforeYesterday), lastDay: this._parseDateToString(yesterday) };
+  }
+
+  getOlderDays(): { firstDay: string, lastDay: string } {
+    debugger;
+    const date = new Date();
+    const yesterday = new Date(date);
+    yesterday.setDate(date.getDate() - 1);
+
+    if (yesterday.getDay() === 1 || yesterday.getDay() === 0) {
+      return this._getFridayAndSaturdayLastWeek(yesterday);
+    } else {
+      return this._getDayBeforeAndYesterday(yesterday);
+    }
+  }
+
 }

@@ -1,4 +1,5 @@
 export interface IAsset {
+  change? : number,
   adj_close : number,
   close : number,
   hight : number,
