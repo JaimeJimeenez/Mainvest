@@ -9,4 +9,5 @@ export const ASSETS = [
   'BTC-USD',
   'ETH-USD',
   'MATIC-USD',
+  'NVDA'
 ];

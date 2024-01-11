@@ -6,12 +6,17 @@
     <span class="asset__value"> {{ asset.info.adj_close | currency: 'EUR' }} </span>
   </div>
   <div class="asset--evolution">
-    <span class="asset__value"> {{ getAbsolute(asset.change) | number: '1.3'}} </span>
+    <span
+      class="asset__value"
+      [ngStyle]="{ color: asset.change >= 0 ? 'red' : 'green' }"
+    >
+      {{ getAbsolute(asset.change) | number: '1.3'}}%
+    </span>
   </div>
   <div class="asset--volume">
     <span class="asset__value"> {{ asset.info.volume | number: '1.0'}}</span>
   </div>
   <div class="asset--options hover:text-blue-ribbon-500 cursor-pointer">
-    <i class="asset__value fa-solid fa-eye"></i>
+    <i class="asset__value fa-solid fa-eye" (click)="getAssetInfo(asset.name)"></i>
   </div>
 </div>

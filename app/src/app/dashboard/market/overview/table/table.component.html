@@ -6,7 +6,7 @@
     <span class="table--header__value">Precio</span>
   </div>
   <div class="table--header--change">
-    <span class="table--header__value">Evolución</span>
+    <span class="table--header__value">Variación</span>
   </div>
   <div class="table--header--volume">
     <span class="table--header__value">Volumen</span>
@@ -17,5 +17,8 @@
 </div>
 
 <ng-container *ngFor="let asset of assets">
-  <mainvest-table-line [asset]="asset"></mainvest-table-line>
+  <mainvest-table-line
+    [asset]="asset"
+    (onRequestedAsset)="getAssetInfo($event)"
+  ></mainvest-table-line>
 </ng-container>

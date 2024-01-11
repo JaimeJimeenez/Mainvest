@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { ASSETS } from 'src/app/const/financial_assets';
 
@@ -15,7 +16,11 @@ import { FinancialAssetsDataService } from 'src/app/service/requests/common/fina
 export class TableComponent {
   assets : any[] = [];
 
-  constructor(private date : DateService, private financialAssetsData : FinancialAssetsDataService) {
+  constructor(
+    private date : DateService,
+    private financialAssetsData : FinancialAssetsDataService,
+    private router : Router
+  ) {
     this._getAssets();
   }
 
@@ -46,10 +51,14 @@ export class TableComponent {
   private _parseAssets(actualAsset : Map<string, IAsset[]>, oldAssets : Map<string, IAsset[]>) {
     actualAsset.forEach((value : IAsset[], key : string) => {
       this.assets.push({
-        name : key.split('-')[0],
+        name : key,
         info : value[0],
         change : this._getAssetEvolution(value[0].adj_close, oldAssets.get(key)![0].adj_close)
       })
     });
+  }
+
+  getAssetInfo(name : string) : void {
+    this.router.navigate([`/dashboard/market/${name}`]);
   }
 }
