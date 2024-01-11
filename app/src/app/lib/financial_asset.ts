@@ -1,5 +1,6 @@
 import { ASSETS } from "../const/financial_assets";
 import { IAsset } from "../interface/financial/iAssets";
+import { IChart } from "../interface/financial/iChart";
 
 export class FinancialAsset {
 
@@ -98,5 +99,15 @@ export class FinancialAsset {
 
   static getTotalSharesOfAsset(valueOfAsset : number, moneyToSpend : number) : number {
     return valueOfAsset * moneyToSpend;
+  }
+
+  static getChartData(date : string, dataFinancialAssets : any) : IChart {
+    return {
+      time : date,
+      open : dataFinancialAssets[0],
+      high : dataFinancialAssets[1],
+      low : dataFinancialAssets[2],
+      close : dataFinancialAssets[3]
+    }
   }
 }

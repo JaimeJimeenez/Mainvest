@@ -7,11 +7,12 @@ import { MarketComponent } from './market.component';
 import { OverviewComponent } from './overview/overview.component';
 import { TableComponent } from './overview/table/table.component';
 import { TableLineComponent } from 'src/app/components/table-line/table-line.component';
+import { AssetComponent } from './asset/asset.component';
 
 @NgModule({
   imports: [MarketRoutingModule, CommonModule, TableLineComponent],
   exports: [],
-  declarations: [MarketComponent, OverviewComponent, TableComponent],
+  declarations: [MarketComponent, OverviewComponent, TableComponent, AssetComponent],
   providers: [],
 })
 export class MarketModule { }

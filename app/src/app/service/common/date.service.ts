@@ -86,7 +86,6 @@ export class DateService {
   }
 
   getOlderDays(): { firstDay: string, lastDay: string } {
-    debugger;
     const date = new Date();
     const yesterday = new Date(date);
     yesterday.setDate(date.getDate() - 1);
@@ -98,4 +97,32 @@ export class DateService {
     }
   }
 
+  getMonths() : { pastMonth : string, actualMonth : string } {
+    const today = new Date();
+    const past = new Date(today);
+
+    past.setMonth(past.getMonth() - 1);
+
+    return { pastMonth: this._parseDateToString(past), actualMonth: this._parseDateToString(today) };
+  }
+
+  getYears() : { pastYear : string, actualYear : string } {
+    const today = new Date();
+    const past = new Date(today);
+
+    past.setFullYear(past.getFullYear() - 1 )
+    return { pastYear : this._parseDateToString(past), actualYear : this._parseDateToString(today) };
+  }
+
+  parseDate(fechaString: string): string {
+    const fecha = new Date(fechaString);
+
+    const year = fecha.getFullYear();
+    const month = (fecha.getMonth() + 1).toString().padStart(2, '0');
+    const day = fecha.getDate().toString().padStart(2, '0');
+
+    const fechaFormateada = `${year}-${month}-${day}`;
+
+    return fechaFormateada;
+  }
 }
