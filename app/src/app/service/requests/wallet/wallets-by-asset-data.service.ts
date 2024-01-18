@@ -6,19 +6,19 @@ import { enviroment } from 'src/enviroments/enviroment';
 @Injectable({
   providedIn: 'root'
 })
-export class AddMoneyDataService {
+export class WalletsByAssetDataService {
 
   constructor(private httpClient : HttpClient) { }
 
-  addMoney(money : number, idUser : number) : Observable<boolean> {
+  getWalletsByAsset(idUser : number, asset : string) : Observable<any> {
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     });
 
-    return this.httpClient.post(`${enviroment.baseUrl}/user/add_money`, { money, idUser }, { headers }).pipe(
-      map((apiResponse : any) => {
+    return this.httpClient.get(`${enviroment.baseUrl}/wallet/wallets_by_asset/${idUser}/${asset}`, { headers }).pipe(
+      map((apiResponse : any = {}) => {
         const { result } = apiResponse;
-        return result.status === 200;
+        return result.data;
       })
     )
   }

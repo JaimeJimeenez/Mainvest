@@ -25,6 +25,36 @@ router.post('/add_assets', async (request, response) => {
     }
 });
 
+router.post('/update_asset', async (request, response) => {
+    try {
+        const { idWallet, asset, amount } = request.body; 
+        const result = await daoWallet.updateAsset(idWallet, asset, amount);
+        response.json({ result });
+    } catch (error) {
+        response.json(error);
+    }
+})
+
+router.post('/sell_asset', async (request, response) => {
+    try {
+        const { idWallet, asset, amount } = request.body;
+        const result = await daoWallet.sellAsset(idWallet, asset, amount);
+        response.json({ result });
+    } catch (error) {
+        response.json(error);
+    }
+});
+
+router.post('/sell_all', async (request, response) => {
+    try {
+        const { idWallet, asset } = request.body;
+        const result = await daoWallet.sellAll(idWallet, asset);
+        response.json({ result });
+    } catch (error) {
+        response.json(error);
+    }
+});
+
 router.get('/list/:id', async (request, response) => {
     try {
         const { id } = request.params;
@@ -35,7 +65,7 @@ router.get('/list/:id', async (request, response) => {
     }
 });
 
-router.get('/assets_wallet/:id', async (request, response) => {
+router.get('/assets_by_wallet/:id', async (request, response) => {
     try {
         const { id } = request.params;
         const result = await daoWallet.getAssets(id);
@@ -44,6 +74,18 @@ router.get('/assets_wallet/:id', async (request, response) => {
         response.json(error);
     }
 });
+
+router.get('/wallets_by_asset/:idUser/:asset', async (request, response) => {
+    try {
+        const { idUser, asset } = request.params;
+        const result = await daoWallet.getWalletsByAsset(idUser, asset);
+        response.json({ result });
+    } catch (error) {
+        response.json(error);
+    }
+});
+
+
 
 router.get('/name/:id', async (request, response) => {
     try {

@@ -8,7 +8,7 @@ export class DateService {
   private _isWeekend() : boolean {
     const date = new Date();
     const today = date.getDay();
-    return today === 0 || today === 6 || today === 5;
+    return today === 0 || today === 6;
   }
 
   private _formatNumber(value: number): string {
@@ -77,7 +77,6 @@ export class DateService {
 
   private _getDayBeforeAndYesterday(date: Date): { firstDay: string, lastDay: string } {
     const yesterday = new Date(date);
-    yesterday.setDate(date.getDate() - 1);
 
     const dayBeforeYesterday = new Date(yesterday);
     dayBeforeYesterday.setDate(yesterday.getDate() - 1);

@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { last, lastValueFrom } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription, distinctUntilChanged, lastValueFrom, take } from 'rxjs';
 
 import { IChart } from 'src/app/interface/financial/iChart';
 import { FinancialAsset } from 'src/app/lib/financial_asset';
 import { ChartService } from 'src/app/service/charts/chart.service';
 import { DateService } from 'src/app/service/common/date.service';
+import { MoneyObservableService } from 'src/app/service/observables/money-observable.service';
+import { TradingObservableService } from 'src/app/service/observables/trading-observable.service';
 import { FinancialAssetsDataService } from 'src/app/service/requests/common/financial-assets-data.service';
+import { WalletService } from 'src/app/service/wallet/wallet.service';
 
 @Component({
   selector: 'mainvest-asset',
@@ -14,21 +17,51 @@ import { FinancialAssetsDataService } from 'src/app/service/requests/common/fina
   styleUrls: ['./asset.component.scss']
 })
 export class AssetComponent {
+  private _idUser : number = 0;
+  private _subscriptionTrading : Subscription;
+
   name : string | null = '';
   chartData : IChart[] = [];
   showYears : boolean = true;
   showHistoricalData : boolean = true;
+  isBuyingAsset : boolean = true;
+  wallets : any[] = [];
+  walletsByAsset : any;
+  closePrice : number = 0;
 
   constructor(
     private activatedRoute : ActivatedRoute,
+    private router : Router,
     private financialAssetData : FinancialAssetsDataService,
     private date : DateService,
-    private chart : ChartService
+    private chart : ChartService,
+    private wallet : WalletService,
+    private moneyObservable : MoneyObservableService,
+    private tradingObservable : TradingObservableService
   ) {
     this.activatedRoute.paramMap.subscribe((params => {
       this.name = params.get('name');
       this._getAssetValues();
+      this._getIdUser();
+      this._getWallets();
+      this._getWalletsWithAsset();
     }));
+
+    this._subscriptionTrading = this.tradingObservable.tradingData$.pipe(take(1)).subscribe(
+      async (tradingInfo : any) => {
+        const { isBuying, amount } = tradingInfo;
+        if (isBuying) {
+          const money = FinancialAsset.getTotalSharesOfAsset(this.closePrice, amount);
+          this._updateUserMoney(money, true);
+          await this.wallet.buyAsset(this._idUser, { ...tradingInfo, asset : this.name, money });
+        }
+        else {
+          const money = FinancialAsset.getTotalMoneyOfAsset(this.closePrice, amount);
+          this._updateUserMoney(money, false);
+          await lastValueFrom(this.wallet.sellAsset({ ...tradingInfo, asset : this.name }, money, this._idUser));
+        }
+        this.router.navigate([`/dashboard/market`]);
+      })
   }
 
   private _getDates() :
@@ -56,7 +89,7 @@ export class AssetComponent {
       const date = this.date.parseDate(value);
       this.chartData.push(FinancialAsset.getChartData(date, data[i]))
     });
-
+    this.closePrice = this.chartData[this.chartData.length - 1].close;
     this._drawChart();
   }
 
@@ -99,6 +132,35 @@ export class AssetComponent {
       element.classList.add('option--selected');
   }
 
+  private _updateUserMoney(money : number, isBuying : boolean) : void {
+    const storedData : any = localStorage.getItem('user');
+    const user = JSON.parse(storedData);
+    let userMoney : number = +user['money'];
+
+    if (isBuying)
+      userMoney -= money;
+    else
+      userMoney += money;
+    user['money'] = userMoney;
+
+    localStorage.setItem('user', JSON.stringify(user));
+    this.moneyObservable.updateMoney(user['money']);
+  }
+
+  private _getIdUser() : void {
+    const user : any = localStorage.getItem('user');
+    const { id } = JSON.parse(user);
+    this._idUser = id;
+  }
+
+  private async _getWallets() {
+    this.wallets = await lastValueFrom(this.wallet.getWallets(this._idUser));
+  }
+
+  private async _getWalletsWithAsset() {
+    this.walletsByAsset = await lastValueFrom(this.wallet.getWalletsByAsset(this._idUser, this.name!));
+  }
+
   showHistory(updated : boolean) : void {
     this.showHistoricalData = updated;
     this._updateSelectOption();
@@ -110,5 +172,9 @@ export class AssetComponent {
       this._getAssetValues();
       this._updateSelectTime();
     }
+  }
+
+  ngOnDestroy() {
+    this._subscriptionTrading.unsubscribe();
   }
 }

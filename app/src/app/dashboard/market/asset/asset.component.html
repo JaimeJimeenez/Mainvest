@@ -8,14 +8,14 @@
     <div class="asset--menu--options">
       <div class="asset--menu--options--info">
         <div
-          class="asset--options--history option--selected hover:text-blue-ribbon-500 hover:border-b-blue-ribbon-500 cursor-pointer"
+          class="asset--options--history option--selected hover:text-blue-ribbon-500 cursor-pointer"
           (click)="showHistory(true)"
         >
           <i class="fa-solid fa-clock"></i>
           Datos históricos
         </div>
         <div
-          class="asset--options--trading hover:text-blue-ribbon-500 hover:border-b-blue-ribbon-500 cursor-pointer"
+          class="asset--options--trading hover:text-blue-ribbon-500 cursor-pointer"
           (click)="showHistory(false)"
         >
           <i class="fa-solid fa-business-time"></i>
@@ -24,13 +24,13 @@
       </div>
       <div class="asset--menu--options--time">
         <div
-          class="asset--time--month hover:text-blue-ribbon-500 hover:border-b-blue-ribbon-500 cursor-pointer"
+          class="asset--time--month hover:text-blue-ribbon-500 cursor-pointer"
           (click)="updateTimeChart(false)"
         >
           Mensual
         </div>
         <div
-          class="asset--time--year selected hover:text-blue-ribbon-500 hover:border-b-blue-ribbon-500 cursor-pointer"
+          class="asset--time--year selected hover:text-blue-ribbon-500 cursor-pointer"
           (click)="updateTimeChart(true)"
         >
           Anual
@@ -48,9 +48,12 @@
       </div>
     </ng-container>
     <ng-template #trading>
-      <div class="asset--trading">
-        Hola desde el trading
-      </div>
+      <mainvest-asset-trading
+        [wallets]="wallets"
+        [walletsByAsset]="walletsByAsset"
+        [close]="closePrice"
+      >
+      </mainvest-asset-trading>
     </ng-template>
   </div>
 </div>

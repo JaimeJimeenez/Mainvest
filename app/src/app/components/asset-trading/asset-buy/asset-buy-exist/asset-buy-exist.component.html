@@ -1,0 +1,41 @@
+<div class="asset--header text-xl text-white">
+  <span class="text-xl text-white"> Cartera existente </span>
+  <ng-container *ngIf="showError">
+    <span class="text-sm text-red-600">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      El coste excede al saldo actual
+    </span>
+  </ng-container>
+</div>
+
+<form class="asset--form" [formGroup]="buyExistedForm" (ngSubmit)="onExistedSubmit()">
+  <div class="wallet--name">
+    <label for="wallet">Cartera: </label>
+    <select
+      class="wallet--select peer-focus:font-medium text-sm text-gray-500 peer-focus:text-blue-600 peer-placeholder-shown:scale-100
+      peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+      formControlName="wallet"
+    >
+      <ng-container *ngFor="let wallet of wallets">
+        <option [value]="wallet.id"> {{ wallet.name }} </option>
+      </ng-container>
+    </select>
+  </div>
+  <div class="asset--amount">
+    <label for="amount">Cantidad: </label>
+    <input
+      type="text"
+      formControlName="amount"
+      class="asset--input text-sm text-white border-gray-600 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+      placeholder=" "
+    />
+  </div>
+  <button
+    type="submit"
+    [disabled]="!buyExistedForm.valid || isButtonDisabled"
+    [ngClass]="{'hover:text-gray-600': isButtonDisabled || !buyExistedForm.valid}"
+    class="asset--form--button hover:text-blue-ribbon-500"
+  >
+    Comprar
+  </button>
+</form>

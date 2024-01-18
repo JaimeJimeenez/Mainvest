@@ -16,7 +16,9 @@ export class AssetsWalletDataService {
       'Content-Type': 'application/json',
     });
 
-    return this.httpClient.get(`${enviroment.baseUrl}/wallet/assets_wallet/${idWallet}`).pipe(
+    console.log(idWallet);
+
+    return this.httpClient.get(`${enviroment.baseUrl}/wallet/assets_by_wallet/${idWallet}`).pipe(
       map((response : any = {}) => response.data)
     )
   }

@@ -1,0 +1,36 @@
+<div class="asset--header text-xl text-white">
+  Vender
+</div>
+
+<form class="asset--form" [formGroup]="sellForm" (ngSubmit)="onSubmit()">
+  <div class="wallet--name">
+    <label for="wallet">Cartera: </label>
+    <select
+      class="wallet--select peer-focus:font-medium text-sm text-gray-500 peer-focus:text-blue-600 peer-placeholder-shown:scale-100
+      peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+      formControlName="wallet"
+      (change)="getMaxValue($event)"
+    >
+      <ng-container *ngFor="let wallet of wallets">
+        <option [value]="wallet.id"> {{ wallet.name }} </option>
+      </ng-container>
+    </select>
+  </div>
+  <div class="asset--amount">
+    <label for="amount">Cantidad: </label>
+    <input
+      type="text"
+      formControlName="amount"
+      class="asset--input text-sm text-white border-gray-600 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+      placeholder= "En cartera {{ maxValue }}"
+    />
+  </div>
+  <button
+    type="submit"
+    [disabled]="isButtonDisabled || !sellForm.valid"
+    [ngClass]="{'hover:text-gray-600': isButtonDisabled || !sellForm.valid}"
+    class="asset--form--button hover:text-blue-ribbon-500"
+  >
+    Vender
+  </button>
+</form>

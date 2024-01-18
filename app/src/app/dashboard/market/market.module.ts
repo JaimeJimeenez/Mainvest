@@ -8,11 +8,22 @@ import { OverviewComponent } from './overview/overview.component';
 import { TableComponent } from './overview/table/table.component';
 import { TableLineComponent } from 'src/app/components/table-line/table-line.component';
 import { AssetComponent } from './asset/asset.component';
+import { AssetTradingComponent } from 'src/app/components/asset-trading/asset-trading.component';
 
 @NgModule({
-  imports: [MarketRoutingModule, CommonModule, TableLineComponent],
+  imports: [
+    MarketRoutingModule,
+    CommonModule,
+    TableLineComponent,
+    AssetTradingComponent
+  ],
   exports: [],
-  declarations: [MarketComponent, OverviewComponent, TableComponent, AssetComponent],
+  declarations: [
+    MarketComponent,
+    OverviewComponent,
+    TableComponent,
+    AssetComponent
+  ],
   providers: [],
 })
 export class MarketModule { }

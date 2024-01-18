@@ -1,0 +1,49 @@
+<div class="asset--trading--options">
+  <div class="asset--trading--options--menu">
+    <div class="dropdown">
+      <div class="dropdown-toggle asset--trading--options--buy trading--selected hover:text-blue-ribbon-500 cursor-pointer" data-bs-toggle="dropdown" aria-expanded="false">
+        Comprar
+      </div>
+      <ul class="dropdown-menu dropdown-menu-dark">
+        <li>
+            <div
+              class="asset--buy--new dropdown-item hover:text-blue-ribbon-500 cursor-pointer"
+              (click)="onNewWallet(true)"
+            >
+              <i class="fa-solid fa-plus"></i>
+              Nueva cartera
+            </div>
+        </li>
+        <li>
+          <div
+            class="asset--buy--existed dropdown-item hover:text-blue-ribbon-500 cursor-pointer"
+            (click)="onNewWallet(false)"
+          >
+            <i class="fa-solid fa-wallet"></i>
+            Cartera existente
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div
+      class="asset--trading--options--sell hover:text-blue-ribbon-500 cursor-pointer"
+      (click)="onSelectTradingOptions(false)"
+    >
+      Vender
+    </div>
+  </div>
+  <div class="asset--trading--money">
+    <mainvest-card-money></mainvest-card-money>
+  </div>
+</div>
+<ng-container *ngIf="isBuyingAsset; else isSellingAsset">
+  <mainvest-asset-buy
+    [newWallet]="isNewWallet"
+    [wallets]="wallets"
+    [close]="close"
+  >
+  </mainvest-asset-buy>
+</ng-container>
+<ng-template #isSellingAsset>
+  <mainvest-asset-sell [wallets]="walletsByAsset"></mainvest-asset-sell>
+</ng-template>

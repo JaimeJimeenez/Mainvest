@@ -16,10 +16,49 @@ class DAOWallet {
             const placeholders = assets.map((_, index) => `($${index * 3 + 1}, $${index * 3 + 2}, $${index * 3 + 3})`).join(', ');
             const sql = `Insert into assets_wallets (id_wallet, name, amount) values ${placeholders}`;
             const values = assets.flatMap(asset => [idWallet, asset.name, asset.amount]);
-            
             return await executeQuery(sql, values);
         } catch (error) {
             console.error('Something wrong happened:', error);
+            throw error;
+        }
+    }
+
+    async updateAsset(idWallet, asset, amount) {
+        try {
+            const sql = 'Update assets_wallets set amount = amount + $1 where id_wallet = $2 and name = $3';
+            return await executeQuery(sql, [amount, idWallet, asset]);
+        } catch (error) {
+            console.error('Something went wrong', error);
+            throw error;
+        }
+    }
+
+    async sellAsset(idWallet, asset, amount) {
+        try {
+            const sql = 'Update assets_wallets set amount = amount - $1 where id_wallet = $2 and name = $3';
+            return await executeQuery(sql, [amount, idWallet, asset]);
+        } catch (error) {
+            console.error('Something went wrong', error);
+            throw error;
+        }
+    }
+
+    async sellAll(idWallet, asset) {
+        try {
+            const sql = 'Delete from assets_wallets where id_wallet = $1 and name = $2';
+            return await executeQuery(sql, [idWallet, asset]);
+        } catch (error) {
+            console.error('Something went wrong', error);
+            throw error;
+        }
+    }
+
+    async getWalletsByAsset(idUser, asset) {
+        try {
+            const sql = 'select w.id, w.name, aw.amount from wallets w join users u on u.id = $1 join assets_wallets aw on aw.id_wallet = w.id and aw.name = $2';
+            return await executeQuery(sql, [idUser, asset]);
+        } catch (error) {
+            console.error('Something wrong happened', error);
             throw error;
         }
     }

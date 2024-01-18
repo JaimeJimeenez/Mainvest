@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, lastValueFrom } from 'rxjs';
 
 import { ASSETS } from 'src/app/const/financial_assets';
 import { IAsset } from 'src/app/interface/financial/iAssets';
@@ -184,19 +184,12 @@ export class NewWalletComponent {
     const user : any = localStorage.getItem('user');
     const { id } = JSON.parse(user);
 
-    this.wallet.createWallet(id, newWallet.name)
-      .then((idWallet : number) => {
-        const hasAssets = newWallet.assets.length !== 0;
-        if (hasAssets)
-          this.wallet.addAssets(idWallet, newWallet.assets)
-            .then((response : boolean) => {
-              if (response)
-                this.router.navigate(['/dashboard/profile/wallets']);
-              else console.log('Todo mal');
-            });
-        else
-            this.router.navigate(['/dashboard/profile/wallets']);
-      }
-    );
+    (async () => {
+      const idWallet = await lastValueFrom(this.wallet.createWallet(id, newWallet.name));
+      const hasAssets = newWallet.assets.length !== 0;
+      if (hasAssets)
+        await lastValueFrom(this.wallet.addAssets(idWallet, newWallet.assets));
+      this.router.navigate(['/dashboard/profile/wallets']);
+    })();
   }
 }
