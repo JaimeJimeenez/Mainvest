@@ -1,0 +1,30 @@
+:host {
+  display: flex;
+  padding: 10px;
+  border-top-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(75 85 99 / var(--tw-border-opacity));
+  flex-direction: column;
+}
+
+.asset--trading {
+
+  &--options {
+    display: flex;
+    justify-content: space-between;
+    padding: 1%;
+    border-bottom-width: 1px;
+    --tw-border-opacity: 1;
+    border-color: rgb(75 85 99 / var(--tw-border-opacity));
+
+    &--menu {
+      display: flex;
+      gap: 10px;
+    }
+  }
+}
+
+.trading--selected {
+  --tw-text-opacity: 1;
+  color: rgb(63 104 255 / var(--tw-text-opacity));
+}

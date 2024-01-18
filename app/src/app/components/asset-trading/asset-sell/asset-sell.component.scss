@@ -1,0 +1,36 @@
+:host {
+  display: flex;
+  margin-top: 20px;
+  flex-direction: column;
+}
+
+.wallet--select {
+  width: 150px;
+  border-radius: 0px;
+  background: transparent;
+  appearance: none;
+  border-bottom-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(75 85 99 / var(--tw-border-opacity));
+}
+
+.asset {
+  &--form {
+    display: flex;
+    gap: 50px;
+    margin-top: 15px;
+
+    &--button {
+      display: flex;
+      cursor: pointer;
+    }
+  }
+
+  &--input {
+    width: 150px;
+    background: transparent;
+    border-width: 0px;
+    border-bottom-width: 1px;
+    appearance: none;
+  }
+}

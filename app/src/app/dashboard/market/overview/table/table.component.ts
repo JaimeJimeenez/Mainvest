@@ -32,7 +32,6 @@ export class TableComponent {
       today.lastDay
     ));
     const assetsToday = FinancialAsset.convertFinancialAsset(dataAssets);
-    console.log(assetsToday);
     const oldDays = this.date.getOlderDays();
     const oldDataAssets = await lastValueFrom(this.financialAssetsData.getFinancialAssets(
       ASSETS,
@@ -40,7 +39,6 @@ export class TableComponent {
       oldDays.lastDay
     ))
     const assetsOlder = FinancialAsset.convertFinancialAsset(oldDataAssets);
-    console.log(assetsOlder);
     this._parseAssets(assetsToday, assetsOlder);
   }
 

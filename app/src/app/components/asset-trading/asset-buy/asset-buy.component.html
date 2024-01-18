@@ -1,0 +1,12 @@
+<ng-container *ngIf="newWallet; else existedWallet">
+  <mainvest-asset-buy-new
+    [wallets]="wallets"
+    [close]="close"
+  ></mainvest-asset-buy-new>
+</ng-container>
+<ng-template #existedWallet>
+  <mainvest-asset-buy-exist
+    [wallets]="wallets"
+    [close]="close"
+  ></mainvest-asset-buy-exist>
+</ng-template>

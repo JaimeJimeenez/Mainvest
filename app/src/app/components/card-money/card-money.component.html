@@ -1,4 +1,3 @@
-<div class="card-money text-lg rounded-md">
-  <p>Saldo actual: </p>
-  {{ 100 | currency:'EUR' }}
+<div class="card-money">
+  <p>Saldo actual: {{ money | number: '1.3'}}$</p>
 </div>

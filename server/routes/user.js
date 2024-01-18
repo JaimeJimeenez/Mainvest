@@ -54,4 +54,14 @@ router.post('/add_money', async (request, response) => {
     }
 });
 
+router.post('/update_money', async (request, response) => {
+    try {
+        const { idUser, money } = request.body;
+        const result = await daoUser.updateMoney(idUser, money);
+        response.json({ result });
+    } catch (error) {
+        response.json(error);
+    }
+})
+
 module.exports = router;

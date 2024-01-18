@@ -101,6 +101,10 @@ export class FinancialAsset {
     return valueOfAsset * moneyToSpend;
   }
 
+  static getTotalMoneyOfAsset(valueOfAsset : number, numberOfAsset : number) : number {
+    return valueOfAsset * numberOfAsset;
+  }
+
   static getChartData(date : string, dataFinancialAssets : any) : IChart {
     return {
       time : date,
