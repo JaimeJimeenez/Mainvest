@@ -10,5 +10,6 @@ export const ASSETS = [
   'ETH-EUR',
   'MATIC-EUR',
   'NVDA',
-  'SONY'
+  'SONY',
+  'SMSN.IL'
 ];
