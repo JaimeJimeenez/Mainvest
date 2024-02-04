@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, distinctUntilChanged, lastValueFrom, take } from 'rxjs';
 
-import { IChart } from 'src/app/interface/financial/iChart';
+import { IChart, IPredictedChart } from 'src/app/interface/financial/iChart';
 import { FinancialAsset } from 'src/app/lib/financial_asset';
 import { ChartService } from 'src/app/service/charts/chart.service';
 import { DateService } from 'src/app/service/common/date.service';
 import { MoneyObservableService } from 'src/app/service/observables/money-observable.service';
 import { TradingObservableService } from 'src/app/service/observables/trading-observable.service';
 import { FinancialAssetsDataService } from 'src/app/service/requests/common/financial-assets-data.service';
+import { PredictionDataService } from 'src/app/service/requests/common/prediction-data.service';
 import { WalletService } from 'src/app/service/wallet/wallet.service';
 
 @Component({
@@ -18,6 +19,7 @@ import { WalletService } from 'src/app/service/wallet/wallet.service';
 })
 export class AssetComponent {
   private _idUser : number = 0;
+  private _predictedChartData : any;
   private _subscriptionTrading : Subscription;
 
   name : string | null = '';
@@ -37,7 +39,8 @@ export class AssetComponent {
     private chart : ChartService,
     private wallet : WalletService,
     private moneyObservable : MoneyObservableService,
-    private tradingObservable : TradingObservableService
+    private tradingObservable : TradingObservableService,
+    private predictionData : PredictionDataService
   ) {
     this.activatedRoute.paramMap.subscribe((params => {
       this.name = params.get('name');
@@ -161,9 +164,46 @@ export class AssetComponent {
     this.walletsByAsset = await lastValueFrom(this.wallet.getWalletsByAsset(this._idUser, this.name!));
   }
 
+  private _drawPredictedChart() : void {
+    const element = document.getElementById('asset--chart');
+    const chartContainer = document.getElementsByClassName(
+      'asset--chart'
+    )[0];
+    while (chartContainer.firstChild)
+      chartContainer.removeChild(chartContainer.firstChild);
+    this.chart.drawPredictChart(this._predictedChartData, element!);
+  }
+
+  private async _getPrediction() {
+    const { firstDate, lastDate } = this.date.getPredictedDate();
+    const data = await lastValueFrom(this.predictionData.getPrediction(this.name!, firstDate, lastDate));
+    const initialData = this._getChartPrediction(this.chartData);
+    const predictedData = this._getChartPrediction(data.data);
+    this._predictedChartData = predictedData;
+    this._drawPredictedChart();
+  }
+
+  private _getChartPrediction(data : any[]): IPredictedChart[] {
+    const predictedData : IPredictedChart[] = [];
+    console.log(data)
+    data.forEach((element) => {
+      predictedData.push({
+        value: element['close'],
+        time: element['time']
+      })
+    });
+    return predictedData;
+  }
+
   showHistory(updated : boolean) : void {
     this.showHistoricalData = updated;
     this._updateSelectOption();
+  }
+
+  showPrediction(updated : boolean): void {
+    this.showHistoricalData = updated;
+    this._updateSelectOption();
+    this._getPrediction();
   }
 
   updateTimeChart(showYear : boolean) : void {
