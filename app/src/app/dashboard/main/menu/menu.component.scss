@@ -17,6 +17,17 @@
   gap: 32px;
 }
 
+.menu--search {
+  display: flex;
+  width: 250px;
+  gap: 20px;
+  padding: 10px;
+  border-width: 1px;
+  border-radius: 10px;
+  --tw-border-opacity: 1;
+  border-color: rgb(75 85 99 / var(--tw-border-opacity));
+}
+
 .menu--auth {
 
   &--signup {
@@ -53,7 +64,6 @@
 
 .centered {
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
@@ -66,4 +76,6 @@
   appearance: none;
 }
 
-
+.searchForm {
+  width: 200px;
+}
