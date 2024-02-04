@@ -39,7 +39,17 @@ router.post('/signup', async (request, response) => {
 
         result = await daoAuth.signUp(username, name, password, email);
         const token = setToken(username);
-        result.data.push({ username, name, password, email });
+        result.data = [
+            {
+                id: result.data[0].id,
+                username,
+                name,
+                password,
+                email,
+                money: 100
+            }
+        
+        ];
         response.json({ result, token }); 
     } catch (error) {
         response.status(500).json({ error: 'Internal Server Error' });

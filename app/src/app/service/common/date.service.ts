@@ -90,7 +90,7 @@ export class DateService {
     const yesterday = new Date(date);
     yesterday.setDate(date.getDate() - 1);
 
-    if (yesterday.getDay() === 1 || yesterday.getDay() === 0) {
+    if (yesterday.getDay() === 1 || yesterday.getDay() === 6) {
       return this._getFridayAndSaturdayLastWeek(yesterday);
     } else {
       return this._getDayBeforeAndYesterday(yesterday);

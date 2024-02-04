@@ -3,7 +3,7 @@
     <span class="asset__value"> {{ asset.name }} </span>
   </div>
   <div class="asset--price">
-    <span class="asset__value"> {{ asset.info.adj_close | currency: 'EUR' }} </span>
+    <span class="asset__value"> {{ asset.info.adj_close | number:'1.3' }} $ </span>
   </div>
   <div class="asset--evolution">
     <span

@@ -6,9 +6,9 @@ export const ASSETS = [
   'META',
   'TSLA',
   'NFLX',
-  'BTC-EUR',
-  'ETH-EUR',
-  'MATIC-EUR',
+  'BTC-USD',
+  'ETH-USD',
+  'MATIC-USD',
   'NVDA',
   'SONY',
   'SMSN.IL'
