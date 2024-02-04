@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Time } from 'lightweight-charts';
 
 @Injectable({
   providedIn: 'root'
@@ -113,15 +114,24 @@ export class DateService {
     return { pastYear : this._parseDateToString(past), actualYear : this._parseDateToString(today) };
   }
 
-  parseDate(fechaString: string): string {
-    const fecha = new Date(fechaString);
+  parseDate(dateString: string): string {
+    const date = new Date(dateString);
 
-    const year = fecha.getFullYear();
-    const month = (fecha.getMonth() + 1).toString().padStart(2, '0');
-    const day = fecha.getDate().toString().padStart(2, '0');
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
 
-    const fechaFormateada = `${year}-${month}-${day}`;
+    const formattedDate = `${year}-${month}-${day}`;
 
-    return fechaFormateada;
+    return formattedDate;
+  }
+
+  getPredictedDate() : { firstDate : string, lastDate : string } {
+    const today = new Date();
+    const pastDate = new Date(today);
+
+    pastDate.setFullYear(pastDate.getFullYear() - 4);
+
+    return { firstDate: this._parseDateToString(pastDate), lastDate: this._parseDateToString(today) }
   }
 }
