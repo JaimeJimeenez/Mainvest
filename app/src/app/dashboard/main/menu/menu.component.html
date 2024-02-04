@@ -17,20 +17,19 @@
 </div>
 
 <div class="menu--search centered">
-  <form>
-    <div class="menu--form--group">
-      <input
-        type="text"
-        class="menu--input text-sm text-white rounded-md border-b-2 border-gray-700"
-        placeholder="Buscar"
+  <i class="fa-solid fa-magnifying-glass text-gray-600"></i>
+  <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+    <ng-select
+        formControlName="search"
+        [items]="assets"
+        bindLabel="name"
+        [multiple]="false"
+        [placeholder]="placeholderText"
+        class="searchForm"
+        [clearable]="false"
+        (change)="onSelectionChange($event)"
       >
-      <button
-        type="submit"
-        class="rounded-md text-sm px-4 py-2 bg-blue-ribbon-600 hover:bg-blue-ribbon-500"
-      >
-        Search
-      </button>
-    </div>
+      </ng-select>
   </form>
 </div>
 
