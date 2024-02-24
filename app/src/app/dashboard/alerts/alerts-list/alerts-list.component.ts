@@ -3,8 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { IAlert } from 'src/app/interface/alert/alert';
 import { AlertService } from 'src/app/service/alert/alert.service';
-import { AlertsEraseDataService } from 'src/app/service/requests/alert/alerts-erase-data.service';
-import { AlertsListDataService } from 'src/app/service/requests/alert/alerts-list-data.service';
+import { AlertDeleteObservableService } from 'src/app/service/observables/alert/alert-delete-observable.service';
 
 @Component({
   selector: 'mainvest-alerts-list',
@@ -21,14 +20,16 @@ export class AlertsListComponent {
 
   constructor(
     private activatedRoute : ActivatedRoute,
-    private alert : AlertService
+    private alert : AlertService,
+    private alertDeleteObservable : AlertDeleteObservableService
   ) {
     this.activatedRoute.paramMap.subscribe(async (params) => {
       this.idUser = +params.get('id')!;
       this._alertsData = await lastValueFrom(this.alert.getAlerts(this.idUser));
       this._filterAlerts(0);
-      console.log(this.alerts);
     });
+
+    this.alertDeleteObservable.alertData$.subscribe((id : number) => this.eraseAlert(id));
   }
 
   private _updateSubmenu(selected : number) : void {
@@ -43,16 +44,23 @@ export class AlertsListComponent {
   }
 
   private _filterAlerts(selected : number) : void {
-    this.alerts = this._alertsData.filter((alert : IAlert) => alert.liked == this.options[selected]);
+    if (this._alertsData !== undefined)
+      this.alerts =
+        this._alertsData.filter((alert : IAlert) => alert.liked == this.options[selected]);
   }
 
   onSelectedOption(selected : number) : void {
     this._updateSubmenu(selected);
     this._filterAlerts(selected);
-    this.isComment = !this.alerts[0].liked;
+    if (this.alerts.length !== undefined)
+      this.isComment = !this.alerts[0].liked;
   }
 
-  eraseAlert(idAlert : number) : void {
-
+  eraseAlert(id : number) : void {
+    (async() => {
+      await lastValueFrom(this.alert.deleteAlert(id));
+    })();
+    this._alertsData = this._alertsData.filter((alert : IAlert) => alert.id !== id);
+    this.alerts = this.alerts.filter((alert : IAlert) => alert.id !== id);
   }
 }

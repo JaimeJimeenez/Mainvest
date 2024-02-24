@@ -10,12 +10,12 @@ export class AlertsEraseDataService {
 
   constructor(private httpClient : HttpClient) { }
 
-  getUsersByAlerts(ids : number[]) : Observable<any> {
+  deleteAlert(id : number) : Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
 
-    return this.httpClient.get(`${enviroment.baseUrl}/alert/users/${ids}`, { headers }).pipe(
+    return this.httpClient.post(`${enviroment.baseUrl}/alert/delete`, { id }, { headers }).pipe(
       map((response : any) => response.data)
     )
   }

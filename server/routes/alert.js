@@ -15,10 +15,10 @@ router.get('/list/:id', async (request, response) => {
     }
 });
 
-router.get('/list/:ids', async (request, response) => {
+router.post('/delete', async (request, response) => {
     try {
-        const { ids } = request.params;
-        const result = await daoAlert.getUsersByAlerts(ids);
+        const { id } = request.body;
+        const result = await daoAlert.deleteAlert(id);
         response.json(result);
     } catch (error) {
         response.json(error);
