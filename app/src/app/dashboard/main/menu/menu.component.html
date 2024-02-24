@@ -53,7 +53,11 @@
 <ng-container *ngIf="user.isAuth">
   <div class="menu--profile dropdown-center">
 
-  <button type="button" class="relative mr-3 inline-flex items-center px-2 py-1 text-sm font-medium text-center text-white rounded-lg  focus:ring-4 focus:outline-none focus:ring-blue-300">
+  <button
+    type="button"
+    class="relative mr-3 inline-flex items-center px-2 py-1 text-sm font-medium text-center text-white rounded-lg  focus:ring-4 focus:outline-none focus:ring-blue-300"
+    (click)="goToAlerts()"
+  >
     <i class="fa-solid fa-bell hover:text-blue-800"></i>
     <span class="sr-only">Notifications</span>
     <div class="absolute inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-500 rounded-full -top-2 -right-1 dark:border-gray-900">8</div>
@@ -71,7 +75,7 @@
       </li>
       <li
         class="menu--profile--options hover:bg-blue-ribbon-500"
-        routerLink="/notifications"
+        routerLink="/dashboard/alerts/list/{{user.id}}"
       >
           Notificaciones
       </li>

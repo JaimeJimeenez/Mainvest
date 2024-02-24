@@ -1,0 +1,31 @@
+<div class="list--header text-2xl">
+  <div class="list--title cursor-pointer">Notificaciones</div>
+  <div class="list--options font-medium text-center">
+    <div
+      class="list--options--mentions selected hover:border-b-2 hover:text-blue-ribbon-500 hover:border-b-blue-ribbon-500 cursor-pointer"
+      (click)="onSelectedOption(0)"
+    >
+      <i class="fa-solid fa-comment"></i>
+      <span
+        class="inline-flex ml-3 items-center justify-center border-b-2 border-transparent rounded-t-lg group"
+      >
+        Menciones
+      </span>
+    </div>
+    <div
+      class="list--options--liked hover:border-b-2 hover:text-blue-ribbon-500 hover:border-b-blue-ribbon-500 cursor-pointer"
+      (click)="onSelectedOption(1)"
+    >
+      <i class="fa-solid fa-heart"></i>
+      <span
+      class="inline-flex ml-3 items-center justify-center border-b-2 border-transparent rounded-t-lg group"
+    >
+        Me gusta
+      </span>
+    </div>
+  </div>
+</div>
+
+<ng-container *ngFor="let alert of alerts">
+  <mainvest-alert [alert]="alert" [isComment]="isComment"></mainvest-alert>
+</ng-container>

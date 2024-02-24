@@ -12,7 +12,7 @@ const routes : Routes = [
       {
         path: '',
         redirectTo: 'market',
-        pathMatch: 'full', 
+        pathMatch: 'full',
       },
       {
         path: 'board',
@@ -32,6 +32,11 @@ const routes : Routes = [
         path: 'wallets',
         loadChildren: () => import('./wallets/wallets.module').then(m => m.WalletsModule),
         canActivate: [authGuard],
+      },
+      {
+        path: 'alerts',
+        loadChildren: () => import('./alerts/alerts.module').then(m => m.AlertsModule),
+        canActivate: [authGuard]
       }
     ]
   }
