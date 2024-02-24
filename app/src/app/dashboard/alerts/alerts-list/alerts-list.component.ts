@@ -4,6 +4,7 @@ import { lastValueFrom } from 'rxjs';
 import { IAlert } from 'src/app/interface/alert/alert';
 import { AlertService } from 'src/app/service/alert/alert.service';
 import { AlertDeleteObservableService } from 'src/app/service/observables/alert/alert-delete-observable.service';
+import { AlertNumberObservableService } from 'src/app/service/observables/alert/alert-number-observable.service';
 
 @Component({
   selector: 'mainvest-alerts-list',
@@ -21,12 +22,17 @@ export class AlertsListComponent {
   constructor(
     private activatedRoute : ActivatedRoute,
     private alert : AlertService,
-    private alertDeleteObservable : AlertDeleteObservableService
+    private alertDeleteObservable : AlertDeleteObservableService,
+    private numberAlertsObservable : AlertNumberObservableService
   ) {
     this.activatedRoute.paramMap.subscribe(async (params) => {
       this.idUser = +params.get('id')!;
       this._alertsData = await lastValueFrom(this.alert.getAlerts(this.idUser));
       this._filterAlerts(0);
+      if (this._alertsData === undefined)
+        this.numberAlertsObservable.numberOfAlerts(0);
+      else
+        this.numberAlertsObservable.numberOfAlerts(this._alertsData.length);
     });
 
     this.alertDeleteObservable.alertData$.subscribe((id : number) => this.eraseAlert(id));
@@ -62,5 +68,6 @@ export class AlertsListComponent {
     })();
     this._alertsData = this._alertsData.filter((alert : IAlert) => alert.id !== id);
     this.alerts = this.alerts.filter((alert : IAlert) => alert.id !== id);
+    this.numberAlertsObservable.numberOfAlerts(this._alertsData.length);
   }
 }

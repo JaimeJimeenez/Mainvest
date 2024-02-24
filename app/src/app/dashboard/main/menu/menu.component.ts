@@ -8,6 +8,7 @@ import { ROUTES } from 'src/app/const/routes';
 import { User } from 'src/app/interface/auth/user.interface';
 
 import { AuthService } from 'src/app/service/auth/auth.service';
+import { AlertNumberObservableService } from 'src/app/service/observables/alert/alert-number-observable.service';
 
 @Component({
   selector: 'mainvest-menu',
@@ -21,10 +22,12 @@ export class MenuComponent {
   public searchTerm : any;
   public routes = ROUTES;
   public placeholderText: string = "Buscar";
+  public numberOfAlerts : number = 0;
 
   constructor(
     private auth : AuthService,
-    private router : Router
+    private router : Router,
+    private numberAlertsObservable : AlertNumberObservableService
   ) {
     const userLocal = localStorage.getItem('user');
     if (userLocal)
@@ -33,6 +36,8 @@ export class MenuComponent {
     this.searchForm = new FormGroup({
       search : new FormControl('')
     });
+
+    this.numberAlertsObservable.numberAlertData$.subscribe((numberOfAlerts : number) => this.numberOfAlerts = numberOfAlerts);
   }
 
   onSubmit() : void {
