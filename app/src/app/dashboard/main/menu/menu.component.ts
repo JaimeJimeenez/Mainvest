@@ -54,4 +54,8 @@ export class MenuComponent {
       this.onSubmit();
     }
   }
+
+  goToAlerts() : void {
+    this.router.navigate([`/dashboard/alerts/list/${this.user.id}`]);
+  }
 }

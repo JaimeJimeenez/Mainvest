@@ -1,0 +1,6 @@
+<ng-container *ngIf="isComment; else isLiked">
+  <mainvest-alert-comment [alert]="alert"></mainvest-alert-comment>
+</ng-container>
+<ng-template #isLiked>
+  <mainvest-alert-liked [alert]="alert"></mainvest-alert-liked>
+</ng-template>
