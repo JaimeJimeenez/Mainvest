@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IAlert } from 'src/app/interface/alert/alert';
+import { AlertDeleteObservableService } from 'src/app/service/observables/alert/alert-delete-observable.service';
 
 @Component({
   selector: 'mainvest-alert-comment',
@@ -18,4 +19,10 @@ export class AlertCommentComponent {
     read: false,
     liked: false
   };
+
+  constructor(private alertDeleteObservable : AlertDeleteObservableService) {}
+
+  onDeleteAlert() : void {
+    this.alertDeleteObservable.deleteAlert(this.alert.id);
+  }
 }
