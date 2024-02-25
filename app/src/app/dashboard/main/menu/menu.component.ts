@@ -1,11 +1,12 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, lastValueFrom } from 'rxjs';
 import { ASSETS } from 'src/app/const/financial_assets';
 
 import { ROUTES } from 'src/app/const/routes';
 import { User } from 'src/app/interface/auth/user.interface';
+import { AlertService } from 'src/app/service/alert/alert.service';
 
 import { AuthService } from 'src/app/service/auth/auth.service';
 import { AlertNumberObservableService } from 'src/app/service/observables/alert/alert-number-observable.service';
@@ -27,7 +28,8 @@ export class MenuComponent {
   constructor(
     private auth : AuthService,
     private router : Router,
-    private numberAlertsObservable : AlertNumberObservableService
+    private numberAlertsObservable : AlertNumberObservableService,
+    private alert : AlertService
   ) {
     const userLocal = localStorage.getItem('user');
     if (userLocal)
@@ -36,6 +38,13 @@ export class MenuComponent {
     this.searchForm = new FormGroup({
       search : new FormControl('')
     });
+
+    (async() => {
+      this.user = this.auth.user;
+      const alerts = await lastValueFrom(this.alert.getAlerts(+this.user.id))
+      if (alerts !== undefined)
+        this.numberOfAlerts = alerts.length;
+    })();
 
     this.numberAlertsObservable.numberAlertData$.subscribe((numberOfAlerts : number) => this.numberOfAlerts = numberOfAlerts);
   }
