@@ -1,6 +1,12 @@
-<ng-container *ngIf="isComment; else isLiked">
-  <mainvest-alert-comment [alert]="alert"></mainvest-alert-comment>
+<ng-container *ngIf="isAlertPrice; else isNotAlertPrice">
+  <mainvest-alert-asset [alertPrice]="alertPrice"></mainvest-alert-asset>
 </ng-container>
-<ng-template #isLiked>
-  <mainvest-alert-liked [alert]="alert"></mainvest-alert-liked>
+
+<ng-template #isNotAlertPrice>
+  <ng-container *ngIf="isComment; else isLiked">
+    <mainvest-alert-comment [alert]="alert"></mainvest-alert-comment>
+  </ng-container>
+  <ng-template #isLiked>
+    <mainvest-alert-liked [alert]="alert"></mainvest-alert-liked>
+  </ng-template>
 </ng-template>

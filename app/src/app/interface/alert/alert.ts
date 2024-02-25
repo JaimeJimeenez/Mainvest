@@ -6,3 +6,11 @@ export interface IAlert {
   read : boolean,
   liked : boolean
 }
+
+export interface IAlertPrice {
+  id : number,
+  id_user : number,
+  asset : string,
+  price : number,
+  reached : boolean
+}

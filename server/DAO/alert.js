@@ -4,8 +4,29 @@ class DAOAlert {
 
     async addAlertPrice(id, asset, price) {
         try {
-            const sql = 'Insert into alerts_asset (id_user, asset, price) values ($1, $2, $3);';
+            const sql = 'Insert into alerts_asset (id_user, asset, price, reached) values ($1, $2, $3, false);';
             return await executeQuery(sql, [id, asset, price]);
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+
+    async updateAlertPrice(ids) {
+        try {
+            let placeholders = '';
+            ids.forEach((id, index) => placeholders += `id=$${index + 1} or `);
+            placeholders = placeholders.slice(0, placeholders.length - 4);
+            const sql = `Update alerts_asset set reached = true where ${placeholders}`;
+            return await executeQuery(sql, ids);
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+    
+    async getAlertsPrice(id) {
+        try {
+            const sql = 'Select * from alerts_asset a where id_user = $1;';
+            return await executeQuery(sql, [id]);
         } catch (error) {
             console.error(error.message);
         }

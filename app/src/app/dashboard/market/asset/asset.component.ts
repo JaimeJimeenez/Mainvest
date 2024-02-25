@@ -231,6 +231,7 @@ export class AssetComponent {
   async onAddAlert() {
     const { price } = this.alertForm.value;
     const response = await lastValueFrom(this.alerts.addAlertPrice(this._idUser, this.name!, price));
+    this.router.navigate([`/dashboard/market/`]);
   }
 
   ngOnDestroy() {

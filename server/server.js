@@ -22,6 +22,7 @@ app.use('/user', require('./routes/user'));
 app.use('/financial', require('./routes/financial'));
 app.use('/wallet', require('./routes/wallet'));
 app.use('/alert', require('./routes/alert'));
+app.use('/alert/price', require('./routes/alert-price'));
 
 app.listen(port, () => {
   console.log(`Server listening at port ${port}`);
