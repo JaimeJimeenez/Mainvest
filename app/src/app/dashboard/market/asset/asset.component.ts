@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, distinctUntilChanged, lastValueFrom, take } from 'rxjs';
 
 import { IChart, IPredictedChart } from 'src/app/interface/financial/iChart';
 import { FinancialAsset } from 'src/app/lib/financial_asset';
+import { AlertService } from 'src/app/service/alert/alert.service';
 import { ChartService } from 'src/app/service/charts/chart.service';
 import { DateService } from 'src/app/service/common/date.service';
 import { MoneyObservableService } from 'src/app/service/observables/money-observable.service';
@@ -31,6 +33,9 @@ export class AssetComponent {
   closePrice : number = 0;
   options : boolean[] = [true, false, false];
   predictedValue : number = 0;
+  alertForm : FormGroup;
+  isButtonDisabled : boolean = false;
+  showError : boolean = false;
 
   constructor(
     private activatedRoute : ActivatedRoute,
@@ -41,7 +46,8 @@ export class AssetComponent {
     private wallet : WalletService,
     private moneyObservable : MoneyObservableService,
     private tradingObservable : TradingObservableService,
-    private predictionData : PredictionDataService
+    private predictionData : PredictionDataService,
+    private alerts : AlertService
   ) {
     this.activatedRoute.paramMap.subscribe((params => {
       this.name = params.get('name');
@@ -65,6 +71,14 @@ export class AssetComponent {
           await lastValueFrom(this.wallet.sellAsset({ ...tradingInfo, asset : this.name }, money, this._idUser));
         }
         this.router.navigate([`/dashboard/market`]);
+      });
+
+      this.alertForm = new FormGroup({
+        price : new FormControl('', [Validators.required, Validators.min(0)])
+      });
+      this.alertForm.get('amount')?.valueChanges.subscribe((value) => {
+        this.isButtonDisabled = isNaN(value);
+        this.showError = this.isButtonDisabled;
       });
   }
 
@@ -212,6 +226,11 @@ export class AssetComponent {
       this._getAssetValues();
       this._updateSelectTime();
     }
+  }
+
+  async onAddAlert() {
+    const { price } = this.alertForm.value;
+    const response = await lastValueFrom(this.alerts.addAlertPrice(this._idUser, this.name!, price));
   }
 
   ngOnDestroy() {

@@ -1,5 +1,13 @@
 <div class="asset--header">
   <div class="asset--header--name text-2xl"> {{ name }} </div>
+  <div
+    class="asset--header--alert text-gray-600 hover:text-blue-ribbon-500 cursor-pointer"
+    data-bs-toggle="modal"
+    data-bs-target="#addAlertModal"
+  >
+      <i class="fa-solid fa-plus"></i>
+      Añadir alerta
+  </div>
 </div>
 
 <div class="asset--body">
@@ -68,5 +76,38 @@
       >
       </mainvest-asset-trading>
     </ng-container>
+  </div>
+</div>
+
+<div class="modal fade" id="addAlertModal" tabindex="-1" aria-labelledby="addAlertModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-gray-800">
+      <div class="modal-header border-b-gray-700">
+        <h1 class="modal-title f-5 text-blue-ribbon-500">Añadir alerta</h1>
+      </div>
+      <form [formGroup]="alertForm" (ngSubmit)="onAddAlert()">
+        <ng-container *ngIf="showError">
+          <span class="text-sm text-red-600">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            El coste excede al saldo actual
+          </span>
+        </ng-container>
+        <div class="modal-body border-t-gray-700 flex justify-center">
+          <label for="price">Precio:</label>
+          <input type="text" id="price" class="alert--input" formControlName="price">
+        </div>
+        <div class="modal-footer border-t-gray-700">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button
+            type="submit"
+            [disabled]="!alertForm.valid || isButtonDisabled"
+            [ngClass]="{'hover:text-gray-600': isButtonDisabled || !alertForm.valid}"
+            class="btn btn-primary" data-bs-dismiss="modal"
+          >
+            Añadir alerta
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>

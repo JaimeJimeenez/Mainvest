@@ -45,7 +45,6 @@ export class AssetBuyNewComponent {
   }
 
   onNewSubmit() : void {
-    console.log('New submit');
     const { wallet, amount } = this.buyNewForm.value;
     this.tradingObservable.tradingAsset({
       isBuying : true,
