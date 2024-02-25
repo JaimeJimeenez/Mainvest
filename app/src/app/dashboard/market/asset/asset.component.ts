@@ -25,11 +25,12 @@ export class AssetComponent {
   name : string | null = '';
   chartData : IChart[] = [];
   showYears : boolean = true;
-  showHistoricalData : boolean = true;
   isBuyingAsset : boolean = true;
   wallets : any[] = [];
   walletsByAsset : any;
   closePrice : number = 0;
+  options : boolean[] = [true, false, false];
+  predictedValue : number = 0;
 
   constructor(
     private activatedRoute : ActivatedRoute,
@@ -64,7 +65,7 @@ export class AssetComponent {
           await lastValueFrom(this.wallet.sellAsset({ ...tradingInfo, asset : this.name }, money, this._idUser));
         }
         this.router.navigate([`/dashboard/market`]);
-      })
+      });
   }
 
   private _getDates() :
@@ -123,11 +124,13 @@ export class AssetComponent {
   private _updateSelectOption() : void {
     let element : Element;
     const containerFather = document.querySelector('.asset--menu--options--info');
-    const containers = containerFather?.querySelectorAll('.asset--options--history, .asset--options--trading');
+    const containers = containerFather?.querySelectorAll('.asset--options--history, .asset--options--prediction, .asset--options--trading');
     containers?.forEach((element) => element.classList.remove('option--selected'));
 
-    if (this.showHistoricalData)
+    if (this.options[0])
       element = document.getElementsByClassName('asset--options--history')[0];
+    else if (this.options[1])
+      element = document.getElementsByClassName('asset--options--prediction')[0];
     else
       element = document.getElementsByClassName('asset--options--trading')[0];
 
@@ -180,12 +183,12 @@ export class AssetComponent {
     const initialData = this._getChartPrediction(this.chartData);
     const predictedData = this._getChartPrediction(data.data);
     this._predictedChartData = predictedData;
+    this.predictedValue = this._predictedChartData[this._predictedChartData.length - 1].value;
     this._drawPredictedChart();
   }
 
   private _getChartPrediction(data : any[]): IPredictedChart[] {
     const predictedData : IPredictedChart[] = [];
-    console.log(data)
     data.forEach((element) => {
       predictedData.push({
         value: element['close'],
@@ -195,15 +198,12 @@ export class AssetComponent {
     return predictedData;
   }
 
-  showHistory(updated : boolean) : void {
-    this.showHistoricalData = updated;
+  updateOptions(option : number) : void {
+    this.options = this.options.map((option : boolean) => option = false);
+    this.options[option] = true;
     this._updateSelectOption();
-  }
-
-  showPrediction(updated : boolean): void {
-    this.showHistoricalData = updated;
-    this._updateSelectOption();
-    this._getPrediction();
+    if (option == 1)
+      this._getPrediction();
   }
 
   updateTimeChart(showYear : boolean) : void {
