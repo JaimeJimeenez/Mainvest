@@ -1,0 +1,13 @@
+:host {
+  display: flex;
+  padding: 10px;
+  border-top-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(75 85 99 / var(--tw-border-opacity));
+  flex-direction: column;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+}

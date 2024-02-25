@@ -9,13 +9,15 @@ import { TableComponent } from './overview/table/table.component';
 import { TableLineComponent } from 'src/app/components/table-line/table-line.component';
 import { AssetComponent } from './asset/asset.component';
 import { AssetTradingComponent } from 'src/app/components/asset-trading/asset-trading.component';
+import { PredictionComponent } from 'src/app/components/prediction/prediction.component';
 
 @NgModule({
   imports: [
     MarketRoutingModule,
     CommonModule,
     TableLineComponent,
-    AssetTradingComponent
+    AssetTradingComponent,
+    PredictionComponent
   ],
   exports: [],
   declarations: [
