@@ -1,7 +1,7 @@
 :host {
   display: flex;
-  margin-top: 20px;
   flex-direction: column;
+  margin-top: 20px;
 }
 
 .wallet--select {
@@ -15,9 +15,15 @@
 }
 
 .asset {
+
+  &--header {
+    display: flex;
+    justify-content: space-between;
+  }
+
   &--form {
     display: flex;
-    gap: 50px;
+    gap: 25px;
     margin-top: 15px;
 
     &--button {
@@ -27,10 +33,21 @@
   }
 
   &--input {
-    width: 150px;
+    width: 100px;
     background: transparent;
     border-width: 0px;
     border-bottom-width: 1px;
     appearance: none;
+  }
+}
+
+.wallet {
+  &--name {
+    display: flex;
+  }
+
+  &--select {
+    display: flex;
+    width: 100px;
   }
 }

@@ -22,7 +22,7 @@
 
   &--form {
     display: flex;
-    gap: 50px;
+    gap: 25px;
     margin-top: 15px;
 
     &--button {
@@ -32,10 +32,22 @@
   }
 
   &--input {
-    width: 150px;
+    display: flex;
+    width: 100px;
     background: transparent;
     border-width: 0px;
     border-bottom-width: 1px;
     appearance: none;
+  }
+
+  &--amount {
+    display: flex;
+  }
+}
+
+.wallet {
+
+  &--name {
+    display: flex;
   }
 }
