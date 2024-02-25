@@ -10,9 +10,11 @@ import { TableLineComponent } from 'src/app/components/table-line/table-line.com
 import { AssetComponent } from './asset/asset.component';
 import { AssetTradingComponent } from 'src/app/components/asset-trading/asset-trading.component';
 import { PredictionComponent } from 'src/app/components/prediction/prediction.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
+    ReactiveFormsModule,
     MarketRoutingModule,
     CommonModule,
     TableLineComponent,

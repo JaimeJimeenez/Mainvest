@@ -10,6 +10,7 @@
 .list {
   &--header {
     display: flex;
+    justify-content: space-between;
     gap: 10px;
     border-bottom-width: 1px;
     --tw-border-opacity: 1;
