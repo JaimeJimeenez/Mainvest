@@ -5,6 +5,7 @@ import { Subscription, lastValueFrom } from 'rxjs';
 import { ASSETS } from 'src/app/const/financial_assets';
 
 import { ROUTES } from 'src/app/const/routes';
+import { IAlert, IAlertPrice } from 'src/app/interface/alert/alert';
 import { User } from 'src/app/interface/auth/user.interface';
 import { AlertService } from 'src/app/service/alert/alert.service';
 
@@ -38,15 +39,22 @@ export class MenuComponent {
     this.searchForm = new FormGroup({
       search : new FormControl('')
     });
+    this.numberAlertsObservable.numberAlertData$.subscribe((value) => this._getNumberOfAlerts());
+    this._getNumberOfAlerts();
+  }
 
+  private _getNumberOfAlerts() : void {
     (async() => {
       this.user = this.auth.user;
-      const alerts = await lastValueFrom(this.alert.getAlerts(+this.user.id))
-      if (alerts !== undefined)
+      let alerts = await lastValueFrom(this.alert.getAlerts(+this.user.id))
+      if (alerts !== undefined) {
+        alerts = alerts.filter((alert : IAlert) => !alert.read);
         this.numberOfAlerts = alerts.length;
+      }
+      let alertsPrice = await lastValueFrom(this.alert.getAlertsPrice(+this.user.id));
+      alertsPrice = alertsPrice.filter((alert : IAlertPrice) => alert.reached);
+      this.numberOfAlerts += alertsPrice.length;
     })();
-
-    this.numberAlertsObservable.numberAlertData$.subscribe((numberOfAlerts : number) => this.numberOfAlerts = numberOfAlerts);
   }
 
   onSubmit() : void {

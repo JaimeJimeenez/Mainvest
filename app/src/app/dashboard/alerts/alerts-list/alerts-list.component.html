@@ -18,14 +18,30 @@
     >
       <i class="fa-solid fa-heart"></i>
       <span
-      class="inline-flex ml-3 items-center justify-center border-b-2 border-transparent rounded-t-lg group"
-    >
+        class="inline-flex ml-3 items-center justify-center border-b-2 border-transparent rounded-t-lg group"
+      >
         Me gusta
+      </span>
+    </div>
+    <div
+      class="list--options--asset hover:border-b-2 hover:text-blue-ribbon-500 hover:border-b-blue-ribbon-500 cursor-pointer"
+      (click)="onSelectedOption(2)"
+    >
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      <span class="inline-flex ml-3 items-center justify-center border-b-2 border-transparent rounded-t-lg group">
+        Activos
       </span>
     </div>
   </div>
 </div>
 
-<ng-container *ngFor="let alert of alerts">
-  <mainvest-alert [alert]="alert" [isComment]="isComment"></mainvest-alert>
+<ng-container *ngIf="isAlertPrice; else isNotAlertPrice">
+  <ng-container *ngFor="let alert of alertsPrice">
+    <mainvest-alert [alertPrice]="alert" [isAlertPrice]="isAlertPrice"></mainvest-alert>
+  </ng-container>
 </ng-container>
+<ng-template #isNotAlertPrice>
+  <ng-container *ngFor="let alert of alerts">
+    <mainvest-alert [alert]="alert" [isComment]="isComment" [isAlertPrice]="isAlertPrice"></mainvest-alert>
+  </ng-container>
+</ng-template>

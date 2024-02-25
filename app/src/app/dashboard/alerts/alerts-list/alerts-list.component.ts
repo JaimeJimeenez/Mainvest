@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
-import { IAlert } from 'src/app/interface/alert/alert';
+import { IAlert, IAlertPrice } from 'src/app/interface/alert/alert';
 import { AlertService } from 'src/app/service/alert/alert.service';
 import { AlertDeleteObservableService } from 'src/app/service/observables/alert/alert-delete-observable.service';
 import { AlertNumberObservableService } from 'src/app/service/observables/alert/alert-number-observable.service';
@@ -18,6 +18,8 @@ export class AlertsListComponent {
 
   public alerts : IAlert[] = [];
   public isComment : boolean = true;
+  public alertsPrice : IAlertPrice[] = [];
+  public isAlertPrice : boolean = false;
 
   constructor(
     private activatedRoute : ActivatedRoute,
@@ -28,11 +30,9 @@ export class AlertsListComponent {
     this.activatedRoute.paramMap.subscribe(async (params) => {
       this.idUser = +params.get('id')!;
       this._alertsData = await lastValueFrom(this.alert.getAlerts(this.idUser));
+      this.alertsPrice = await lastValueFrom(this.alert.getAlertsPrice(this.idUser));
+      this.alertsPrice = this.alertsPrice.filter((alert : IAlertPrice) => alert.reached);
       this._filterAlerts(0);
-      if (this._alertsData === undefined)
-        this.numberAlertsObservable.numberOfAlerts(0);
-      else
-        this.numberAlertsObservable.numberOfAlerts(this._alertsData.length);
     });
 
     this.alertDeleteObservable.alertData$.subscribe((id : number) => this.eraseAlert(id));
@@ -58,8 +58,9 @@ export class AlertsListComponent {
   onSelectedOption(selected : number) : void {
     this._updateSubmenu(selected);
     this._filterAlerts(selected);
-    if (this.alerts.length !== undefined)
+    if (this.alerts.length !== 0)
       this.isComment = !this.alerts[0].liked;
+    this.isAlertPrice = selected === 2;
   }
 
   eraseAlert(id : number) : void {

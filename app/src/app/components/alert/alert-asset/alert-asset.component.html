@@ -1,0 +1,22 @@
+<div class="header">
+  <div class="username">
+    <span class="text-blue-ribbon-500">
+      {{ alertPrice.asset }}
+    </span>
+  ha superado/rebajado el precio que habías marcado </div>
+  <div class="options">
+    <div
+      class="erase hover:text-red-500 cursor-pointer"
+      (click)="onDeleteAlert()"
+    >
+      <i class="fa-solid fa-trash"></i>
+    </div>
+  </div>
+</div>
+
+<div class="message">
+  El precio que habías marcado para que la alerta se activase es:
+  <span class="text-blue-ribbon-500">
+    {{ alertPrice.price }}$
+  </span>
+</div>
