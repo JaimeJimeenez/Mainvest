@@ -25,6 +25,16 @@ router.get('/list/:id', async (request, response) => {
     }
 });
 
+router.post('/delete', async (request, response) => {
+    try {
+        const { id } = request.body;
+        const result = await daoAlert.eraseAlertPrice(id);
+        response.json(result);
+    } catch (error) {
+        response.json(error);
+    }
+});
+
 router.post('/update', async (request, response) => {
     try {
         const { ids } = request.body;

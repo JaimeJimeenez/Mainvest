@@ -11,6 +11,15 @@ class DAOAlert {
         }
     }
 
+    async eraseAlertPrice(id) {
+        try {
+            const sql = 'Delete from alerts_asset where id = $1;';
+            return await executeQuery(sql, [id]);
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+
     async updateAlertPrice(ids) {
         try {
             let placeholders = '';

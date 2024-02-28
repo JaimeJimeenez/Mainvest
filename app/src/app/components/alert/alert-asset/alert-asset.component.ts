@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IAlertPrice } from 'src/app/interface/alert/alert';
+import { AlertPriceDeleteObservableService } from 'src/app/service/observables/alert/alert-price-delete-observable.service';
 
 @Component({
   selector: 'mainvest-alert-asset',
@@ -18,7 +19,9 @@ export class AlertAssetComponent {
     reached: false
   }
 
+  constructor(private alertPriceDeleteObservable : AlertPriceDeleteObservableService) {}
+
   onDeleteAlert() : void {
-    
+    this.alertPriceDeleteObservable.deleteAlert(this.alertPrice.id);
   }
 }

@@ -7,6 +7,7 @@ import { AlertsEraseDataService } from '../requests/alert/alerts-erase-data.serv
 import { AddAlertPriceDataService } from '../requests/alert/add-alert-price-data.service';
 import { AlertsPriceListDataService } from '../requests/alert/alerts-price-list-data.service';
 import { AlertsPriceUpdateDataService } from '../requests/alert/alerts-price-update-data.service';
+import { DeleteAlertPriceDataService } from '../requests/alert/delete-alert-price-data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,8 @@ export class AlertService {
     private alertList : AlertsListDataService,
     private alertDelete : AlertsEraseDataService,
     private alertPriceList : AlertsPriceListDataService,
-    private alertPriceUpdate : AlertsPriceUpdateDataService
+    private alertPriceUpdate : AlertsPriceUpdateDataService,
+    private alertPriceDelete : DeleteAlertPriceDataService
   ) { }
 
   addAlertPrice(idUser : number, asset : string, price : number) {
@@ -33,6 +35,10 @@ export class AlertService {
 
   getAlerts(id : number) {
     return this.alertList.getAlerts(id);
+  }
+
+  eraseAlertPrice(id : number) {
+    return this.alertPriceDelete.eraseAlert(id);
   }
 
   getAlertsPrice(id : number) {

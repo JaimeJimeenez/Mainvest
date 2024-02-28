@@ -5,6 +5,7 @@ import { IAlert, IAlertPrice } from 'src/app/interface/alert/alert';
 import { AlertService } from 'src/app/service/alert/alert.service';
 import { AlertDeleteObservableService } from 'src/app/service/observables/alert/alert-delete-observable.service';
 import { AlertNumberObservableService } from 'src/app/service/observables/alert/alert-number-observable.service';
+import { AlertPriceDeleteObservableService } from 'src/app/service/observables/alert/alert-price-delete-observable.service';
 
 @Component({
   selector: 'mainvest-alerts-list',
@@ -25,6 +26,7 @@ export class AlertsListComponent {
     private activatedRoute : ActivatedRoute,
     private alert : AlertService,
     private alertDeleteObservable : AlertDeleteObservableService,
+    private alertPriceDeleteObservable : AlertPriceDeleteObservableService,
     private numberAlertsObservable : AlertNumberObservableService
   ) {
     this.activatedRoute.paramMap.subscribe(async (params) => {
@@ -36,6 +38,7 @@ export class AlertsListComponent {
     });
 
     this.alertDeleteObservable.alertData$.subscribe((id : number) => this.eraseAlert(id));
+    this.alertPriceDeleteObservable.alertPriceData$.subscribe((id : number) => this.eraseAlertPrice(id));
   }
 
   private _updateSubmenu(selected : number) : void {
@@ -70,5 +73,13 @@ export class AlertsListComponent {
     this._alertsData = this._alertsData.filter((alert : IAlert) => alert.id !== id);
     this.alerts = this.alerts.filter((alert : IAlert) => alert.id !== id);
     this.numberAlertsObservable.numberOfAlerts(this._alertsData.length);
+  }
+
+  eraseAlertPrice(id : number) : void {
+    (async() => {
+      await lastValueFrom(this.alert.eraseAlertPrice(id));
+    })();
+    this.alertsPrice = this.alertsPrice.filter((alert : IAlertPrice) => alert.id !== id);
+    this.numberAlertsObservable.numberOfAlerts(this.alertsPrice.length);
   }
 }
