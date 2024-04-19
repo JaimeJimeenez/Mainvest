@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  app:
+    image: node:18 
+    container_name: mainvest-app
+    volumes:
+      - ./frontend:/app
+      - ./backend:/backend
+      - /node_modules
+    working_dir: /app
+    ports:
+      - 4200:4200
+      - 52300:52300
+    depends_on:
+      - mainvest-database
+    networks:
+      - mainvest-net
+    command: tail -f /dev/null
+  mainvest-database:
+    image: postgres
+    container_name: mainvest-database
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: mainvest
+      POSTGRES_DB: mainvest
+      PGPORT: 5433
+    expose:
+      - 5433
+    ports:
+      - "5433:5433"
+    networks:
+      - mainvest-net
+networks:
+  mainvest-net:
+    driver: bridge
