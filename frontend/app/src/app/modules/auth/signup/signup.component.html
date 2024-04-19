@@ -1,0 +1,84 @@
+<div class="signup--box">
+
+  <div class="title mb-4"> Registro </div>
+
+  <form
+    class="signup--form"
+    [formGroup]="signUpForm"
+    (ngSubmit)="onSubmit()"
+  >
+
+  <div class="signup--group">
+    <input
+      type="text"
+      formControlName="name"
+      class="signup--input peer"
+      placeholder=" "/>
+    <label class="signup--label">
+        Nombre y apellidos*
+    </label>
+  </div>
+
+  <div class="signup--group">
+    <input
+      type="email"
+      formControlName="email"
+      class="signup--input peer"
+      placeholder=" "/>
+    <label class="signup--label">
+        Email
+    </label>
+  </div>
+
+  <div class="signup--group">
+    <input
+      type="text"
+      formControlName="username"
+      class="signup--input peer"
+      placeholder=" "/>
+    <label class="signup--label">
+        Nombre de usuario*
+    </label>
+  </div>
+
+  <div class="signup--group group">
+    <input
+      type="password"
+      formControlName="password"
+      class="signup--input peer"
+      placeholder=" "/>
+    <label
+      class="signup--label">
+        Contraseña*
+    </label>
+  </div>
+
+    <ng-container *ngIf="showAlert">
+      <span class="error">{{ errorInfo }}</span>
+    </ng-container>
+
+    <button
+      type="submit"
+      [disabled]="!signUpForm.valid"
+      class="signup--button btn btn-primary"
+    >
+        Sign up
+    </button>
+    <p class="helper-text-explanation">
+      (*) Entre 8 a 16 caracteres
+    </p>
+  </form>
+  <p class="login">
+    O
+    <span
+      routerLink="/auth/login"
+      class="login--route"
+    >
+        Inicia sesión
+    </span>
+  </p>
+</div>
+
+
+
+
