@@ -1,0 +1,43 @@
+<ng-container *ngIf="hasLogIn; else signLogOptions">
+  <button
+    type="button"
+    class="notifications material-symbols-outlined large-icon"
+  >
+    notifications
+    <div class="notifications--number"> 0 </div>
+  </button>
+  <div class="dropdown">
+    <button
+      class="material-symbols-outlined user"
+      type="button"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      person
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item user--options">Perfil</a></li>
+      <li><a class="dropdown-item user--options">Notificaciones</a></li>
+      <li><a class="dropdown-item user--options">Ajustes</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item user--options">Sign Out</a></li>
+    </ul>
+  </div>
+</ng-container>
+
+<ng-template #signLogOptions>
+  <div class="access--options">
+    <button
+      class="btn btn-primary text-white"
+      routerLink="/auth/login"
+    >
+      Log in
+    </button>
+    <button
+      class="btn btn-dark text-white"
+      routerLink="/auth/signup"
+    >
+      Sign up
+    </button>
+  </div>
+</ng-template>
