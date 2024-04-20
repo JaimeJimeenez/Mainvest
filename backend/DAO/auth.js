@@ -10,6 +10,15 @@ class DAOAuth {
             throw error;
         }
     }
+
+    async logIn(username) {
+        try {
+            const sql = 'Select * from users where username = $1;';
+            return await executeQuery(sql, [username]);
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 module.exports = DAOAuth;

@@ -23,11 +23,11 @@ export class SignupComponent {
 
   async onSubmit() {
     const { username, name, email, password } = this.signUpForm.value;
-    
+
     try {
       const signedUp = await this.auth.signUp(email, name, username, password);
       // Redirect to main window
-    } catch (error : any) {
+    } catch (error: any) {
       this.errorInfo = error.message;
       this.showAlert = true;
       setTimeout(() => this.showAlert = false, 2500);
