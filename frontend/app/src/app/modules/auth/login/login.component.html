@@ -1,0 +1,72 @@
+<div class="login--box">
+
+  <div class="title mb-4"> Inicio de sesión </div>
+
+  <form
+    class="login--form"
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmit()"
+  >
+
+  <div class="login--group">
+    <input
+      type="text"
+      formControlName="username"
+      class="login--input peer"
+      placeholder=" "/>
+    <label class="login--label">
+        Nombre de usuario*
+    </label>
+  </div>
+
+  <div class="login--group group">
+    <input
+      type="password"
+      formControlName="password"
+      class="login--input peer"
+      placeholder=" "/>
+    <label
+      class="login--label">
+        Contraseña*
+    </label>
+  </div>
+
+  <div class="flex items-center mb-4">
+    <input
+      id="default-checkbox"
+      type="checkbox"
+      class="remember--checkbox "
+      formControlName="rememberUser"
+      >
+    <label for="default-checkbox" class="default--checkbox">Recordar usuario</label>
+  </div>
+
+    <ng-container *ngIf="showAlert">
+      <span class="error">{{ errorInfo }}</span>
+    </ng-container>
+
+    <button
+      type="submit"
+      [disabled]="!loginForm.valid"
+      class="login--button btn btn-primary"
+    >
+        Log in
+    </button>
+    <p class="helper-text-explanation">
+      (*) Entre 8 a 16 caracteres
+    </p>
+  </form>
+  <p class="signup">
+    O
+    <span
+      routerLink="/auth/signup"
+      class="signup--route"
+    >
+        Crea una cuenta
+    </span>
+  </p>
+</div>
+
+
+
+
