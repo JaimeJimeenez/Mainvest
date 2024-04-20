@@ -1,14 +1,17 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { Login } from 'src/app/core/interfaces/user/login';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { LocalStorage } from 'src/app/core/services/localStorage.service';
 
 @Component({
+  standalone: true,
   selector: 'mainvest-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  imports: [CommonModule, ReactiveFormsModule]
 })
 export class LoginComponent {
   public loginForm: FormGroup;
@@ -37,8 +40,7 @@ export class LoginComponent {
     const { username, password, rememberUser } = this.loginForm.value;
 
     try {
-      const login = await this.auth.logIn(username, password, rememberUser );
-      // Redirect to main window
+      await this.auth.logIn(username, password, rememberUser );
     } catch (error: any) {
       this.errorInfo = error.message;
       this.showAlert = true;

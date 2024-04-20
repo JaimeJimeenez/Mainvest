@@ -1,11 +1,15 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
+  standalone: true,
   selector: 'mainvest-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss']
+  styleUrls: ['./signup.component.scss'],
+  imports: [CommonModule, ReactiveFormsModule]
 })
 export class SignupComponent {
   signUpForm: FormGroup;
@@ -25,8 +29,7 @@ export class SignupComponent {
     const { username, name, email, password } = this.signUpForm.value;
 
     try {
-      const signedUp = await this.auth.signUp(email, name, username, password);
-      // Redirect to main window
+      await this.auth.signUp(email, name, username, password);
     } catch (error: any) {
       this.errorInfo = error.message;
       this.showAlert = true;
