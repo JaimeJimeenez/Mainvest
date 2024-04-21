@@ -16,7 +16,14 @@
       person
     </button>
     <ul class="dropdown-menu">
-      <li><a class="dropdown-item user--options">Perfil</a></li>
+      <li>
+        <a
+          class="dropdown-item user--options"
+          [routerLink]="['profile/main', userId]"
+        >
+          Perfil
+        </a>
+      </li>
       <li><a class="dropdown-item user--options">Notificaciones</a></li>
       <li><a class="dropdown-item user--options">Ajustes</a></li>
       <li><hr class="dropdown-divider"></li>

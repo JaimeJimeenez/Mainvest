@@ -1,0 +1,30 @@
+.profile {
+
+  &--nav {
+    display: flex;
+    flex-direction: column;
+    margin-top: 12.5%;
+    align-items: flex-start;
+    height: 100vh;
+    gap: 50px;
+    width: fit-content;
+  }
+
+  &--route {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &--link {
+      display: flex;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    &--label {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
