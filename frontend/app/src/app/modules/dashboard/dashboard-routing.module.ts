@@ -11,6 +11,13 @@ const routes : Routes = [
         path: '',
         redirectTo: 'market',
         pathMatch: 'full'
+      },
+      {
+        path: 'profile',
+        loadChildren: () =>
+          import('./profile/profile.module').then(
+            (module) => module.ProfileModule
+          )
       }
     ]
   }

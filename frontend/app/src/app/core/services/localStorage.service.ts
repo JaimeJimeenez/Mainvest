@@ -3,6 +3,15 @@ import { Login } from "../interfaces/user/login";
 
 export class LocalStorage {
 
+  static getUser(): User | null {
+    const data : string | null= localStorage.getItem('user');
+    if (data !== null) {
+      const user = JSON.parse(data);
+      return user;
+    }
+    return null;
+  }
+
   static saveUser(user: User) {
     localStorage.setItem('user', JSON.stringify(user));
     localStorage.setItem('token', user.token);
@@ -14,7 +23,6 @@ export class LocalStorage {
 
   static getRememberedUser(): Login | undefined {
     const data : string | null = localStorage.getItem('rememberedUser')
-    console.log(data);
     if (data !== null) {
       const { username, password } = JSON.parse(data);
       const user: Login = { username, password };

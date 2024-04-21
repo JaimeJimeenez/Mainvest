@@ -1,0 +1,11 @@
+<ul class="profile--nav">
+  <ng-container *ngFor="let route of routes">
+    <li class="profile--route">
+        <a class="profile--route--link" [routerLink]="[route.path]">
+          <span class="material-symbols-outlined"> {{ route.icon }} </span>
+          <span class="profile--route--label"> {{route.label}} </span>
+        </a>
+    </li>
+  </ng-container>
+
+</ul>

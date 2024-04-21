@@ -12,15 +12,22 @@ import { LocalStorage } from 'src/app/core/services/localStorage.service';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent {
-  public hasLogIn : boolean = false;
+  public hasLogIn: boolean = false;
+  public userId: number = 0;
 
   constructor() {
     this._setHasLogIn();
+    this._setProfileLink();
   }
 
   private _setHasLogIn(): void {
     const token = LocalStorage.getToken();
-    if (token !== null) this.hasLogIn = true;
-    else this.hasLogIn = false;
+    this.hasLogIn = token !== null;
+  }
+
+  private _setProfileLink() {
+    const user = LocalStorage.getUser();
+    if (user !== null)
+      this.userId = user.id;
   }
 }
