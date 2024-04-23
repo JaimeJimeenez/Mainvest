@@ -31,7 +31,6 @@ const signUp = async (request, response) => {
             success: true,
             data: {
                 id: user_data.data[0].id,
-                name,
                 username,
                 token
             }
