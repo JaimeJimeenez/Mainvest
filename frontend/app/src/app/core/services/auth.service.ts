@@ -1,40 +1,51 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
-import { SignUp } from '../interfaces/user/signup';
-import { AuthRepository } from '../../infraestructure/data/repositories/auth.repository';
-import { lastValueFrom } from 'rxjs';
-import { Login } from '../interfaces/user/login';
-import { LocalStorage } from './localStorage.service';
-import { Router } from '@angular/router';
+import { Observable, catchError, map } from 'rxjs';
+
+import { environment } from 'src/environments/environment';
+
+import { ApiResponse } from 'src/app/infraestructure/dto/client.dto';
+import { LogIn, SignUp } from '../interfaces/auth';
+import { User } from '../interfaces/user';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private authRepository: AuthRepository, private router: Router) { }
+  private _url = environment.dataUrl;
+  private _headers = environment.headers;
 
-  async signUp(email: string, name: string, username: string, password: string) {
-    try {
-      const newUser: SignUp = { email, name, username, password };
-      const user = await lastValueFrom(this.authRepository.signUp$(newUser));
-      LocalStorage.saveUser(user);
-      this.router.navigate(['/dashboard']);
-    } catch (error: any) {
-      throw error;
-    }
+  constructor(private http: HttpClient) { }
+
+  public signUp$(user: SignUp): Observable<User> {
+    return this.http.post<ApiResponse<User>>(
+      `${this._url}/auth/signup`,
+      { user },
+      { headers: this._headers }
+    ).pipe(
+      map((response: ApiResponse<User>) =>
+        response.data
+      ),
+      catchError((errorResponse: HttpErrorResponse) => {
+        throw errorResponse.error;
+      })
+    );
   }
 
-  async logIn(username: string, password: string, rememberUser: boolean) {
-    try {
-      const loginUser: Login = { username, password };
-      const user = await lastValueFrom(this.authRepository.logIn$(loginUser));
-      LocalStorage.saveUser(user);
-      if (rememberUser)
-        LocalStorage.saveRememberUser(loginUser);
-      this.router.navigate(['/dashboard']);
-    } catch (error: any) {
-      throw error;
-    }
+  public logIn$(user: LogIn): Observable<User> {
+    return this.http.get<ApiResponse<User>>(
+      `${this._url}/auth/login/${ JSON.stringify(user) }`,
+      { headers: this._headers }
+    ).pipe(
+      map((response: ApiResponse<User>) =>
+        response.data
+      ),
+      catchError((errorResponse: HttpErrorResponse) => {
+        throw errorResponse.error;
+      })
+    )
   }
 }

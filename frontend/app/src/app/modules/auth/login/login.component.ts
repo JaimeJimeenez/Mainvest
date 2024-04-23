@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { LogIn } from 'src/app/core/interfaces/auth';
 
-import { Login } from 'src/app/core/interfaces/user/login';
-import { AuthService } from 'src/app/core/services/auth.service';
-import { LocalStorage } from 'src/app/core/services/localStorage.service';
+import { LocalStorage } from 'src/app/core/libs/local.storage';
+
+
+import { AuthRepositoryImpl } from 'src/app/infraestructure/data/repositories/auth.repository.impl';
 
 @Component({
   standalone: true,
@@ -18,19 +20,19 @@ export class LoginComponent {
   public showAlert: boolean = false;
   public errorInfo: string = '';
 
-  constructor(private auth: AuthService) {
+  constructor(private authRepository: AuthRepositoryImpl) {
     this.loginForm = new FormGroup({
       username: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
       rememberUser: new FormControl(false),
     });
 
-    const rememberedUser: Login | undefined = LocalStorage.getRememberedUser();
+    const rememberedUser: LogIn | undefined = LocalStorage.getRememberedUser();
     if (rememberedUser !== undefined)
       this._setLoginForm(rememberedUser);
   }
 
-  private _setLoginForm(user: Login) {
+  private _setLoginForm(user: LogIn) {
     this.loginForm.patchValue({ username: user.username });
     this.loginForm.patchValue({ password: user.password });
     this.loginForm.patchValue({ rememberUser: true });
@@ -40,7 +42,7 @@ export class LoginComponent {
     const { username, password, rememberUser } = this.loginForm.value;
 
     try {
-      await this.auth.logIn(username, password, rememberUser );
+      await this.authRepository.logIn(username, password, rememberUser);
     } catch (error: any) {
       this.errorInfo = error.message;
       this.showAlert = true;
