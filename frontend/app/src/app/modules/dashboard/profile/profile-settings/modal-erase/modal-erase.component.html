@@ -1,0 +1,22 @@
+<div
+  class="modal fade"
+  id="eraseModal"
+  tabindex="-1"
+  aria-labelledby="eraseModal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 text-red-700">¿Eliminar usuario?</h1>
+      </div>
+      <div class="modal-body">
+        Se eliminará este usuario
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" (click)="eraseUser()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>

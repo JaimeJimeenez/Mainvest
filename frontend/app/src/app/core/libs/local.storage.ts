@@ -17,12 +17,17 @@ export class LocalStorage {
   };
 
   static getRememberedUser(): LogIn | undefined {
-    const data: string | null = localStorage.getItem('user');
+    const data: string | null = localStorage.getItem('rememberedUser');
     return data !== null ? JSON.parse(data) : undefined;
   }
 
   static getToken(): string | undefined {
     const data: string | null = localStorage.getItem('user');
     return data !== null ? JSON.parse(data).token : undefined;
+  }
+
+  static eraseData(): void {
+    localStorage.removeItem('user');
+    localStorage.removeItem('rememberedUser');
   }
 }

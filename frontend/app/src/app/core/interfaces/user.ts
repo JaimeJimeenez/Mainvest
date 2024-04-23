@@ -1,5 +1,15 @@
 export interface User {
   id: number;
-  username: string;
   token: string;
+}
+
+export interface Username {
+  username: string;
+}
+
+export interface UpdateUserData {
+  id: number;
+  username: string;
+  password: string;
+  passwordAgain: string;
 }

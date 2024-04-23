@@ -2,17 +2,19 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { ProfileMainComponent } from './profile-main/profile-main.component';
+import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
 
 const routes : Routes = [
   {
     path: '',
-    redirectTo: 'main/:id',
-    pathMatch: 'full'
+    component: ProfileMainComponent,
+    children: [
+      {
+        path: 'settings/:id',
+        component: ProfileSettingsComponent
+      }
+    ]
   },
-  {
-    path: 'main/:id',
-    component: ProfileMainComponent
-  }
 ];
 
 @NgModule({

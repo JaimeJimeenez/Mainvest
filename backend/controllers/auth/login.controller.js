@@ -32,7 +32,6 @@ const logIn = async (request, response) => {
                 success: true,
                 data: {
                     id: loginUser.data[0].id,
-                    username,
                     token
                 }
             };

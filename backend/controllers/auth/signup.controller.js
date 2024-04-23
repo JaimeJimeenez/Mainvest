@@ -18,8 +18,8 @@ function setToken(username) {
 const signUp = async (request, response) => {
     try {
         console.log('Inicio de registro...');
-        const { newUser } = request.body;
-        const { username, name, password, email } = newUser;
+        const { user } = request.body;
+        const { username, name, password, email } = user;
         
         const hashedPassword = await bcrypt.hash(password, 10);
         console.log(`Datos del usuario a registrar... ${ username }, ${ name }, ${ hashedPassword }, ${ email }`);
@@ -31,7 +31,6 @@ const signUp = async (request, response) => {
             success: true,
             data: {
                 id: user_data.data[0].id,
-                username,
                 token
             }
         };
