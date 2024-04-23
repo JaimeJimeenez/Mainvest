@@ -19,6 +19,42 @@ class DAOUser {
             throw error;
         }
     }
+
+    async getUsername(id) {
+        try {
+            const sql = 'Select username from users where id = $1;';
+            return await executeQuery(sql, [id]);
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async updatePassword(id, password) {
+        try {
+            const sql = 'Update users set password = $1 where id = $2';
+            return await executeQuery(sql, [password, id]);
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async updateUsername(id, username) {
+        try {
+            const sql = 'Update users set username = $1 where id = $2;';
+            return await executeQuery(sql, [username, id]);
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async eraseUser(id) {
+        try {
+            const sql = 'Delete from users where id = $1;';
+            return await executeQuery(sql, [id]);
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 module.exports = DAOUser;

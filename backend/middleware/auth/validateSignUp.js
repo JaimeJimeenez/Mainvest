@@ -6,11 +6,11 @@ const daoUser = new DAOUser();
 
 const validateSignUp = async (request, response, next) => {
     try {
-        const { newUser } = request.body;
-        const { username, email } = newUser;
-        const user = await daoUser.getUserByUsernameOrEmail(username, email);
+        const { user } = request.body;
+        const { username, email } = user;
+        const newUser = await daoUser.getUserByUsernameOrEmail(username, email);
 
-        if (user.data.length) {
+        if (newUser.data.length) {
             return response.status(409).json({ message: 'El email o usuario ya existe.'})
         }
         next();

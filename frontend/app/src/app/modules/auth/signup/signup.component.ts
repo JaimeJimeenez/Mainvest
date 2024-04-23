@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 import { AuthRepositoryImpl } from 'src/app/infraestructure/data/repositories/auth.repository.impl';
 
@@ -9,7 +10,7 @@ import { AuthRepositoryImpl } from 'src/app/infraestructure/data/repositories/au
   selector: 'mainvest-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss'],
-  imports: [CommonModule, ReactiveFormsModule]
+  imports: [CommonModule, ReactiveFormsModule, RouterLink]
 })
 export class SignupComponent {
   signUpForm: FormGroup;

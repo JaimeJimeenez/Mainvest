@@ -3,9 +3,7 @@ import { Router } from "@angular/router";
 import { Route } from "../interfaces/common";
 import { profileRoutes } from "src/app/const/profile.routes";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class SubmenuModel {
   private _submenuOptions: Route[] = [];
 

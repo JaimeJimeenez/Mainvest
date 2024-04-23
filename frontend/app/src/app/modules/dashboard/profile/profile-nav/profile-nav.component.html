@@ -1,9 +1,9 @@
 <ul class="profile--nav">
-  <ng-container *ngFor="let option of submenuModel.submenuOptions; let index = index">
+  <ng-container *ngFor="let option of submenu.submenuOptions; let index = index">
     <li class="profile--route">
         <a
           class="profile--route--link"
-          (click)="submenuModel.navigateOption(index)"
+          (click)="submenu.navigateOption(index)"
         >
             <span class="material-symbols-outlined"> {{ option.icon }} </span>
             <span class="profile--route--label"> {{ option.label }} </span>

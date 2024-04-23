@@ -1,0 +1,68 @@
+<div class="settings--box">
+  <div class="header">
+    <div class="title">Ajustes</div>
+    <div
+      class="erase--user"
+      data-bs-toggle="modal"
+      data-bs-target="#eraseModal"
+    >
+      Eliminar usuario
+    </div>
+  </div>
+  <form
+    class="settings--form"
+    [formGroup]="settingsForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="settings--group">
+      <input
+        type="text"
+        formControlName="username"
+        class="settings--input peer"
+        placeholder=" "
+      />
+      <label class="settings--label">
+        Nombre de usuario*
+      </label>
+    </div>
+
+    <div class="settings--group">
+      <input
+        type="password"
+        formControlName="newPassword"
+        class="settings--input peer"
+        placeholder=" "
+      />
+      <label class="settings--label">
+        Contraseña*
+      </label>
+    </div>
+
+    <div class="settings--group">
+      <input
+        type="password"
+        formControlName="newPasswordAgain"
+        class="settings--input peer"
+        placeholder=" "
+      />
+      <label class="settings--label">
+        Repetir contraseña
+      </label>
+    </div>
+
+    <ng-container *ngIf="showAlert">
+      <span class="error">{{ errorInfo }}</span>
+    </ng-container>
+
+    <button
+    type="submit"
+    [disabled]="!settingsForm.valid"
+    class="settings--button btn btn-primary"
+    >
+      Actualizar
+    </button>
+  </form>
+
+  <mainvest-modal-erase [idUser]="idUser"></mainvest-modal-erase>
+</div>
+

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { LogIn } from 'src/app/core/interfaces/auth';
 
 import { LocalStorage } from 'src/app/core/libs/local.storage';
@@ -13,7 +14,7 @@ import { AuthRepositoryImpl } from 'src/app/infraestructure/data/repositories/au
   selector: 'mainvest-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  imports: [CommonModule, ReactiveFormsModule]
+  imports: [CommonModule, ReactiveFormsModule, RouterLink]
 })
 export class LoginComponent {
   public loginForm: FormGroup;
