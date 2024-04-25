@@ -1,0 +1,14 @@
+:host {
+  width: 75%;
+}
+
+.header {
+  margin-bottom: 10px;
+  @apply grid grid-cols-5;
+
+  &__value {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+}

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalEraseComponent } from '../src/app/modules/dashboard/profile/profile-settings/modal-erase/modal-erase.component';
+import { ModalEraseComponent } from '../src/app/modules/profile/profile-settings/modal-erase/modal-erase.component';
 
 describe('ModalEraseComponent', () => {
   let component: ModalEraseComponent;
