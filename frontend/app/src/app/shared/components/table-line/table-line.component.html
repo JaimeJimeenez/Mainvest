@@ -1,0 +1,25 @@
+<div class="asset--data">
+  <span class="asset__value text-blue-500"> {{ asset.name }} </span>
+</div>
+<div class="asset--data">
+  <span class="asset__value"> {{ asset.price| number:'1.3' }} $ </span>
+</div>
+<div class="asset--data">
+  <span
+    class="asset__value"
+    [ngStyle]="{ color: asset.variation >= 0 ? 'red' : 'green' }"
+  >
+    {{ getAbsolute(asset.variation) | number: '1.3'}}%
+  </span>
+</div>
+<div class="asset--data">
+  <span class="asset__value"> {{ asset.volume | number: '1.0'}}</span>
+</div>
+<div
+  class="asset--options hover:text-blue-ribbon-500 cursor-pointer"
+  (click)="getAsset()"
+>
+  <span class="material-symbols-outlined">
+    visibility
+    </span>
+</div>

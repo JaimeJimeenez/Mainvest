@@ -13,9 +13,16 @@ const routes : Routes = [
         pathMatch: 'full'
       },
       {
+        path: 'market',
+        loadChildren: () =>
+          import('../market/market.module').then(
+            (module) => module.MarketModule
+          )
+      },
+      {
         path: 'profile',
         loadChildren: () =>
-          import('./profile/profile.module').then(
+          import('../profile/profile.module').then(
             (module) => module.ProfileModule
           )
       }

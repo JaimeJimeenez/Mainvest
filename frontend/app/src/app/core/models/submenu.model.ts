@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Route } from "../interfaces/common";
-import { profileRoutes } from "src/app/const/profile.routes";
 
 @Injectable()
 export class SubmenuModel {

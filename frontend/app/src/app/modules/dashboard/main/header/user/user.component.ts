@@ -5,7 +5,7 @@ import { RouterLink } from '@angular/router';
 import { LocalStorage } from 'src/app/core/libs/local.storage';
 import { UserService } from 'src/app/core/services/user.service';
 import { SubmenuModel } from 'src/app/core/models/submenu.model';
-import { DropdownProfileRoutes } from 'src/app/const/dropdown.profile.routes';
+import { DROPDOWN_PROFILE_ROUTES } from 'src/app/const/dropdown.profile.routes';
 import { Route } from 'src/app/core/interfaces/common';
 
 @Component({
@@ -22,7 +22,7 @@ export class UserComponent {
 
   constructor(private user: UserService, public submenu: SubmenuModel) {
     this._updateLoginStatus();
-    this.submenu.submenuOptions = DropdownProfileRoutes;
+    this.submenu.submenuOptions = DROPDOWN_PROFILE_ROUTES;
     this._setIdsRoutes();
   }
 
@@ -32,7 +32,7 @@ export class UserComponent {
   }
 
   private _setIdsRoutes(): void {
-    this.submenu.submenuOptions = DropdownProfileRoutes.map(route => ({...route}));
+    this.submenu.submenuOptions = DROPDOWN_PROFILE_ROUTES.map(route => ({...route}));
     this.submenu.submenuOptions.forEach((route: Route) => route.path += `/${this.userId}`);
   }
 }

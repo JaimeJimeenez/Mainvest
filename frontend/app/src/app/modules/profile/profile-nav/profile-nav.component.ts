@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { profileRoutes } from 'src/app/const/profile.routes';
+import { PROFILE_ROUTES } from 'src/app/const/profile.routes';
 import { Username } from 'src/app/core/interfaces/user';
 import { Route } from 'src/app/core/interfaces/common';
 import { SubmenuModel } from 'src/app/core/models/submenu.model';
@@ -28,7 +28,7 @@ export class ProfileNavComponent {
     private _userId: UserIdObservableService,
     private userRepository: UserRepositoryImpl
   ) {
-    this.submenu.submenuOptions = profileRoutes;
+    this.submenu.submenuOptions = PROFILE_ROUTES;
 
     this._subscriptionUserId = this._userId.userId$.subscribe((userId: number) => {
       this._idUser = userId;
@@ -44,7 +44,7 @@ export class ProfileNavComponent {
   }
 
   private _setIdsRoutes(): void {
-    this.submenu.submenuOptions = profileRoutes.map(route => ({ ...route }));
+    this.submenu.submenuOptions = PROFILE_ROUTES.map(route => ({ ...route }));
     this.submenu.submenuOptions.forEach((route: Route) => route.path += `/${this._idUser}`);
   }
 
