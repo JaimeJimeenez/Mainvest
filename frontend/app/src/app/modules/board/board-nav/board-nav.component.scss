@@ -6,17 +6,17 @@
   @apply border-r-2;
 }
 
-.profile {
+.board {
 
   &--nav {
     display: flex;
     flex-direction: column;
     margin-top: 12.5%;
+    margin-right: 20px;
     align-items: flex-start;
     height: 50vh;
     gap: 50px;
     width: fit-content;
-    margin-right: 20px;
   }
 
   &--route {

@@ -1,0 +1,41 @@
+<div
+  class="modal fade"
+  id="postModal"
+  tabindex="-1"
+  aria-labelledby="postModal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title">Nueva publicación</h1>
+      </div>
+      <form
+        [formGroup]="postForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <div class="modal-body">
+          <div class="form-group">
+              <textarea
+                class="form-control"
+                id="content"
+                formControlName="content"
+                placeholder="¿Qué piensas?"
+              ></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button
+            [disabled]="!postForm.valid"
+            type="submit"
+            class="btn btn-primary"
+            data-bs-dismiss="modal"
+          >
+            Nueva publicación
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

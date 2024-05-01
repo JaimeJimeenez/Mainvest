@@ -20,6 +20,13 @@ const routes : Routes = [
           )
       },
       {
+        path: 'board',
+        loadChildren: () =>
+          import('../board/board.module').then(
+            (module) => module.BoardModule
+          )
+      },
+      {
         path: 'profile',
         loadChildren: () =>
           import('../profile/profile.module').then(
