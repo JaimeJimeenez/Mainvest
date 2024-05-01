@@ -73,6 +73,16 @@ class DAOBoard {
             throw error;
         }
     }
+
+    async getFollowingPosts(ids) {
+        try {
+            const placeholders = ids.map((_, index) => `p.id_user = $${index + 1 } or`).join(' ');
+            const sql = `Select p.id, p.content, p.likes, p .replies, p.created_at, p.id_user, u.username from posts p join users u on u.id = p.id_user where ${placeholders.slice(0, placeholders.length - 3)} order by created_at desc`;
+            return await executeQuery(sql, ids);
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 module.exports = DAOBoard;

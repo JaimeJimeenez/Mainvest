@@ -12,7 +12,6 @@ import { PostMapper } from '../mappers/post.mapper';
   providedIn: 'root'
 })
 export class BoardService {
-
   private _url = `${environment.dataUrl}/board`;
   private _headers = environment.headers;
 
@@ -108,6 +107,19 @@ export class BoardService {
     ).pipe(
       map((response: ApiResponse<any[]>) =>
         response.data.map((value: any) => value.id)
+      ),
+      catchError((errorResponse: HttpErrorResponse) => {
+        throw errorResponse.error;
+      })
+    )
+  }
+
+  getFollowingPosts$(ids: number[]): Observable<Post[]> {
+    return this.http.get<ApiResponse<Post[]>>(
+      `${this._url}/following_posts/${ids}`,
+      { headers: this._headers }
+    ).pipe(
+      map((response: ApiResponse<Post[]>) => response.data
       ),
       catchError((errorResponse: HttpErrorResponse) => {
         throw errorResponse.error;

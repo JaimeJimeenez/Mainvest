@@ -20,6 +20,7 @@ app.use((request, response, next) => {
 app.use('/auth', require('./routes/auth'));
 app.use('/user', require('./routes/user'));
 app.use('/board', require('./routes/board'));
+app.use('/social', require('./routes/social'));
 
 app.listen(port, () => {
     console.log(`Server listening at port ${ port }`);

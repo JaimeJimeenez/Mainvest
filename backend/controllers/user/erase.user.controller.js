@@ -6,10 +6,7 @@ const daoUser = new DAOUser();
 
 const eraseUser = async (request, response) => {
     try {
-        console.log('Elimiando el usuario...');
         const { id } = request.params;
-        console.log(`Datos del usuario a eliminar..., ${ id }`);
-
         const erased = await daoUser.eraseUser(id);
         const result = {
             success: true,
@@ -17,6 +14,7 @@ const eraseUser = async (request, response) => {
         }
         response.status(200).json(result);
     } catch (error) {
+        console.log(`Error al intentar eliminar el usuario ${JSON.stringify(error)}`);
         response.status(500).json({ message: 'Se ha producido un error inesperado'});
     }
 }
