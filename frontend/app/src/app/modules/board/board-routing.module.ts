@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { BoardMainComponent } from './board-main/board-main.component';
 import { BoardHomeComponent } from './board-home/board-home.component';
+import { BoardFollowsComponent } from './board-follows/board-follows.component';
 
 const routes : Routes = [
   {
@@ -11,12 +12,16 @@ const routes : Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'home',
+        redirectTo: 'home/:id',
         pathMatch: 'full'
       },
       {
-        path: 'home',
+        path: 'home/:id',
         component: BoardHomeComponent
+      },
+      {
+        path: 'follows/:id',
+        component: BoardFollowsComponent
       }
     ]
   }

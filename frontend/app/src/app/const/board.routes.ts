@@ -7,7 +7,7 @@ export const BOARD_ROUTES: Route[] = [
     icon: 'person_cancel'
   },
   {
-    path: '',
+    path: '/dashboard/board/follows',
     label: 'Siguiendo',
     icon: 'person_check'
   }
