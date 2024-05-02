@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { PROFILE_ROUTES } from 'src/app/const/profile.routes';
-import { Username } from 'src/app/core/interfaces/user';
+import { User, Username } from 'src/app/core/interfaces/user';
 import { Route } from 'src/app/core/interfaces/common';
 import { SubmenuModel } from 'src/app/core/models/submenu.model';
 import { UserIdObservableService } from 'src/app/core/services/observables/user-id-observable.service';
 import { Subscription, lastValueFrom } from 'rxjs';
 import { UserRepositoryImpl } from 'src/app/infraestructure/data/repositories/user.repository.impl';
+import { LocalStorage } from 'src/app/core/libs/local.storage';
 
 
 @Component({
@@ -34,7 +35,15 @@ export class ProfileNavComponent {
       this._idUser = userId;
       this._setIdsRoutes();
       this._setUsername();
+      this._checkProfile();
     });
+  }
+
+  private _checkProfile(): void {
+    const user: User | undefined = LocalStorage.getUser();
+    if (user !== undefined && user.id !== this._idUser) {
+      this.submenu.submenuOptions = this.submenu.submenuOptions.slice(0, -1);
+    }
   }
 
   private async _setUsername() {
