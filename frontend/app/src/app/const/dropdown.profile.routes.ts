@@ -2,7 +2,7 @@ import { Route } from "../core/interfaces/common";
 
 export const DROPDOWN_PROFILE_ROUTES: Route[] = [
   {
-    path: '/dashboard/profile/main',
+    path: '/dashboard/profile/home',
     label: 'Perfil',
     icon: '',
   },

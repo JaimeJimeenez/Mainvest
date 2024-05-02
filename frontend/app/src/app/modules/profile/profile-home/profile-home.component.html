@@ -1,0 +1,10 @@
+<div class="home--box">
+  <div class="header">
+    <div class="title"> Siguiendo </div>
+    <mainvest-profile-home-nav></mainvest-profile-home-nav>
+  </div>
+  <ng-container *ngFor="let user of followings">
+    <mainvest-social-user [user]="user"></mainvest-social-user>
+  </ng-container>
+</div>
+
