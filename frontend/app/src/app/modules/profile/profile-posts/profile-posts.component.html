@@ -1,0 +1,8 @@
+<div class="posts--box">
+  <div class="header">
+    <div class="title">Publicaciones</div>
+  </div>
+  <ng-container *ngFor="let post of posts">
+    <mainvest-post [post]="post"></mainvest-post>
+  </ng-container>
+</div>
