@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProfileNavComponent } from '../profile-nav/profile-nav.component';
 import { RouterOutlet } from '@angular/router';
+
+import { ProfileNavComponent } from '../profile-nav/profile-nav.component';
 
 @Component({
   selector: 'mainvest-profile-main',

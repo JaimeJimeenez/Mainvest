@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProfileHomeNavComponent } from '../src/app/modules/profile/profile-home-nav/profile-home-nav.component';
+import { ProfileHomeNavComponent } from '../src/app/modules/social/social-nav/social-nav.component';
 
 describe('ProfileHomeNavComponent', () => {
   let component: ProfileHomeNavComponent;

@@ -32,6 +32,13 @@ const routes : Routes = [
           import('../profile/profile.module').then(
             (module) => module.ProfileModule
           )
+      },
+      {
+        path: 'social',
+        loadChildren: () =>
+          import('../social/social.module').then(
+            (module) => module.SocialModule
+          )
       }
     ]
   }
