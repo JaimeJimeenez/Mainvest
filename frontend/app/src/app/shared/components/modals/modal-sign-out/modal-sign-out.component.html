@@ -1,0 +1,28 @@
+<div
+  class="modal fade"
+  id="signOutModal"
+  tabindex="-1"
+  aria-labelledby="signOutModal"
+  aria-hidden="true"
+>
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h1 class="modal-title">¿Cerrar sesión?</h1>
+    </div>
+      <div class="modal-body">
+        Se cerrará la sesión de esta cuenta.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button
+          class="btn btn-primary"
+          data-bs-dismiss="modal"
+          (click)="onSignOut()"
+        >
+          Cerrar sesión
+        </button>
+      </div>
+  </div>
+</div>
+</div>

@@ -25,7 +25,14 @@
         </li>
       </ng-container>
       <li><hr class="dropdown-divider"></li>
-      <li><a class="dropdown-item user--options">Sign Out</a></li>
+      <li>
+          <a
+            class="dropdown-item user--options"
+            data-bs-toggle="modal"
+            data-bs-target="#signOutModal"
+          >Sign Out
+          </a>
+        </li>
     </ul>
   </div>
 </ng-container>
@@ -46,3 +53,5 @@
     </button>
   </div>
 </ng-template>
+
+<mainvest-modal-sign-out></mainvest-modal-sign-out>

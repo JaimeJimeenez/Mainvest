@@ -7,11 +7,12 @@ import { UserService } from 'src/app/core/services/user.service';
 import { SubmenuModel } from 'src/app/core/models/submenu.model';
 import { DROPDOWN_PROFILE_ROUTES } from 'src/app/const/dropdown.profile.routes';
 import { Route } from 'src/app/core/interfaces/common';
+import { ModalSignOutComponent } from 'src/app/shared/components/modals/modal-sign-out/modal-sign-out.component';
 
 @Component({
   selector: 'mainvest-header-user',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, ModalSignOutComponent],
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss'],
   providers: [SubmenuModel]
