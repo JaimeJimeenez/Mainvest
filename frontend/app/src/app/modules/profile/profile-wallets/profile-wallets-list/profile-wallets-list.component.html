@@ -1,0 +1,9 @@
+<div class="wallets--box">
+  <div class="header">
+    <div class="title">Mis carteras</div>
+    <mainvest-profile-wallets-nav [_idUser]="userId"></mainvest-profile-wallets-nav>
+  </div>
+  <ng-container *ngFor="let wallet of wallets">
+    <mainvest-wallet [wallet]="wallet" [assets]="assets"></mainvest-wallet>
+  </ng-container>
+</div>

@@ -32,6 +32,13 @@ const routes : Routes = [
       {
         path: 'likes/:id',
         component: ProfileLikesComponent
+      },
+      {
+        path: 'wallets',
+        loadChildren: () =>
+          import('../profile/profile-wallets/profile-wallets.module').then(
+            (module) => module.ProfileWalletsModule
+          )
       }
     ]
   },
