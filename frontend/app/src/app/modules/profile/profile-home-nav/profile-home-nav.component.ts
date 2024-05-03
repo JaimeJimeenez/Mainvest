@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { Route } from '@angular/router';
 
 import { Subscription } from 'rxjs';
@@ -17,9 +17,9 @@ import { UserIdObservableService } from 'src/app/core/services/observables/user-
   providers: [SubmenuModel]
 })
 export class ProfileHomeNavComponent {
+  @Input() _idUser: number = 0;
 
   private _subscriptionUserId: Subscription;
-  private _idUser: number = 0;
 
   constructor(public submenu: SubmenuModel,private _userId: UserIdObservableService) {
     this.submenu.submenuOptions = PROFILE_HOME_ROUTES;
@@ -28,6 +28,13 @@ export class ProfileHomeNavComponent {
       this._idUser = userId;
       this._setIdsRoutes();
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['_idUser']) {
+      this._idUser = changes['_idUser'].currentValue;
+      this._setIdsRoutes();
+    }
   }
 
   private _setIdsRoutes(): void {

@@ -9,6 +9,7 @@ import { UserIdObservableService } from 'src/app/core/services/observables/user-
 import { Subscription, lastValueFrom } from 'rxjs';
 import { UserRepositoryImpl } from 'src/app/infraestructure/data/repositories/user.repository.impl';
 import { LocalStorage } from 'src/app/core/libs/local.storage';
+import { SocialRepositoryImpl } from 'src/app/infraestructure/data/repositories/social.repository.impl';
 
 
 @Component({
@@ -24,9 +25,12 @@ export class ProfileNavComponent {
   private _subscriptionUserId: Subscription;
   private _idUser: number = 0;
 
+  public isUserProfile: boolean = true;
+
   constructor(
     public submenu: SubmenuModel,
     private _userId: UserIdObservableService,
+    private socialRepository: SocialRepositoryImpl,
     private userRepository: UserRepositoryImpl
   ) {
     this.submenu.submenuOptions = PROFILE_ROUTES;
@@ -43,6 +47,9 @@ export class ProfileNavComponent {
     const user: User | undefined = LocalStorage.getUser();
     if (user !== undefined && user.id !== this._idUser) {
       this.submenu.submenuOptions = this.submenu.submenuOptions.slice(0, -1);
+      this.isUserProfile = false;
+    } else {
+      this.isUserProfile = true;
     }
   }
 
@@ -56,6 +63,19 @@ export class ProfileNavComponent {
     this.submenu.submenuOptions = PROFILE_ROUTES.map(route => ({ ...route }));
     this.submenu.submenuOptions.forEach((route: Route) => route.path += `/${this._idUser}`);
   }
+
+  public async onFollowUser(): Promise<void> {
+    try {
+      const user: User | undefined = LocalStorage.getUser();
+      if (user !== undefined) {
+        await lastValueFrom (this.socialRepository.followUser$(user.id, this._idUser));
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  // TODO Buscar si el usuario que ha buscado lo está siguiendo o no
 
   ngOnDestroy(): void {
     this._subscriptionUserId.unsubscribe();

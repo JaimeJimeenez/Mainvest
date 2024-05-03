@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProfileMainComponent } from './profile-main/profile-main.component';
 import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
 import { ProfileHomeComponent } from './profile-home/profile-home.component';
+import { ProfileFollowersComponent } from './profile-followers/profile-followers.component';
 
 const routes : Routes = [
   {
@@ -17,6 +18,10 @@ const routes : Routes = [
       {
         path: 'home/:id',
         component: ProfileHomeComponent
+      },
+      {
+        path: 'followers/:id',
+        component: ProfileFollowersComponent
       }
     ]
   },

@@ -20,6 +20,15 @@ class DAOSocial {
         }
     }
 
+    async getFollowersUsers(id) {
+        try {
+            const sql = 'Select u.id, u.username from users u join social s on s.id_follower = $1 and s.id_following = u.id;';
+            return await executeQuery(sql, [id]);
+        } catch (error) {
+            throw error;
+        }
+    }
+
     async unfollowUser(idFollowing, idFollower) {
         try {
             const sql = 'Delete from social where id_following = $1 and id_follower = $2;';
