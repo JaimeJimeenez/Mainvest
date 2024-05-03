@@ -86,4 +86,18 @@ export class UserService {
       })
     );
   }
+
+  public getUser$(username: string): Observable<any> {
+    return this.http.get<ApiResponse<any>>(
+      `${this._url}/user/${username}`,
+      { headers: this._headers }
+    ).pipe(
+      map((response: ApiResponse<any>) =>
+        response.data
+      ),
+      catchError((errorResponse: HttpErrorResponse) => {
+        throw errorResponse.error;
+      })
+    );
+  }
 }
