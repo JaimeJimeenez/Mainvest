@@ -1,21 +1,23 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+
 import { lastValueFrom } from 'rxjs';
+
 import { UserSocial } from 'src/app/core/interfaces/social';
 import { UserIdObservableService } from 'src/app/core/services/observables/user-id-observable.service';
 import { SocialRepositoryImpl } from 'src/app/infraestructure/data/repositories/social.repository.impl';
-import { ProfileHomeNavComponent } from '../profile-home-nav/profile-home-nav.component';
 import { SocialUserComponent } from 'src/app/shared/components/social-user/social-user.component';
+import { SocialNavComponent } from '../social-nav/social-nav.component';
 
 @Component({
   selector: 'mainvest-profile-followers',
   standalone: true,
-  imports: [CommonModule, ProfileHomeNavComponent, SocialUserComponent],
-  templateUrl: './profile-followers.component.html',
-  styleUrls: ['./profile-followers.component.scss']
+  imports: [CommonModule, SocialNavComponent, SocialUserComponent],
+  templateUrl: './social-followers.component.html',
+  styleUrls: ['./social-followers.component.scss']
 })
-export class ProfileFollowersComponent {
+export class SocialFollowersComponent {
   public followers: UserSocial[] = [];
   public _userId: number = 0;;
 

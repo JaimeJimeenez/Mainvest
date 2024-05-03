@@ -3,12 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ProfileMainComponent } from './profile-main/profile-main.component';
 import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
-import { ProfileHomeComponent } from './profile-home/profile-home.component';
-import { ProfileFollowersComponent } from './profile-followers/profile-followers.component';
 import { ProfilePostsComponent } from './profile-posts/profile-posts.component';
 import { ProfileLikesComponent } from './profile-likes/profile-likes.component';
 
-const routes : Routes = [
+const routes: Routes = [
   {
     path: '',
     component: ProfileMainComponent,
@@ -16,14 +14,6 @@ const routes : Routes = [
       {
         path: 'settings/:id',
         component: ProfileSettingsComponent
-      },
-      {
-        path: 'home/:id',
-        component: ProfileHomeComponent
-      },
-      {
-        path: 'followers/:id',
-        component: ProfileFollowersComponent
       },
       {
         path: 'posts/:id',

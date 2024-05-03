@@ -2,7 +2,7 @@ import { Route } from "../../core/interfaces/common";
 
 export const PROFILE_ROUTES: Route[] = [
   {
-    path: '/dashboard/profile/home',
+    path: '/dashboard/social/home',
     label: '',
     icon: 'account_circle'
   },

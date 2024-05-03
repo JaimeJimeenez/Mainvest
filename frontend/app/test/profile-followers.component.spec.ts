@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProfileFollowersComponent } from '../src/app/modules/profile/profile-followers/profile-followers.component';
+import { ProfileFollowersComponent } from '../src/app/modules/social/social-followers/social-followers.component';
 
 describe('ProfileFollowersComponent', () => {
   let component: ProfileFollowersComponent;
