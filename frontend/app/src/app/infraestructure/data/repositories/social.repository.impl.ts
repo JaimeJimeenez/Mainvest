@@ -11,6 +11,7 @@ import { SocialService } from "src/app/core/services/social.service";
 })
 export class SocialRepositoryImpl extends SocialRepository{
 
+
   constructor(private social: SocialService) {
     super();
   }
@@ -26,6 +27,14 @@ export class SocialRepositoryImpl extends SocialRepository{
   override getUserFollowings$(idUser: number): Observable<UserSocial[]> {
     try {
       return this.social.getUserFollowings$(idUser);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  override getUserFollowers$(idUser: number): Observable<UserSocial[]> {
+    try {
+      return this.social.getFollowers$(idUser);
     } catch (error) {
       throw error;
     }

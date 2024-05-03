@@ -71,6 +71,20 @@ export class SocialService {
     );
   }
 
+  public getFollowers$(idUser: number): Observable<UserSocial[]> {
+    return this.http.get<ApiResponse<UserSocial[]>>(
+      `${this._url}/followers/${idUser}`,
+      { headers: this._headers }
+    ).pipe(
+      map((response: ApiResponse<UserSocial[]>) =>
+        response.data
+      ),
+      catchError((errorResponse: HttpErrorResponse) => {
+        throw errorResponse.error;
+      })
+    );
+  }
+
   public unfollowUser$(idFollowing: number, idFollower: number): Observable<boolean> {
     return this.http.delete<ApiResponse<boolean>>(
       `${this._url}/unfollow/${idFollowing}/${idFollower}`,

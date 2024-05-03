@@ -19,6 +19,7 @@ import { SocialUserComponent } from 'src/app/shared/components/social-user/socia
 export class ProfileHomeComponent {
 
   public followings: UserSocial[] = [];
+  public userId: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,6 +29,7 @@ export class ProfileHomeComponent {
     this.route.paramMap.subscribe(async (params: ParamMap) => {
       const id: string | null = params.get('id');
       if (id !== null) {
+        this.userId = +id;
         this.userIdObservable.sendUserId(+id);
         this.followings = await lastValueFrom(this.socialRepository.getUserFollowings$(+id));
         this.followings.forEach((user: UserSocial) => user.isFollowing = true);

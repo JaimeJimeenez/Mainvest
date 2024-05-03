@@ -10,4 +10,10 @@
         </a>
     </li>
   </ng-container>
+  <ng-container *ngIf="!isUserProfile">
+    <button
+      class="btn btn-primary"
+      (click)="onFollowUser()"
+    > Seguir</button>
+  </ng-container>
 </ul>
