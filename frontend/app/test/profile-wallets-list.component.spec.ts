@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProfileWalletsListComponent } from '../src/app/modules/profile/profile-wallets/profile-wallets-list/profile-wallets-list.component';
+import { ProfileWalletsListComponent } from '../src/app/modules/wallet/wallets-home/wallets-home.component';
 
 describe('ProfileWalletsListComponent', () => {
   let component: ProfileWalletsListComponent;

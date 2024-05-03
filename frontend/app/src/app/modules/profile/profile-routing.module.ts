@@ -36,8 +36,8 @@ const routes : Routes = [
       {
         path: 'wallets',
         loadChildren: () =>
-          import('./profile-wallets/profile-wallets.module').then(
-            (module) => module.ProfileWalletsModule
+          import('../wallet/wallets.module').then(
+            (module) => module.WalletsModule
           )
       }
     ]

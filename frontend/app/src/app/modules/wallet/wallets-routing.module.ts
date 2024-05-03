@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProfileWalletsMainComponent } from './profile-wallets-main/profile-wallets-main.component';
-import { ProfileWalletsListComponent } from './profile-wallets-list/profile-wallets-list.component';
+
+import { WalletsMainComponent } from './wallets-main/wallets-main.component';
+import { WalletsHomeComponent } from './wallets-home/wallets-home.component';
 
 const routes : Routes = [
   {
     path: '',
-    component: ProfileWalletsMainComponent,
+    component: WalletsMainComponent,
     children: [
       {
         path: '',
@@ -15,7 +16,7 @@ const routes : Routes = [
       },
       {
         path: 'list/:id',
-        component: ProfileWalletsListComponent,
+        component: WalletsHomeComponent,
       }
     ]
   },
@@ -25,4 +26,4 @@ const routes : Routes = [
   imports: [ RouterModule.forChild(routes) ],
   exports: [ RouterModule ]
 })
-export class ProfileWalletsRoutingModule { }
+export class WalletsRoutingModule { }
