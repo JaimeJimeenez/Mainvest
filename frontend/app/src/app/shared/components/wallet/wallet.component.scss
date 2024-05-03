@@ -1,0 +1,55 @@
+:host {
+  display: flex;
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px;
+  flex-direction: column;
+  @apply border-2 rounded;
+}
+
+.header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 8px;
+  @apply border-b-2;
+}
+
+.wallet {
+  @apply text-blue-600;
+}
+
+.body {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.columns, .asset {
+  display: flex;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  justify-content: space-between;
+  margin-top: 12px;
+  @apply border-b-2;
+
+  &--name, &--amount{
+    display: flex;
+    width: 50%;
+    justify-content: center;
+  }
+}
+
+.asset--name {
+  @apply text-green-600;
+}
+
+.asset--amount {
+  @apply text-red-600;
+}
+
+.erase {
+  cursor: pointer;
+  @apply hover:text-red-600;
+}

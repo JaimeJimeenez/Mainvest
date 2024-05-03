@@ -1,8 +1,8 @@
-import { Route } from "../core/interfaces/common";
+import { Route } from "../../core/interfaces/common";
 
 export const PROFILE_ROUTES: Route[] = [
   {
-    path: '/dashboard/profile/main',
+    path: '/dashboard/profile/home',
     label: '',
     icon: 'account_circle'
   },
@@ -17,7 +17,7 @@ export const PROFILE_ROUTES: Route[] = [
     icon: 'favorite'
   },
   {
-    path: '/dashboard/profile/wallets',
+    path: '/dashboard/profile/wallets/list',
     label: 'Carteras',
     icon: 'wallet'
   }

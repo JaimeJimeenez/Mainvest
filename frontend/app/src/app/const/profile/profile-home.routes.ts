@@ -1,4 +1,4 @@
-import { Route } from "../core/interfaces/common";
+import { Route } from "../../core/interfaces/common";
 
 export const PROFILE_HOME_ROUTES : Route[] = [
   {

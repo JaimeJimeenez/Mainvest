@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { PROFILE_ROUTES } from 'src/app/const/profile.routes';
+import { PROFILE_ROUTES } from 'src/app/const/profile/profile.routes';
 import { User, Username } from 'src/app/core/interfaces/user';
 import { Route } from 'src/app/core/interfaces/common';
 import { SubmenuModel } from 'src/app/core/models/submenu.model';
@@ -61,7 +61,7 @@ export class ProfileNavComponent {
 
   private _setIdsRoutes(): void {
     this.submenu.submenuOptions = PROFILE_ROUTES.map(route => ({ ...route }));
-    this.submenu.submenuOptions.forEach((route: Route) => route.path += `/${this._idUser}`);
+    this.submenu.submenuOptions.forEach((route: Route) => route.path += `/${this._idUser}`)
   }
 
   public async onFollowUser(): Promise<void> {
