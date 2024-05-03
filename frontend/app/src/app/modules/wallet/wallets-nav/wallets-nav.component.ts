@@ -10,14 +10,14 @@ import { SubmenuModel } from 'src/app/core/models/submenu.model';
 import { UserIdObservableService } from 'src/app/core/services/observables/user-id-observable.service';
 
 @Component({
-  selector: 'mainvest-profile-wallets-nav',
+  selector: 'mainvest-wallets-nav',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './profile-wallets-nav.component.html',
-  styleUrls: ['./profile-wallets-nav.component.scss'],
+  templateUrl: './wallets-nav.component.html',
+  styleUrls: ['./wallets-nav.component.scss'],
   providers: [SubmenuModel]
 })
-export class ProfileWalletsNavComponent {
+export class WalletsNavComponent {
   @Input() _idUser: number = 0;
 
   private _subscriptionUserId: Subscription;
