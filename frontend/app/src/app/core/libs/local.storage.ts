@@ -30,4 +30,8 @@ export class LocalStorage {
     localStorage.removeItem('user');
     localStorage.removeItem('rememberedUser');
   }
+
+  static eraseUser(): void {
+    localStorage.removeItem('user');
+  }
 }
