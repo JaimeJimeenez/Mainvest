@@ -83,4 +83,12 @@ export class BoardRepositoryImpl extends BoardRepository {
       throw error;
     }
   }
+
+  override getUsersPosts$(idUser: number): Observable<Post[]> {
+    try {
+      return this.board.getUsersPosts$(idUser);
+    } catch (error) {
+      throw error;
+    }
+  }
 }

@@ -5,6 +5,7 @@ import { ProfileMainComponent } from './profile-main/profile-main.component';
 import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
 import { ProfileHomeComponent } from './profile-home/profile-home.component';
 import { ProfileFollowersComponent } from './profile-followers/profile-followers.component';
+import { ProfilePostsComponent } from './profile-posts/profile-posts.component';
 
 const routes : Routes = [
   {
@@ -22,6 +23,10 @@ const routes : Routes = [
       {
         path: 'followers/:id',
         component: ProfileFollowersComponent
+      },
+      {
+        path: 'posts/:id',
+        component: ProfilePostsComponent
       }
     ]
   },
