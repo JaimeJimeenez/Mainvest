@@ -40,3 +40,9 @@
     <span class="material-symbols-outlined">search</span>
   </button>
 </form>
+
+<ng-container *ngIf="error.error">
+  <div class="alert alert-danger no--matches" role="alert">
+    {{ error.message }}
+  </div>
+</ng-container>

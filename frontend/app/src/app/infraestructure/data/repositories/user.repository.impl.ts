@@ -15,6 +15,7 @@ import { LocalStorage } from "src/app/core/libs/local.storage";
 })
 export class UserRepositoryImpl extends UserRepository{
 
+
   constructor(private user: UserService, private route: Router) {
     super();
   }
@@ -55,6 +56,14 @@ export class UserRepositoryImpl extends UserRepository{
       const newUsername: UsernameDTO = { id, username };
       return this.user.changeUsername$(newUsername);
     } catch (error: any) {
+      throw error;
+    }
+  }
+
+  override getUser$(username: string): Observable<any> {
+    try {
+      return this.user.getUser$(username);
+    } catch (error) {
       throw error;
     }
   }

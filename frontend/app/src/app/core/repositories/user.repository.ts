@@ -7,5 +7,6 @@ export abstract class UserRepository {
   abstract updateUserData(updateData: UpdateUserData): void;
   abstract changePassword$(id: number, password: string): Observable<boolean>;
   abstract changeUsername$(id: number, username: string): Observable<boolean>;
+  abstract getUser$(username: string): Observable<any>;
   abstract eraseUser(id: number): void;
 }

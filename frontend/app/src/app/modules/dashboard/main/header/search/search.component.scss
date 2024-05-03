@@ -35,3 +35,10 @@
     @apply hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300;
   }
 }
+
+.no--matches {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
