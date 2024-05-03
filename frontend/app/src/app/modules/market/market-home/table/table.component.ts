@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
-import { TableLineComponent } from 'src/app/shared/components/table-line/table-line.component';
+import { TableLineComponent } from 'src/app/modules/market/market-home/table/table-line/table-line.component';
 
 import { AssetData } from 'src/app/core/interfaces/market';
 

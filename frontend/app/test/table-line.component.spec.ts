@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TableLineComponent } from '../src/app/shared/components/table-line/table-line.component';
+import { TableLineComponent } from '../src/app/modules/market/market-home/table/table-line/table-line.component';
 
 describe('TableLineComponent', () => {
   let component: TableLineComponent;

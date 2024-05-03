@@ -11,23 +11,57 @@ export class Time {
     return `${year}-${month}-${day}`;
   }
 
+  static isMonday(): boolean {
+    return new Date().getDay() === 1;
+  }
+
+  static isTuesday(): boolean {
+    return new Date().getDay() === 2;
+  }
+
   static getToday(): string {
     const today = new Date();
     return this._parseDateToString(today);
   }
 
   static getYesterday(): string {
-    const today = new Date();
     const yesterday = new Date();
-    yesterday.setDate(today.getDate() - 1);
+    yesterday.setDate(yesterday.getDate() - 1);
     return this._parseDateToString(yesterday);
   }
 
   static getDayBefore(): string {
-    const today = new Date();
     const dayBefore = new Date();
-    dayBefore.setDate(today.getDate() - 2);
+    dayBefore.setDate(dayBefore.getDate() - 2);
     return this._parseDateToString(dayBefore);
+  }
+
+  static getYearBefore(): string {
+    const yearBefore = new Date();
+    yearBefore.setFullYear(yearBefore.getFullYear() - 1);
+    return this._parseDateToString(yearBefore);
+  }
+
+  static getStringDate(date: string): string {
+    return this._parseDateToString(new Date(date));
+  }
+
+  static getThursday(difference: number): string {
+    const today = new Date();
+    today.setDate(today.getDate() - difference);
+    return this._parseDateToString(today);
+  }
+
+  static getFriday(difference: number): string {
+    const today = new Date();
+    today.setDate(today.getDate() - difference);
+    return this._parseDateToString(today);
+  }
+
+  static getDay(difference: number): string {
+    const today = new Date();
+    today.setDate(today.getDate() - difference);
+    return this._parseDateToString(today);
   }
 
 }

@@ -12,15 +12,14 @@ import { AssetDTO } from 'src/app/infraestructure/dto/market.dto';
 @Injectable({
   providedIn: 'root'
 })
-export class FinancialService {
+export class MarketService {
 
   private _url = environment.externalUrl;
   private _headers = environment.headers;
 
   constructor(private http: HttpClient) { }
 
-  public getAssetsData$(assetsRequest: AssetRequest): Observable<Map<string, Asset[]>> {
-    const { initial_date, end_date, assets } = assetsRequest;
+  public getAssetsData$(initial_date: string, end_date: string, assets: string[]): Observable<Map<string, Asset[]>> {
     return this.http.get<ApiResponse<AssetDTO>>(
       `${this._url}/financial/assets?asset=${assets}&start=${initial_date}&end=${end_date}`,
       { headers: this._headers }
