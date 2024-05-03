@@ -1,0 +1,26 @@
+:host {
+  display: flex;
+  width: 100%;
+  margin-top: 2.5%;
+  padding: 12px;
+}
+
+.header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  border-bottom-width: 1px;
+  padding: 12px;
+  @apply border-b-gray-400;
+}
+
+.likes {
+
+  &--box {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    margin-left: 20%;
+    align-items: center;
+  }
+}
