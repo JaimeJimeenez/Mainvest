@@ -25,6 +25,6 @@ export class TableLineComponent {
   }
 
   public getAsset() : void {
-    this.route.navigate(['']);
+    this.route.navigate([`/dashboard/market/asset/${this.asset.name}`]);
   }
 }

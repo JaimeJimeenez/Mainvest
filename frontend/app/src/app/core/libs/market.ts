@@ -1,4 +1,6 @@
+import { ChartAsset } from "../interfaces/chart";
 import { Asset, AssetData } from "../interfaces/market";
+import { Time } from "./time";
 
 export abstract class Market {
 
@@ -23,5 +25,16 @@ export abstract class Market {
       }
     });
     return assetsData;
+  }
+
+  public static getChartAssets(assets: Asset[]): ChartAsset[] {
+    const chartAssets: ChartAsset[] = assets.map((asset: Asset) => ({
+      time: Time.getStringDate(asset.date),
+      open: asset.open,
+      high: asset.high,
+      low: asset.low,
+      close: asset.adj_close
+    }));
+    return chartAssets;
   }
 }

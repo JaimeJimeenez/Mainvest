@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 
 import { MarketRepository } from "src/app/core/repositories/market.repository";
 import { Observable } from "rxjs";
-import { FinancialService } from "src/app/core/services/financial.service";
+import { MarketService } from "src/app/core/services/market.service";
 import { Asset, AssetRequest } from "src/app/core/interfaces/market";
 import { Time } from "src/app/core/libs/time";
 
@@ -12,20 +12,21 @@ import { Time } from "src/app/core/libs/time";
 })
 export class MarketRepositoryImpl extends MarketRepository {
 
-  constructor(private financial: FinancialService) {
+  constructor(private market: MarketService) {
     super();
   }
 
   override getTodayAssetsData$(assets: string[]): Observable<Map<string, Asset[]>> {
     try {
-      const today = Time.getToday();
-      const yesterday = Time.getYesterday();
-      const assetsRequest: AssetRequest = {
-        initial_date: yesterday,
-        end_date: today,
-        assets
-      };
-      return this.financial.getAssetsData$(assetsRequest);
+      if (Time.isMonday()) {
+        const saturday: string = Time.getDay(2);
+        const friday: string = Time.getDay(3);
+        return this.market.getAssetsData$(friday, saturday, assets);
+      } else {
+        const today: string = Time.getToday();
+        const yesterday: string = Time.getYesterday();
+        return this.market.getAssetsData$(yesterday, today, assets);
+      }
     } catch (error) {
       throw error;
     }
@@ -33,14 +34,25 @@ export class MarketRepositoryImpl extends MarketRepository {
 
   override getYesterdayAssetsData$(assets: string[]): Observable<Map<string, Asset[]>> {
     try {
-      const yesterday = Time.getYesterday();
-      const dayBeforeYesterday = Time.getDayBefore();
-      const assetsRequest: AssetRequest = {
-        initial_date: dayBeforeYesterday,
-        end_date: yesterday,
-        assets
-      };
-      return this.financial.getAssetsData$(assetsRequest);
+      if (Time.isMonday() || Time.isTuesday()) {
+        const friday: string = Time.getDay(3);
+        const thursday: string = Time.getDay(4);
+        return this.market.getAssetsData$(thursday, friday, assets);
+      } else {
+        const yesterday: string = Time.getYesterday();
+        const dayBefore: string = Time.getDayBefore();
+        return this.market.getAssetsData$(dayBefore, yesterday, assets);
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  override getAssetData$(asset: string): Observable<Map<string, Asset[]>> {
+    try {
+      const yearBefore: string = Time.getYearBefore();
+      const today: string = Time.getToday();
+      return this.market.getAssetsData$(yearBefore, today, [asset]);
     } catch (error) {
       throw error;
     }
