@@ -11,4 +11,5 @@ export abstract class BoardRepository {
   abstract deleteLike$(idUser: number, idPost: number): Observable<boolean>;
   abstract getFollowingPosts$(ids: number[]): Observable<Post[]>;
   abstract getUsersPosts$(idUser: number): Observable<Post[]>;
+  abstract getUsersLikesPosts$(idUser: number): Observable<Post[]>;
 }

@@ -1,21 +1,20 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-
-import { PostComponent } from 'src/app/shared/components/post/post.component';
-import { Post } from 'src/app/core/interfaces/board';
 import { lastValueFrom } from 'rxjs';
-import { BoardRepositoryImpl } from 'src/app/infraestructure/data/repositories/board.repository.impl';
+import { Post } from 'src/app/core/interfaces/board';
 import { UserIdObservableService } from 'src/app/core/services/observables/user-id-observable.service';
+import { BoardRepositoryImpl } from 'src/app/infraestructure/data/repositories/board.repository.impl';
+import { PostComponent } from 'src/app/shared/components/post/post.component';
 
 @Component({
-  selector: 'mainvest-profile-posts',
+  selector: 'mainvest-profile-likes',
   standalone: true,
   imports: [CommonModule, PostComponent],
-  templateUrl: './profile-posts.component.html',
-  styleUrls: ['./profile-posts.component.scss']
+  templateUrl: './profile-likes.component.html',
+  styleUrls: ['./profile-likes.component.scss']
 })
-export class ProfilePostsComponent {
+export class ProfileLikesComponent {
 
   private _userId: number = 0;
 
@@ -31,12 +30,12 @@ export class ProfilePostsComponent {
       if (id !== null) {
         this._userId = +id;
         this.userIdObservable.sendUserId(this._userId);
-        this._getUsersPosts();
+        this._getUsersLikesPosts();
       }
     });
   }
 
-  private async _getUsersPosts(): Promise<void> {
-    this.posts = await lastValueFrom(this.boardRepository.getUsersPosts$(this._userId));
+  private async _getUsersLikesPosts(): Promise<void> {
+    this.posts = await lastValueFrom(this.boardRepository.getUsersLikesPosts$(this._userId));
   }
 }

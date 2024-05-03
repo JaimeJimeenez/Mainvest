@@ -92,6 +92,15 @@ class DAOBoard {
             throw error;
         }
     }
+
+    async getUsersLikesPosts(id) {
+        try {
+            const sql = 'Select p.id, p.content, p.likes, p .replies, p.created_at, p.id_user, u.username from posts p join users u on u.id = p.id_user join users_likes ul on ul.id_post = p.id and ul.id_user = $1 order by created_at desc'
+            return await executeQuery(sql, [id]);
+        } catch (error) {
+            throw error;
+        }   
+    }
 }
 
 module.exports = DAOBoard;

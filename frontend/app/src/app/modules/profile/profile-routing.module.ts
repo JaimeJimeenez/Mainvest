@@ -6,6 +6,7 @@ import { ProfileSettingsComponent } from './profile-settings/profile-settings.co
 import { ProfileHomeComponent } from './profile-home/profile-home.component';
 import { ProfileFollowersComponent } from './profile-followers/profile-followers.component';
 import { ProfilePostsComponent } from './profile-posts/profile-posts.component';
+import { ProfileLikesComponent } from './profile-likes/profile-likes.component';
 
 const routes : Routes = [
   {
@@ -27,6 +28,10 @@ const routes : Routes = [
       {
         path: 'posts/:id',
         component: ProfilePostsComponent
+      },
+      {
+        path: 'likes/:id',
+        component: ProfileLikesComponent
       }
     ]
   },

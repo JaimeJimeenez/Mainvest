@@ -140,4 +140,17 @@ export class BoardService {
       })
     );
   }
+
+  getUsersLikesPosts(idUser: number): Observable<Post[]> {
+    return this.http.get<ApiResponse<Post[]>>(
+      `${this._url}/get_users_likes/${idUser}`,
+      { headers: this._headers }
+    ).pipe(
+      map((response: ApiResponse<Post[]>) => response.data
+      ),
+      catchError((errorResponse: HttpErrorResponse) => {
+        throw errorResponse.error;
+      })
+    );
+  }
 }
