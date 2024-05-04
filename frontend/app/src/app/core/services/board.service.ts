@@ -46,13 +46,13 @@ export class BoardService {
     );
   }
 
-  public reply$(reply: Reply): Observable<boolean> {
-    return this.http.post<ApiResponse<boolean>> (
+  public reply$(reply: Reply): Observable<any> {
+    return this.http.post<ApiResponse<any>> (
       `${this._url}/new_reply`,
       { reply },
       { headers: this._headers }
     ).pipe(
-      map((response: ApiResponse<boolean>) => response.data
+      map((response: ApiResponse<any>) => response.data
       ),
       catchError((errorResponse: HttpErrorResponse) => {
         throw errorResponse.error;

@@ -22,7 +22,7 @@ class DAOBoard {
 
     async newReply(idPost, idUser, content) {
         try {
-            const sql = 'Insert into replies (id_post, id_user, content) values ($1, $2, $3);';
+            const sql = 'Insert into replies (id_post, id_user, content) values ($1, $2, $3) returning id;';
             return await executeQuery(sql, [idPost, idUser, content]);
         } catch (error) {
             throw error;

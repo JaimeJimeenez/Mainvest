@@ -6,6 +6,7 @@ import { LocalStorage } from 'src/app/core/libs/local.storage';
 import { lastValueFrom } from 'rxjs';
 import { BoardRepositoryImpl } from 'src/app/infraestructure/data/repositories/board.repository.impl';
 import { PostIdObservableService } from 'src/app/core/services/observables/post-id-observable.service';
+import { NotificationRepositoryImpl } from 'src/app/infraestructure/data/repositories/notification.repository.impl';
 
 @Component({
   selector: 'mainvest-modal-reply',
@@ -18,7 +19,11 @@ export class ModalReplyComponent {
   private _idPost: number = 0;
   public replyForm: FormGroup;
 
-  constructor(private boardRepository: BoardRepositoryImpl, private postIdObservable: PostIdObservableService) {
+  constructor(
+    private boardRepository: BoardRepositoryImpl,
+    private notificationRepository: NotificationRepositoryImpl,
+    private postIdObservable: PostIdObservableService
+  ) {
     this.replyForm = new FormGroup({
       content: new FormControl('', [Validators.required])
     });
@@ -33,7 +38,9 @@ export class ModalReplyComponent {
       const user: User | undefined = LocalStorage.getUser();
       if (user !== undefined) {
         const id = user.id;
-        await lastValueFrom(this.boardRepository.reply$(this._idPost, +id, content));
+        const data: any[] = await lastValueFrom(this.boardRepository.reply$(this._idPost, +id, content));
+        debugger;
+        await lastValueFrom(this.notificationRepository.addNotification$(+id, data[0].id, false));
         window.location.reload();
       }
     } catch (error) {

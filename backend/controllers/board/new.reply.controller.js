@@ -10,6 +10,7 @@ const newReply = async (request, response) => {
         const { idPost, idUser, content } = reply;
         const result = await daoBoard.newReply(idPost, idUser, content);
         await daoBoard.updatePost(idPost);
+        console.log(result);
         response.status(200).json(result);
     } catch (error) {
         console.log(`Error al añadir una nueva respuesta: ${JSON.stringify(error)}`);

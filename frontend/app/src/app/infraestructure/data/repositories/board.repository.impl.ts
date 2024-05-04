@@ -32,7 +32,7 @@ export class BoardRepositoryImpl extends BoardRepository {
     }
   }
 
-  override reply$(idPost: number, idUser: number, content: string): Observable<boolean> {
+  override reply$(idPost: number, idUser: number, content: string): Observable<any> {
     try {
       const reply: Reply = { idPost, idUser, content };
       return this.board.reply$(reply);

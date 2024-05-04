@@ -33,6 +33,14 @@ export class NotificationRepositoryImpl extends NotificationRepository {
     }
   }
 
+  override getRepliesPosts$(idUser: number): Observable<Post[]> {
+    try {
+      return this.notification.getRepliesPosts$(idUser);
+    } catch (error) {
+      throw error;
+    }
+  }
+
   override deleteNotification$(idUser: number, idPost: number, isLiked: boolean): Observable<boolean> {
     try {
       return this.notification.deleteNotification$(idUser, idPost, isLiked);
