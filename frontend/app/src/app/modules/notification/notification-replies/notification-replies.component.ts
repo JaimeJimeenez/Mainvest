@@ -1,21 +1,20 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-
-import { Post } from 'src/app/core/interfaces/board';
 import { lastValueFrom } from 'rxjs';
+import { Post } from 'src/app/core/interfaces/board';
 import { NotificationRepositoryImpl } from 'src/app/infraestructure/data/repositories/notification.repository.impl';
-import { PostComponent } from 'src/app/shared/components/post/post.component';
 import { UserIdObservableService } from 'src/app/core/services/observables/user-id-observable.service';
+import { PostComponent } from 'src/app/shared/components/post/post.component';
 
 @Component({
-  selector: 'mainvest-notification-likes',
+  selector: 'mainvest-notification-replies',
   standalone: true,
   imports: [CommonModule, PostComponent],
-  templateUrl: './notification-likes.component.html',
-  styleUrls: ['./notification-likes.component.scss']
+  templateUrl: './notification-replies.component.html',
+  styleUrls: ['./notification-replies.component.scss']
 })
-export class NotificationLikesComponent {
+export class NotificationRepliesComponent {
   private _userId: number = 0;
 
   public posts: Post[] = [];
@@ -30,14 +29,15 @@ export class NotificationLikesComponent {
       if (id !== null) {
         this._userId = +id;
         this.userIdObservable.sendUserId(+id);
-        this._getLikedPosts();
+        this._getRepliesPosts();
       }
     });
   }
 
-  private async _getLikedPosts(): Promise<void> {
+  private async _getRepliesPosts(): Promise<void> {
     try {
-      this.posts = await lastValueFrom(this.notificationRepository.getLikedPosts$(this._userId));
+      this.posts = await lastValueFrom(this.notificationRepository.getRepliesPosts$(this._userId));
+      console.log(this.posts);
     } catch (error) {
       console.error(error);
     }
@@ -46,7 +46,7 @@ export class NotificationLikesComponent {
   public async onEraseNotification(index: number): Promise<void> {
     try {
       const post: Post = this.posts[index];
-      await lastValueFrom(this.notificationRepository.deleteNotification$(this._userId, post.id, true));
+      await lastValueFrom(this.notificationRepository.deleteNotification$(this._userId, post.id, false));
       window.location.reload();
     } catch (error) {
       console.error(error);

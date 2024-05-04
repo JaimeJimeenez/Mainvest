@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { NotificationMainComponent } from "./notification-main/notification-main.component";
 import { NotificationLikesComponent } from "./notification-likes/notification-likes.component";
+import { NotificationRepliesComponent } from "./notification-replies/notification-replies.component";
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
       {
         path: 'likes/:id',
         component: NotificationLikesComponent
+      },
+      {
+        path: 'replies/:id',
+        component: NotificationRepliesComponent
       }
     ]
   }

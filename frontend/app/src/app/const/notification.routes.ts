@@ -12,7 +12,7 @@ export const NOTIFICATION_ROUTES: Route[] = [
     icon: 'favorite'
   },
   {
-    path: '/dashboard/notification/posts',
+    path: '/dashboard/notification/replies',
     label: 'Comentarios',
     icon: 'forum'
   },
