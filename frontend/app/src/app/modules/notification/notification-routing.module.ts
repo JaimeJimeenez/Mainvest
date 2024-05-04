@@ -3,6 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { NotificationMainComponent } from "./notification-main/notification-main.component";
 import { NotificationLikesComponent } from "./notification-likes/notification-likes.component";
 import { NotificationRepliesComponent } from "./notification-replies/notification-replies.component";
+import { NotificationPricesComponent } from "./notification-prices/notification-prices.component";
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
       {
         path: 'replies/:id',
         component: NotificationRepliesComponent
+      },
+      {
+        path: 'prices/:id',
+        component: NotificationPricesComponent
       }
     ]
   }

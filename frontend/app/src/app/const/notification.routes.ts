@@ -2,7 +2,7 @@ import { Route } from "../core/interfaces/common";
 
 export const NOTIFICATION_ROUTES: Route[] = [
   {
-    path: '/dashboard/notification/assets',
+    path: '/dashboard/notification/prices',
     label: 'Precios',
     icon: 'attach_money'
   },
