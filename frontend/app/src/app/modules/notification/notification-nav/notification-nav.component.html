@@ -1,0 +1,13 @@
+<ul class="notification--nav">
+  <ng-container *ngFor="let option of submenu.submenuOptions; let index = index">
+    <li class="notification--route">
+        <a
+          class="notification--route--link"
+          (click)="submenu.navigateOption(index)"
+        >
+            <span class="material-symbols-outlined"> {{ option.icon }} </span>
+            <span class="notification--route--label"> {{ option.label }} </span>
+        </a>
+    </li>
+  </ng-container>
+</ul>

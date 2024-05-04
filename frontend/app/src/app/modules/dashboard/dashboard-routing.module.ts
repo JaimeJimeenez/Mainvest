@@ -39,6 +39,13 @@ const routes : Routes = [
           import('../social/social.module').then(
             (module) => module.SocialModule
           )
+      },
+      {
+        path: 'notification',
+        loadChildren: () =>
+          import('../notification/notification.module').then(
+            (module) => module.NotificationModule
+          )
       }
     ]
   }

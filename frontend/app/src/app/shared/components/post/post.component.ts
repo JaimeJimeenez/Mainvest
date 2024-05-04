@@ -9,6 +9,7 @@ import { lastValueFrom } from 'rxjs';
 import { BoardRepositoryImpl } from 'src/app/infraestructure/data/repositories/board.repository.impl';
 import { LocalStorage } from 'src/app/core/libs/local.storage';
 import { User } from 'src/app/core/interfaces/user';
+import { NotificationRepositoryImpl } from 'src/app/infraestructure/data/repositories/notification.repository.impl';
 
 @Component({
   selector: 'mainvest-post',
@@ -29,7 +30,11 @@ export class PostComponent {
     isLiked: false,
   }
 
-  constructor(private boardRepository: BoardRepositoryImpl, private postIdObservable: PostIdObservableService) {}
+  constructor(
+    private boardRepository: BoardRepositoryImpl,
+    private notificationRepository: NotificationRepositoryImpl,
+    private postIdObservable: PostIdObservableService
+  ) {}
 
   showPost(): void {
     this.postIdObservable.sendPostId(this.post.id);
@@ -45,8 +50,10 @@ export class PostComponent {
         await lastValueFrom(this.boardRepository.updateLike$(id, this.post.id, updateLike));
         if (isLiked) {
           await lastValueFrom(this.boardRepository.addLike$(id, this.post.id));
+          await lastValueFrom(this.notificationRepository.addNotification$(id, this.post.id, true));
         } else {
           await lastValueFrom(this.boardRepository.deleteLike$(id, this.post.id));
+          await lastValueFrom(this.notificationRepository.deleteNotification$(id, this.post.id, true));
         }
         this.post.likes += updateLike;
         this.post.isLiked = isLiked;
