@@ -22,6 +22,7 @@ app.use('/user', require('./routes/user'));
 app.use('/board', require('./routes/board'));
 app.use('/social', require('./routes/social'));
 app.use('/wallet', require('./routes/wallet'));
+app.use('/notification', require('./routes/notification'));
 
 app.listen(port, () => {
     console.log(`Server listening at port ${ port }`);

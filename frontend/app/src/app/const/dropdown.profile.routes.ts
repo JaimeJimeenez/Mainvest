@@ -7,7 +7,7 @@ export const DROPDOWN_PROFILE_ROUTES: Route[] = [
     icon: '',
   },
   {
-    path: '/dashboard/profile/alerts',
+    path: '/dashboard/notification/likes',
     label: 'Notificaciones',
     icon: ''
   },
