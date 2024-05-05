@@ -1,6 +1,11 @@
 import { Observable } from "rxjs";
-import { Wallet } from "../interfaces/wallet";
+
+import { Wallet, Asset } from "../interfaces/wallet";
 
 export abstract class WalletRepository {
-  abstract getWallets$(idUser: number): Observable<Wallet[]>
+  abstract createWallet$(idUser: number, name: string): Observable<number>;
+  abstract addAssets$(assets: Asset[]): Observable<number[]>;
+  abstract getWallets$(idUser: number): Observable<Wallet[]>;
+  abstract assignAssetsToWallet$(idsWalletAssets: number[]): Observable<boolean>;
+  abstract updateWalletAssets$(idAsset: number, amount: number): Observable<boolean>;
 }

@@ -1,0 +1,43 @@
+<div class="header">
+  <span class="header--title">
+    <ng-container *ngIf="isBuying; else isSelling">
+      <span>Comprar:</span>
+    </ng-container>
+    <ng-template #isSelling>
+      <span>Vender:</span>
+    </ng-template>
+    Cartera existente
+  </span>
+  <span class="money">{{ tradeInfo.money | number: '1.3'}}$</span>
+</div>
+<form
+  class="existedWallet--form"
+  [formGroup]="existedWalletForm"
+  (ngSubmit)="onSubmit()"
+>
+  <div class="existedWallet--group">
+      <mainvest-dropdown-wallets
+        [wallets]="wallets"
+        (selectedWallet)="onSelectedWallet($event)"
+      ></mainvest-dropdown-wallets>
+  </div>
+  <div class="existedWallet--group">
+    <input
+      type="text"
+      formControlName="amount"
+      class="existedWallet--input peer"
+      placeholder=" "
+    />
+    <label class="existedWallet--label" for="name">
+      Cantidad {{ totalAssetAmount }}
+    </label>
+  </div>
+  <button
+    type="submit"
+    [disabled]="!existedWalletForm.valid || !isButtonEnabled"
+    class="existedWallet--button btn btn-primary"
+  >
+    Aceptar
+  </button>
+</form>
+<span class="flex mt-3"> Total: {{ totalCost }} </span>

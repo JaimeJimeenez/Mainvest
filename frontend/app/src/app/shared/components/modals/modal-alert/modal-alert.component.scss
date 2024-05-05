@@ -1,0 +1,40 @@
+.alert {
+
+  &--form {
+    display: flex;
+    flex-direction: column;
+    @apply space-y-6 sm:w-full;
+  }
+
+  &--group {
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    margin-top: 24px;
+    margin-left: 35%;
+  }
+
+  &--label {
+    position: absolute;
+    transition-duration: 300ms;
+    z-index: -10;
+    top: 12px;
+    transform-origin: 0;
+
+    @apply text-sm text-gray-500;
+    @apply transform -translate-y-6 scale-75;
+    @apply peer-focus:font-medium peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6;
+  }
+
+  &--input {
+    display: block;
+    padding: 10px 0px;
+    background: transparent;
+    border-width: 0px;
+    border-bottom-width: 1px;
+    appearance: none;
+
+    @apply text-sm border-gray-600;
+    @apply focus:outline-none focus:ring-0 focus:border-blue-600;
+  }
+}

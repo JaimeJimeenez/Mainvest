@@ -3,9 +3,8 @@ import { Injectable } from "@angular/core";
 import { MarketRepository } from "src/app/core/repositories/market.repository";
 import { Observable } from "rxjs";
 import { MarketService } from "src/app/core/services/market.service";
-import { Asset, AssetRequest } from "src/app/core/interfaces/market";
+import { Asset } from "src/app/core/interfaces/market";
 import { Time } from "src/app/core/libs/time";
-
 
 @Injectable({
   providedIn: 'root'
@@ -57,5 +56,4 @@ export class MarketRepositoryImpl extends MarketRepository {
       throw error;
     }
   }
-
 }

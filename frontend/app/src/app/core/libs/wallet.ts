@@ -13,4 +13,13 @@ export class WalletLib {
 
     return total;
   }
+
+  public static assignIdWalletToIdsAssets(idWallet: number, idAssets: number[]): number[] {
+    const ids: number[] = [];
+    idAssets.forEach((id: number) => {
+      ids.push(idWallet);
+      ids.push(id);
+    });
+    return ids;
+  };
 }

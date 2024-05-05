@@ -1,0 +1,35 @@
+:host {
+  display: flex;
+  height: 100%;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 128px;
+  margin-top: 12px;
+  padding: 8px;
+  @apply border-r-2;
+}
+
+.option {
+  cursor: pointer;
+  @apply hover:text-blue-500;
+}
+
+.trade {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  @apply text-red-600;
+}

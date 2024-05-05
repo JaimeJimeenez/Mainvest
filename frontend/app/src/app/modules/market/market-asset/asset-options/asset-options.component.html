@@ -1,0 +1,55 @@
+<div class="header">
+  <div class="header--options">
+    <span
+      class="option"
+      (click)="updateOption(0)"
+    >
+      <span class="material-symbols-outlined">
+        wallet
+      </span>
+      Trade
+    </span>
+    <span
+      class="option"
+      (click)="updateOption(1)"
+    >
+      <span class="material-symbols-outlined">
+        neurology
+      </span>
+      Predicción
+    </span>
+    <span
+      class="option"
+      data-bs-toggle="modal"
+      data-bs-target="#addAlertModal"
+    >
+      <span class="material-symbols-outlined">
+        add
+      </span>
+      Añadir alerta
+    </span>
+  </div>
+  <div class="header--time">
+    <span
+      class="time"
+      (click)="updateTime(0)"
+    >
+      Mensual
+    </span>
+    <span
+      class="time"
+      (click)="updateTime(1)"
+    >
+      Anual
+    </span>
+  </div>
+</div>
+
+<ng-container *ngIf="optionSelected == 0; else prediction">
+  <mainvest-trading></mainvest-trading>
+</ng-container>
+<ng-template #prediction>
+  <mainvest-prediction></mainvest-prediction>
+</ng-template>
+
+<mainvest-modal-alert [asset]="asset"></mainvest-modal-alert>

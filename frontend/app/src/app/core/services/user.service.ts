@@ -8,14 +8,14 @@ import { LocalStorage } from 'src/app/core/libs/local.storage';
 import { PasswordDTO, UsernameDTO } from 'src/app/infraestructure/dto/user.dto';
 import { ApiResponse } from 'src/app/infraestructure/dto/client.dto';
 
-import { Username } from '../interfaces/user';
+import { UpdateMoney, Username } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
 
-  private _url = environment.dataUrl;
+  private _url = `${environment.dataUrl}/user`;
   private _headers = environment.headers;
 
   constructor(private http: HttpClient) {}
@@ -31,7 +31,7 @@ export class UserService {
 
   public getUsername$(id: number): Observable<Username> {
     return this.http.get<ApiResponse<Username>>(
-      `${this._url}/user/username/${id}`,
+      `${this._url}/username/${id}`,
       { headers: this._headers }
     ).pipe(
       map((response: ApiResponse<Username>) =>
@@ -45,7 +45,7 @@ export class UserService {
 
   public changeUsername$(user: UsernameDTO): Observable<boolean> {
     return this.http.put<ApiResponse<boolean>>(
-      `${this._url}/user/username`,
+      `${this._url}/username`,
       { user },
       { headers: this._headers }
     ).pipe(
@@ -60,7 +60,7 @@ export class UserService {
 
   public changePassword$(newPassword: PasswordDTO): Observable<boolean> {
     return this.http.put<ApiResponse<boolean>>(
-      `${this._url}/user/password`,
+      `${this._url}/password`,
       { newPassword },
       { headers: this._headers }
     ).pipe(
@@ -75,7 +75,7 @@ export class UserService {
 
   public eraseUser$(id: number): Observable<boolean> {
     return this.http.delete<ApiResponse<boolean>>(
-      `${this._url}/user/erase/${id}`,
+      `${this._url}/erase/${id}`,
       { headers: this._headers }
     ).pipe(
       map((response: ApiResponse<boolean>) =>
@@ -89,10 +89,37 @@ export class UserService {
 
   public getUser$(username: string): Observable<any> {
     return this.http.get<ApiResponse<any>>(
-      `${this._url}/user/${username}`,
+      `${this._url}/${username}`,
       { headers: this._headers }
     ).pipe(
       map((response: ApiResponse<any>) =>
+        response.data
+      ),
+      catchError((errorResponse: HttpErrorResponse) => {
+        throw errorResponse.error;
+      })
+    );
+  }
+
+  public getMoney$(id: number): Observable<number> {
+    return this.http.get<ApiResponse<any[]>>(
+      `${this._url}/money/${id}`,
+      { headers: this._headers }
+    ).pipe(
+      map((response: ApiResponse<any[]>) => response.data[0].money),
+      catchError((errorResponse: HttpErrorResponse) => {
+        throw errorResponse.error;
+      })
+    );
+  }
+
+  public updateMoney$(updateMoney: UpdateMoney): Observable<boolean> {
+    return this.http.put<ApiResponse<boolean>>(
+      `${this._url}/money`,
+      { updateMoney },
+      { headers: this._headers }
+    ).pipe(
+      map((response: ApiResponse<boolean>) =>
         response.data
       ),
       catchError((errorResponse: HttpErrorResponse) => {

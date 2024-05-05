@@ -6,6 +6,17 @@ export interface Wallet {
 }
 
 export interface Asset {
+  id?: number;
   name: string;
+  amount: number;
+}
+
+export interface NewWallet {
+  idUser: number;
+  name: string;
+}
+
+export interface UpdateWallet {
+  idAsset: number;
   amount: number;
 }

@@ -1,0 +1,35 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  margin-left: 48px;
+  margin-right: 48px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: fit-content;
+  padding: 5px;
+  @apply  border-b-2;
+
+  &--options {
+    display: flex;
+    gap: 8px;
+    cursor: pointer;
+
+  }
+
+  &--time {
+    cursor: pointer;
+  }
+}
+
+.option {
+  display: flex;
+}
+
+.time, .option {
+  @apply hover:text-blue-500;
+}

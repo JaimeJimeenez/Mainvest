@@ -10,11 +10,17 @@ import { Market } from 'src/app/core/libs/market';
 import { MarketRepositoryImpl } from 'src/app/infraestructure/external/market.repository.impl';
 import { ChartComponent } from 'src/app/shared/components/chart/chart.component';
 import { AssetTableComponent } from './asset-table/asset-table.component';
+import { AssetOptionsComponent } from './asset-options/asset-options.component';
 
 @Component({
   selector: 'mainvest-market-asset',
   standalone: true,
-  imports: [CommonModule, ChartComponent, AssetTableComponent],
+  imports: [
+    CommonModule,
+    ChartComponent,
+    AssetTableComponent,
+    AssetOptionsComponent
+  ],
   templateUrl: './market-asset.component.html',
   styleUrls: ['./market-asset.component.scss']
 })
