@@ -6,13 +6,14 @@ export class WalletMapper {
   public static fromAPIToDomain(wallets: WalletDTO[]): Wallet[] {
     const walletsDomain: Wallet[] = [];
     const ids = Array.from(new Set(wallets.map((wallet: WalletDTO) => wallet.id)));
+    console.log(wallets);
 
     ids.forEach((id: number) => {
       const filtered: WalletDTO[] = wallets.filter((wallet: WalletDTO) => wallet.id === id);
       const assets: Asset[] = []
 
       filtered.forEach((wallet: WalletDTO) => {
-        const asset: Asset = { name: wallet.asset, amount: wallet.amount };
+        const asset: Asset = { id: wallet.idasset, name: wallet.asset, amount: wallet.amount };
         assets.push(asset);
       });
 

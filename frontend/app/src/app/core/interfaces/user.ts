@@ -13,3 +13,8 @@ export interface UpdateUserData {
   password: string;
   passwordAgain: string;
 }
+
+export interface UpdateMoney {
+  id: number;
+  money: number;
+}

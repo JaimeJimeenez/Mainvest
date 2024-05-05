@@ -1,0 +1,39 @@
+<div class="header">
+  <span class="header--title">Nueva cartera</span>
+  <span class="money">{{ tradeInfo.money | number: '1.3'}}$</span>
+</div>
+<form
+  class="newWallet--form"
+  [formGroup]="newWalletForm"
+  (ngSubmit)="onSubmit()"
+>
+  <div class="newWallet--group">
+      <input
+        type="text"
+        formControlName="name"
+        class="newWallet--input peer"
+        placeholder=" "
+      />
+      <label class="newWallet--label" for="name">
+        Nombre de cartera:
+      </label>
+  </div>
+  <div class="newWallet--group">
+    <input
+      type="text"
+      formControlName="amount"
+      class="newWallet--input peer"
+      placeholder=" "
+    />
+    <label class="newWallet--label" for="name">
+      Cantidad
+    </label>
+  </div>
+  <button
+    type="submit"
+    [disabled]="!newWalletForm.valid || !isButtonEnabled"
+    class="newWallet--button btn btn-primary"
+  >
+    Total: {{ totalCost }}$
+  </button>
+</form>

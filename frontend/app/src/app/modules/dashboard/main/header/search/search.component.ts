@@ -34,7 +34,7 @@ export class SearchComponent {
   private _searchAsset(search: string): void {
     const index = ASSETS.findIndex((asset: string) => asset === search);
     if (index !== -1) {
-      this.router.navigate([`/dashboard/market/asset${search}`]);
+      this.router.navigate([`/dashboard/market/asset/${search}`]);
     } else {
       this.error.error = true;
       this.error.message = `No se ha encontrado ningún activo: ${search}`;
@@ -45,7 +45,7 @@ export class SearchComponent {
   private async _searchUser(search: string): Promise<void> {
     try {
       const user = await lastValueFrom(this.userRepository.getUser$(search));
-      this.router.navigate([`/dashboard/profile/home/${user[0].id}`]);
+      this.router.navigate([`/dashboard/social/home/${user[0].id}`]);
     } catch (error: any) {
       this.error.error = true;
       this.error.message = `${error.message}: ${search}`;

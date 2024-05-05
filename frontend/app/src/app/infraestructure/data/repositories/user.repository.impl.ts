@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 
 import { UserRepository } from "src/app/core/repositories/user.repository";
 
-import { UpdateUserData, Username } from "src/app/core/interfaces/user";
+import { UpdateMoney, UpdateUserData, Username } from "src/app/core/interfaces/user";
 import { PasswordDTO, UsernameDTO } from "../../dto/user.dto";
 
 import { UserService } from "src/app/core/services/user.service";
@@ -63,6 +63,23 @@ export class UserRepositoryImpl extends UserRepository{
   override getUser$(username: string): Observable<any> {
     try {
       return this.user.getUser$(username);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  override getMoney$(id: number): Observable<number> {
+    try {
+      return this.user.getMoney$(id);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  override updateMoney$(id: number, money: number): Observable<boolean> {
+    try {
+      const updateMoney: UpdateMoney = { id, money };
+      return this.user.updateMoney$(updateMoney);
     } catch (error) {
       throw error;
     }

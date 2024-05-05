@@ -1,0 +1,48 @@
+<div
+  class="modal fade"
+  id="addAlertModal"
+  tabindex="-1"
+  aria-labelledby="addAlertModal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title f-5 text-blue-ribbon-500">Añadir alerta</h1>
+      </div>
+      <form
+        [formGroup]="alertForm"
+        (ngSubmit)="onSubmit()"
+        class="modal-body alert--form"
+      >
+        <div class="alert--group">
+          <input
+            type="text"
+            id="price"
+            class="alert--input peer"
+            formControlName="price"
+            placeholder=" "
+          />
+          <label class="alert--label" for="price">Precio</label>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cerrar
+          </button>
+          <button
+            type="submit"
+            [disabled]="!alertForm.valid"
+            class="btn btn-primary"
+            data-bs-dismiss="modal"
+          >
+            Añadir alerta
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

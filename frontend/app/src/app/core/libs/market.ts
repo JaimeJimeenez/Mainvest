@@ -37,4 +37,8 @@ export abstract class Market {
     }));
     return chartAssets;
   }
+
+  public static getTotalCost(price: number, amount: number): number {
+    return price * amount;
+  }
 }
