@@ -10,7 +10,6 @@ import { WalletService } from "src/app/core/services/wallet.service";
 })
 export class WalletRepositoryImpl extends WalletRepository{
 
-
   constructor(private wallet: WalletService) {
     super();
   }
@@ -52,6 +51,14 @@ export class WalletRepositoryImpl extends WalletRepository{
     try {
       const updateWallet: UpdateWallet = { idAsset, amount };
       return this.wallet.updateWalletAssets$(updateWallet);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  override eraseWallet$(id: number): Observable<boolean> {
+    try {
+      return this.wallet.eraseWallet$(id);
     } catch (error) {
       throw error;
     }

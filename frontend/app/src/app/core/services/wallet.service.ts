@@ -17,7 +17,6 @@ import { WalletDTO } from 'src/app/infraestructure/dto/wallet.dto';
 })
 export class WalletService {
 
-
   private _url = `${environment.dataUrl}/wallet`;
   private _headers = environment.headers;
 
@@ -85,6 +84,18 @@ export class WalletService {
       map((response: ApiResponse<boolean>) =>
         response.data
       ),
+      catchError((errorResponse: HttpErrorResponse) => {
+        throw errorResponse.error;
+      })
+    );
+  }
+
+  eraseWallet$(id: number): Observable<boolean> {
+    return this.http.delete<ApiResponse<boolean>>(
+      `${this._url}/erase/${id}`,
+      { headers: this._headers }
+    ).pipe(
+      map((response: ApiResponse<boolean>) => response.success),
       catchError((errorResponse: HttpErrorResponse) => {
         throw errorResponse.error;
       })
