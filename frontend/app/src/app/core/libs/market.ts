@@ -41,4 +41,24 @@ export abstract class Market {
   public static getTotalCost(price: number, amount: number): number {
     return price * amount;
   }
+
+  public static getPredictionData(data: ChartAsset[]): ChartAsset[] {
+    const sortedData: ChartAsset[] = data.sort((a, b) => {
+      const dateA = new Date(a.time);
+      const dateB = new Date(b.time);
+      return dateA.getTime() - dateB.getTime();
+    });
+
+    const uniqueData: ChartAsset[] = [];
+    let lastTime: string | null = null;
+
+    sortedData.forEach((item) => {
+      if (item.time !== lastTime) {
+        uniqueData.push(item);
+        lastTime = item.time;
+      }
+    });
+
+    return uniqueData;
+  }
 }

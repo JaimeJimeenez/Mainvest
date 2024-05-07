@@ -64,4 +64,12 @@ export class Time {
     return this._parseDateToString(today);
   }
 
+  static getYearsAgo(): string {
+    const today = new Date();
+    const currentYear = today.getFullYear();
+    const fiveYearsAgo = currentYear - 5;
+    const dateFiveYearsAgo = new Date(fiveYearsAgo, today.getMonth(), today.getDate());
+    return this._parseDateToString(dateFiveYearsAgo);
+  }
+
 }

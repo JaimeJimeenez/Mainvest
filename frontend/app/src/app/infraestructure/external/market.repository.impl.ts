@@ -5,6 +5,7 @@ import { Observable } from "rxjs";
 import { MarketService } from "src/app/core/services/market.service";
 import { Asset } from "src/app/core/interfaces/market";
 import { Time } from "src/app/core/libs/time";
+import { ChartAsset } from "src/app/core/interfaces/chart";
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +53,16 @@ export class MarketRepositoryImpl extends MarketRepository {
       const yearBefore: string = Time.getYearBefore();
       const today: string = Time.getToday();
       return this.market.getAssetsData$(yearBefore, today, [asset]);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  override getPrediction$(asset: string): Observable<ChartAsset[]> {
+    try {
+      const today = Time.getToday();
+      const fiveYearsAgo = Time.getYearsAgo();
+      return this.market.getPrediction$(fiveYearsAgo, today, asset);
     } catch (error) {
       throw error;
     }
