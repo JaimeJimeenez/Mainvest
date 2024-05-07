@@ -11,9 +11,17 @@
     </li>
   </ng-container>
   <ng-container *ngIf="!isUserProfile">
-    <button
-      class="btn btn-primary"
-      (click)="onFollowUser()"
-    > Seguir</button>
+    <ng-container *ngIf="!isFollowing; else isNotFollowing">
+      <button
+        class="btn btn-primary"
+        (click)="onFollowUser()"
+        > Seguir</button>
+    </ng-container>
+    <ng-template #isNotFollowing>
+      <button
+      class="btn btn-danger"
+      (click)="unFollowUser()"
+      > Deja de seguir</button>
+    </ng-template>
   </ng-container>
 </ul>

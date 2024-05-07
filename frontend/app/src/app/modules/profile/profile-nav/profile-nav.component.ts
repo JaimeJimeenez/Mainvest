@@ -26,6 +26,7 @@ export class ProfileNavComponent {
   private _idUser: number = 0;
 
   public isUserProfile: boolean = true;
+  public isFollowing: boolean = false;
 
   constructor(
     public submenu: SubmenuModel,
@@ -40,6 +41,7 @@ export class ProfileNavComponent {
       this._setIdsRoutes();
       this._setUsername();
       this._checkProfile();
+      this._isFollowingUser();
     });
   }
 
@@ -64,18 +66,41 @@ export class ProfileNavComponent {
     this.submenu.submenuOptions.forEach((route: Route) => route.path += `/${this._idUser}`)
   }
 
-  public async onFollowUser(): Promise<void> {
+  private async _isFollowingUser(): Promise<void> {
     try {
       const user: User | undefined = LocalStorage.getUser();
       if (user !== undefined) {
-        await lastValueFrom (this.socialRepository.followUser$(user.id, this._idUser));
+        const data = await lastValueFrom (this.socialRepository.getUserFollowings$(user.id));
+        const findIndex = data.findIndex((followings) => this._idUser === followings.id);
+        this.isFollowing = findIndex !== -1;
       }
     } catch (error) {
       console.error(error);
     }
   }
 
-  // TODO Buscar si el usuario que ha buscado lo está siguiendo o no
+  public async onFollowUser(): Promise<void> {
+    try {
+      const user: User | undefined = LocalStorage.getUser();
+      if (user !== undefined) {
+        this.isFollowing = await lastValueFrom (this.socialRepository.followUser$(user.id, this._idUser));
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  public async unFollowUser(): Promise<void> {
+    try {
+      const user: User | undefined = LocalStorage.getUser();
+      if (user !== undefined) {
+        await lastValueFrom (this.socialRepository.unfollowUser$(user.id, this._idUser));
+        this.isFollowing = false;
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   ngOnDestroy(): void {
     this._subscriptionUserId.unsubscribe();
