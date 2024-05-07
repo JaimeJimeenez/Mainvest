@@ -1,0 +1,70 @@
+:host {
+  width: 100%;
+  margin: 0% 12%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 24px;
+  @apply border-b-2;
+
+  &--title {
+    font-size: 16px;
+  }
+}
+
+.newWallet {
+
+  &--form {
+    @apply space-y-6 sm:mx-auto sm:w-full sm:max-w-sm;
+  }
+
+  &--group {
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    margin-bottom: 24px;
+  }
+
+  &--input {
+    display: block;
+    padding: 10px 0px;
+    width: 100%;
+    background: transparent;
+    border-width: 0px;
+    border-bottom-width: 1px;
+    appearance: none;
+
+    @apply text-sm border-gray-600;
+    @apply focus:outline-none focus:ring-0 focus:border-blue-600;
+  }
+
+  &--label {
+    position: absolute;
+    transition-duration: 300ms;
+    z-index: -10;
+    top: 12px;
+    transform-origin: 0;
+
+    @apply text-sm text-gray-500;
+    @apply transform -translate-y-6 scale-75;
+    @apply peer-focus:font-medium peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6;
+  }
+
+  &--asset {
+    display: flex;
+    gap: 12px;
+  }
+}
+
+.money {
+  @apply text-blue-600
+}
+
+.options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

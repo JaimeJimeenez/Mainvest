@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DropdownWalletComponent } from '../src/app/shared/components/dropdown-wallet/dropdown-wallet.component';
+import { DropdownWalletComponent } from '../src/app/shared/components/dropdown/dropdown-wallet/dropdown-wallet.component';
 
 describe('DropdownWalletComponent', () => {
   let component: DropdownWalletComponent;
