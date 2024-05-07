@@ -33,3 +33,29 @@
     }
   }
 }
+
+.search {
+
+  &--form {
+    @apply space-y-6 sm:mx-auto sm:w-full sm:max-w-sm;
+  }
+
+  &--group {
+    position: relative;
+    z-index: 0;
+    width: 100%;
+  }
+
+  &--input {
+    display: block;
+    padding: 10px 0px;
+    width: 100%;
+    background: transparent;
+    border-width: 0px;
+    border-bottom-width: 1px;
+    appearance: none;
+
+    @apply text-sm border-gray-600;
+    @apply focus:outline-none focus:ring-0 focus:border-blue-600;
+  }
+}
