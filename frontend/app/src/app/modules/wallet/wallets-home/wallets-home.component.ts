@@ -11,6 +11,7 @@ import { Wallet } from 'src/app/core/interfaces/wallet';
 import { WalletComponent } from 'src/app/shared/components/wallet/wallet.component';
 import { MarketRepositoryImpl } from 'src/app/infraestructure/external/market.repository.impl';
 import { ASSETS } from 'src/app/const/asset';
+import { SearchObservableService } from 'src/app/core/services/observables/search-observable.service';
 
 @Component({
   selector: 'mainvest-wallets-home',
@@ -23,12 +24,14 @@ export class WalletsHomeComponent {
   public userId: number = 0;
   public wallets: Wallet[] = [];
   public assets: Map<string, number> = new Map<string, number>;
+  public walletsData: Wallet[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private userIdObservable: UserIdObservableService,
     private walletRepository: WalletRepositoryImpl,
-    private marketRepository: MarketRepositoryImpl
+    private marketRepository: MarketRepositoryImpl,
+    private searchObservable: SearchObservableService
   ) {
     this.route.paramMap.subscribe(async (params: ParamMap) => {
       const id: string | null = params.get('id');
@@ -39,11 +42,24 @@ export class WalletsHomeComponent {
         await this._getWallets();
       }
     });
+
+    this.searchObservable.search$.subscribe((search: string) => {
+      console.log(search)
+      this._searchWallet(search);
+    });
+  }
+
+  private _searchWallet(search: string): void {
+    const wallet = search.toLowerCase();
+    this.walletsData = this.wallets.filter(
+      (input_wallet) => input_wallet.name.toLowerCase().includes(wallet)
+    );
   }
 
   private async _getWallets(): Promise<void> {
     try {
       this.wallets = await lastValueFrom(this.walletRepository.getWallets$(this.userId));
+      this.walletsData = this.wallets;
     } catch (error) {
       console.error(error);
     }
