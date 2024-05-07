@@ -1,0 +1,64 @@
+:host {
+  display: flex;
+  width: 100%;
+  margin-top: 2.5%;
+  padding: 12px;
+}
+
+.header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  border-bottom-width: 1px;
+  padding: 12px;
+  @apply border-b-gray-400;
+}
+
+.likes {
+
+  &--box {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    margin-left: 20%;
+    align-items: center;
+  }
+}
+
+.post {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  margin-top: 12px;
+  @apply border-2 rounded;
+
+  &--description {
+    width: 95%;
+  }
+}
+
+.erase--notification {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  gap: 6px;
+  @apply hover:text-red-600;
+}
+
+.show--post {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  gap: 6px;
+  @apply hover:text-blue-600;
+}
+
+.options {
+  display: flex;
+  gap: 6px;
+}

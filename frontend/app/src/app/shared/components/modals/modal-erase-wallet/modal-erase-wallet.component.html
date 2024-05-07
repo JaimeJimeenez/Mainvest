@@ -1,0 +1,33 @@
+<div
+  class="modal fade"
+  id="eraseWalletModal"
+  tabindex="-1"
+  aria-labelledby="eraseWalletModal"
+  aria-hidden="true"
+>
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h1 class="modal-title">¿Eliminar cartera?</h1>
+    </div>
+      <div class="modal-body">
+        Se eliminará esta cartera y se venderán todos los activos de ella
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          (click)="onCloseModal()"
+        >Cerrar</button>
+        <button
+          class="btn btn-danger"
+          data-bs-dismiss="modal"
+          (click)="eraseWallet()"
+        >
+          Eliminar cartera
+        </button>
+      </div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,29 @@
+<div class="likes--box">
+  <div class="header">
+    <div class="title">Me gusta</div>
+  </div>
+  <ng-container *ngFor="let post of posts; let index = index">
+    <div class="post">
+      <div class="header">
+        <span class="info">El siguiente usuario ha dado me gusta a la publicación</span>
+        <div class="options">
+          <div class="show--post">
+            <span class="material-symbols-outlined">
+              visibility
+            </span>
+            Ver
+          </div>
+          <div (click)="onEraseNotification(index)" class="erase--notification">
+            <span class="material-symbols-outlined">
+              delete
+            </span>
+            Eliminar
+          </div>
+        </div>
+      </div>
+      <div class="post--description">
+        <mainvest-post [post]="post"></mainvest-post>
+      </div>
+    </div>
+  </ng-container>
+</div>

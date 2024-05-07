@@ -1,0 +1,12 @@
+<div class="header">
+  <ng-container *ngFor="let column of columns">
+    <div class="header--column">
+      <span class="header__value">{{ column }}</span>
+    </div>
+  </ng-container>
+</div>
+<ng-container *ngFor="let data of asset">
+  <div class="line">
+    <mainvest-asset-table-line [asset]="data"></mainvest-asset-table-line>
+  </div>
+</ng-container>

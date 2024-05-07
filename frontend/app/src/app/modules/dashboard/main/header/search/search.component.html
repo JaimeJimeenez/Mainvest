@@ -1,0 +1,48 @@
+<div class="dropdown">
+  <button
+    class="button--filter dropdown-toggle"
+    type="button"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+  >
+    {{ searchFilter }}
+  </button>
+  <ul class="dropdown-menu">
+    <li>
+      <a
+        class="dropdown-item filter--options"
+        (click)="onFilterChange('Activos')"
+      >
+        Activos
+      </a>
+    </li>
+    <li>
+      <a
+        class="dropdown-item filter--options"
+        (click)="onFilterChange('Usuarios')"
+      >
+        Usuarios
+      </a>
+    </li>
+  </ul>
+</div>
+<form class="search--form" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+  <input
+    type="search"
+    class="search--form--input"
+    placeholder="Buscar"
+    formControlName="search"
+  />
+  <button
+    type="submit"
+    class="search--form--button"
+  >
+    <span class="material-symbols-outlined">search</span>
+  </button>
+</form>
+
+<ng-container *ngIf="error.error">
+  <div class="alert alert-danger no--matches" role="alert">
+    {{ error.message }}
+  </div>
+</ng-container>

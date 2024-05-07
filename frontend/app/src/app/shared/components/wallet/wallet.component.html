@@ -1,0 +1,35 @@
+<div class="header">
+  <span class="wallet">
+    {{ wallet.name }}
+  </span>
+  <div class="options">
+    <span class="total">
+      {{ wallet.total_value | number: '1.3' }}$
+    </span>
+    <span class="erase"
+      (click)="openModal()"
+      data-bs-toggle="modal"
+      data-bs-target="#eraseWalletModal"
+    >
+      Eliminar
+    </span>
+  </div>
+</div>
+<div class="body">
+  <div class="columns">
+    <div class="columns--name">
+      <span>Activo</span>
+    </div>
+    <div class="columns--name">
+      <span>Cantidad</span>
+    </div>
+  </div>
+  <ng-container *ngFor="let asset of wallet.assets">
+    <div class="asset">
+      <div class="asset--name"> {{ asset.name }}</div>
+      <div class="asset--amount"> {{ asset.amount }}</div>
+    </div>
+  </ng-container>
+</div>
+
+<mainvest-modal-erase-wallet [wallet]="wallet" (closeModal)="onCloseModal($event)"></mainvest-modal-erase-wallet>

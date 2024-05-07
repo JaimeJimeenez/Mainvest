@@ -1,0 +1,54 @@
+<div class="options">
+  <div class="dropdown option">
+    <button
+      class="button--wallet dropdown-toggle"
+      type="button"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      Comprar
+    </button>
+    <ul class="dropdown-menu">
+      <li>
+        <a
+          class="dropdown-item filter--options"
+          (click)="updateTradingOptions(true, 0)"
+        >
+          Nueva cartera
+        </a>
+      </li>
+      <li>
+        <a
+          class="dropdown-item filter--options"
+          (click)="updateTradingOptions(true, 1)"
+        >
+          Cartera existente
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="option" (click)="updateTradingOptions(false)">Vender</div>
+</div>
+
+<ng-container *ngIf="!isLogedIn; else logedIn">
+  <span class="error"> Inicia sesión para realizar movimientos </span>
+</ng-container>
+
+<ng-template #logedIn>
+  <div class="trade">
+    <ng-container *ngIf="isBuying; else isSelling">
+
+      <ng-container *ngIf="isNewWallet; else isExistedWallet">
+        <mainvest-new-wallet [tradeInfo]="tradeInfo"></mainvest-new-wallet>
+      </ng-container>
+
+      <ng-template #isExistedWallet>
+        <mainvest-existed-wallet [tradeInfo]="tradeInfo" [isBuying]="isBuying"></mainvest-existed-wallet>
+      </ng-template>
+
+    </ng-container>
+    <ng-template #isSelling>
+      <mainvest-existed-wallet [tradeInfo]="tradeInfo" [isBuying]="isBuying"></mainvest-existed-wallet>
+    </ng-template>
+  </div>
+</ng-template>

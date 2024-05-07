@@ -1,0 +1,44 @@
+:host {
+  display: flex;
+}
+
+.button {
+  &--filter {
+    padding-top: 0.725rem;
+    padding-bottom: 0.625rem;
+    @apply flex-shrink-0 z-10 inline-flex items-center;
+    @apply px-4 text-sm font-medium text-center rounded-s-lg;
+    @apply text-gray-900 bg-gray-100 border border-gray-300;
+    @apply hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100;
+  }
+}
+
+.filter {
+  &--options {
+    cursor: pointer;
+  }
+}
+
+.search--form {
+
+  @apply relative w-full;
+
+  &--input {
+    @apply block p-2.5 w-full z-20 text-sm;
+    @apply text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border;
+    @apply  border-gray-300 focus:ring-blue-500 focus:border-blue-500;
+  }
+
+  &--button {
+    @apply absolute top-0 end-0 p-2.5 text-sm font-medium h-full;
+    @apply text-white bg-blue-700 rounded-e-lg border border-blue-700;
+    @apply hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300;
+  }
+}
+
+.no--matches {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

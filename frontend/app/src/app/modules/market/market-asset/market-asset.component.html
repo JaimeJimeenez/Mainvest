@@ -1,0 +1,7 @@
+<div class="chart">
+  <mainvest-chart [assetsChart]="assetsChart"></mainvest-chart>
+</div>
+<div class="table--data">
+  <mainvest-asset-table [asset]="assets"></mainvest-asset-table>
+  <mainvest-asset-options [asset]="asset" (timeSelected)="onUpdateTime($event)"></mainvest-asset-options>
+</div>

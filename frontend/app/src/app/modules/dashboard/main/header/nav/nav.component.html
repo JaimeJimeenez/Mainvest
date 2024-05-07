@@ -1,0 +1,10 @@
+<div class="title"> Mainvest </div>
+<ul class="nav">
+  <ng-container *ngFor="let option of submenu.submenuOptions; let index = index">
+    <li class="nav--options" (click)="submenu.navigateOption(index)">
+      <a class="nav--options--colors">
+        {{ option.label }}
+      </a>
+    </li>
+  </ng-container>
+</ul>

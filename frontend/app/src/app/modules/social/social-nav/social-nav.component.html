@@ -1,0 +1,13 @@
+<ul class="social--nav">
+  <ng-container *ngFor="let option of submenu.submenuOptions; let index = index">
+    <li class="social--route">
+        <a
+          class="social--route--link"
+          (click)="submenu.navigateOption(index)"
+        >
+            <span class="material-symbols-outlined"> {{ option.icon }} </span>
+            <span class="social--route--label"> {{ option.label }} </span>
+        </a>
+    </li>
+  </ng-container>
+</ul>

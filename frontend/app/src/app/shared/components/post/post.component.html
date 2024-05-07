@@ -1,0 +1,41 @@
+<div class="header">
+  <span class="username"> {{ post.username }} </span>
+  <span class="created_at"> {{ post.created_at |  postDateFormatter }}</span>
+</div>
+<div class="body">
+  {{ post.content }}
+</div>
+<div class="options">
+  <div
+    class="options--responses text-blue-600"
+    data-bs-toggle="modal"
+    data-bs-target="#replyModal"
+    (click)="showPost()"
+  >
+    <span class="material-symbols-outlined">
+      reply
+    </span>
+    {{ post.replies }}
+  </div>
+  <div class="options--likes text-red-600">
+    <ng-container *ngIf="post.isLiked; else dislike">
+      <span
+        class="material-symbols-outlined"
+        (click)="updateLike(false)"
+      >
+         heart_check
+      </span>
+    </ng-container>
+    <ng-template #dislike>
+      <span
+        class="material-symbols-outlined"
+        (click)="updateLike(true)"
+      >
+        heart_plus
+      </span>
+    </ng-template>
+    {{ post.likes }}
+  </div>
+</div>
+
+<mainvest-modal-reply></mainvest-modal-reply>

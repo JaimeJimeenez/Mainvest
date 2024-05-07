@@ -1,0 +1,13 @@
+<ul class="wallets--nav">
+  <ng-container *ngFor="let option of submenu.submenuOptions; let index = index">
+    <li class="wallets--route">
+        <a
+          class="wallets--route--link"
+          (click)="submenu.navigateOption(index)"
+        >
+            <span class="material-symbols-outlined"> {{ option.icon }} </span>
+            <span class="profile--wallets--route--label"> {{ option.label }} </span>
+        </a>
+    </li>
+  </ng-container>
+</ul>

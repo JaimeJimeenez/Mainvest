@@ -1,0 +1,29 @@
+:host {
+  display: flex;
+}
+
+.user {
+  border-radius: 1.5rem;
+  --tw-border-opacity: 1;
+  border-color: rgb(28 100 242 / var(--tw-border-opacity));
+  @apply border p-2;
+
+  &--options {
+    cursor: pointer;
+  }
+}
+
+.notifications {
+  @apply relative mr-3 inline-flex items-center px-2 py-1 text-center;
+  @apply rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300;
+
+  &--number {
+    @apply absolute inline-flex items-center justify-center w-4 h-4 text-xs font-bold;
+    @apply rounded-full -top-2 -right-1;
+  }
+}
+
+.access--options {
+  display: flex;
+  gap: 20px;
+}

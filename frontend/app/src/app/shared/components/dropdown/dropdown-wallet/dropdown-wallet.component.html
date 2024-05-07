@@ -1,0 +1,21 @@
+<div class="dropdown option">
+  <button
+    class="button--wallet dropdown-toggle"
+    type="button"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+  >
+    {{ wallet }}
+  </button>
+  <ul class="dropdown-menu">
+    <ng-container *ngFor="let wallet of wallets; let index = index">
+      <li (click)="onSelectedWallet(index)">
+        <a
+          class="dropdown-item filter--options"
+        >
+          {{ wallet.name }}
+        </a>
+      </li>
+    </ng-container>
+  </ul>
+</div>

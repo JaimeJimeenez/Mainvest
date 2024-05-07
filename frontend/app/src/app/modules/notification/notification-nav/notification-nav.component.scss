@@ -1,0 +1,39 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 20px;
+  @apply border-r-2;
+}
+
+.notification {
+
+  &--nav {
+    display: flex;
+    flex-direction: column;
+    margin-top: 12.5%;
+    align-items: flex-start;
+    height: 50vh;
+    gap: 50px;
+    width: fit-content;
+    margin-right: 20px;
+  }
+
+  &--route {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &--link {
+      display: flex;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    &--label {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

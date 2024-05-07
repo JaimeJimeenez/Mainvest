@@ -1,0 +1,27 @@
+<ul class="profile--nav">
+  <ng-container *ngFor="let option of submenu.submenuOptions; let index = index">
+    <li class="profile--route">
+        <a
+          class="profile--route--link"
+          (click)="submenu.navigateOption(index)"
+        >
+            <span class="material-symbols-outlined"> {{ option.icon }} </span>
+            <span class="profile--route--label"> {{ option.label }} </span>
+        </a>
+    </li>
+  </ng-container>
+  <ng-container *ngIf="!isUserProfile">
+    <ng-container *ngIf="!isFollowing; else isNotFollowing">
+      <button
+        class="btn btn-primary"
+        (click)="onFollowUser()"
+        > Seguir</button>
+    </ng-container>
+    <ng-template #isNotFollowing>
+      <button
+      class="btn btn-danger"
+      (click)="unFollowUser()"
+      > Deja de seguir</button>
+    </ng-template>
+  </ng-container>
+</ul>

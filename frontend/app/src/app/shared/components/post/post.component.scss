@@ -1,0 +1,43 @@
+:host {
+  display: flex;
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  flex-direction: column;
+  @apply border-2 rounded;
+}
+
+.header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  @apply border-b-2;
+}
+
+.username {
+  @apply text-blue-600;
+}
+
+.created_at {
+  @apply text-gray-600
+}
+
+.body {
+  display: flex;
+  padding: 5px;
+}
+
+.options {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  gap: 16px;
+
+  &--likes, &--responses {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+  }
+}

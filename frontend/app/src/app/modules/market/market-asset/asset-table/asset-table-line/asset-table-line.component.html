@@ -1,0 +1,31 @@
+<div class="asset--data">
+  <span class="asset__value text-blue-500"> {{ asset.adj_close | number:'1.3' }} </span>
+</div>
+<div class="asset--data">
+  <span class="asset__value text-green-600"> {{ asset.close | number:'1.3' }} $ </span>
+</div>
+<div class="asset--data">
+  <span class="asset__value text-red-600">
+    {{ asset.high | number: '1.3' }} $
+  </span>
+</div>
+<div class="asset--data">
+  <span class="asset__value text-blue-500">
+    {{ asset.low| number: '1.3' }} $
+  </span>
+</div>
+<div class="asset--data">
+  <span class="asset__value text-red-600">
+    {{ asset.open | number: '1.3' }} $
+  </span>
+</div>
+<div class="asset--data">
+  <span class="asset__value text-green-600">
+    {{ asset.volume | number: '1.0'}}
+  </span>
+</div>
+<div class="asset--data">
+  <span class="asset__value text-red-600">
+    {{ asset.date | dateFormatter }}
+  </span>
+</div>

@@ -1,0 +1,23 @@
+:host {
+  display: flex;
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  flex-direction: column;
+  @apply border-2 rounded;
+}
+
+.header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  @apply border-b-2;
+}
+
+.name {
+  @apply text-blue-600;
+}
+
+.price {
+  @apply text-green-600;
+}

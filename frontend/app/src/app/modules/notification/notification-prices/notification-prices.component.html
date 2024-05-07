@@ -1,0 +1,29 @@
+<div class="prices--box">
+  <div class="header">
+    <div class="title">Precios</div>
+  </div>
+  <ng-container *ngFor="let alert of alerts; let index = index">
+    <div class="alert">
+      <div class="header">
+        <span class="info">La siguiente alerta se ha activado:</span>
+        <div class="options">
+          <div class="show--asset" (click)="onShowAsset(index)">
+            <span class="material-symbols-outlined">
+              visibility
+            </span>
+            Ver
+          </div>
+          <div (click)="onEraseNotification(index)" class="erase--notification">
+            <span class="material-symbols-outlined">
+              delete
+            </span>
+            Eliminar
+          </div>
+        </div>
+      </div>
+      <div class="alert--description">
+        <mainvest-alert [alert]="alert"></mainvest-alert>
+      </div>
+    </div>
+  </ng-container>
+</div>
