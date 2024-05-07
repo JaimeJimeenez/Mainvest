@@ -30,7 +30,7 @@ export class SocialUserComponent {
   }
 
   onShowProfile(): void {
-    this.route.navigate([`/dashboard/profile/home/${this.user.id}`]);
+    this.route.navigate([`/dashboard/social/home/${this.user.id}`]);
   }
 
   async onFollowOptions(follow: boolean): Promise<void> {
