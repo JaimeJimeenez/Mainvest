@@ -65,6 +65,10 @@ export class ProfileNewWalletComponent {
     )
   }
 
+  ngOnInit() {
+    this.onSelectedAsset(this._asset);
+  }
+
   async onSelectedAsset(asset: string): Promise<void> {
     try {
       this._asset = asset;

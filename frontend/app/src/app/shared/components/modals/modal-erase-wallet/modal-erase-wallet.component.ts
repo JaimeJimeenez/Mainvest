@@ -4,6 +4,7 @@ import { Wallet } from 'src/app/core/interfaces/wallet';
 import { UserRepositoryImpl } from 'src/app/infraestructure/data/repositories/user.repository.impl';
 import { WalletRepositoryImpl } from 'src/app/infraestructure/data/repositories/wallet.repository.impl';
 import { lastValueFrom } from 'rxjs';
+import { WalletObservableService } from 'src/app/core/services/observables/wallet-observable.service';
 
 @Component({
   selector: 'mainvest-modal-erase-wallet',
@@ -21,7 +22,12 @@ export class ModalEraseWalletComponent {
   }
   @Output() closeModal: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(private userRepository: UserRepositoryImpl, private walletRepository: WalletRepositoryImpl) {}
+  constructor(private userRepository: UserRepositoryImpl, private walletRepository: WalletRepositoryImpl, private walletObservable: WalletObservableService) {
+    this.walletObservable.wallet$.subscribe((wallet: Wallet) => {
+      this.wallet = wallet
+      console.log(this.wallet);
+    });
+  }
 
   onCloseModal(): void {
     this.closeModal.emit(true);

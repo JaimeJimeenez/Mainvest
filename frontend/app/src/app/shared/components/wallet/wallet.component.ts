@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Wallet } from 'src/app/core/interfaces/wallet';
 import { WalletLib } from 'src/app/core/libs/wallet';
 import { ModalEraseWalletComponent } from '../modals/modal-erase-wallet/modal-erase-wallet.component';
+import { WalletObservableService } from 'src/app/core/services/observables/wallet-observable.service';
 
 @Component({
   selector: 'mainvest-wallet',
@@ -21,6 +22,8 @@ export class WalletComponent {
   @Input() assets: Map<string, number> = new Map<string, number>();
 
   public isModalOpen: boolean = false;
+
+  constructor(private walletObservable: WalletObservableService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['assets']) {
@@ -41,7 +44,7 @@ export class WalletComponent {
   }
 
   openModal(): void {
-    this.isModalOpen = true;
+    this.walletObservable.sendWallet(this.wallet);
   }
 
   onCloseModal(isModalOpen: boolean): void {

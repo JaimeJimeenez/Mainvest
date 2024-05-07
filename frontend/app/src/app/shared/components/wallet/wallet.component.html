@@ -32,6 +32,4 @@
   </ng-container>
 </div>
 
-<ng-container *ngIf="isModalOpen">
-  <mainvest-modal-erase-wallet [wallet]="wallet" (closeModal)="onCloseModal($event)"></mainvest-modal-erase-wallet>
-</ng-container>
+<mainvest-modal-erase-wallet [wallet]="wallet" (closeModal)="onCloseModal($event)"></mainvest-modal-erase-wallet>
