@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ChartAsset } from 'src/app/core/interfaces/chart';
 import { Chart } from 'src/app/core/libs/chart';
+import { ChartObservableService } from 'src/app/core/services/observables/chart-observable.service';
 
 @Component({
   selector: 'mainvest-chart',
@@ -13,6 +14,13 @@ import { Chart } from 'src/app/core/libs/chart';
 })
 export class ChartComponent {
   @Input() assetsChart: ChartAsset[] = [];
+
+  constructor(private chartObservable: ChartObservableService) {
+    this.chartObservable.chartAsset$.subscribe((data: ChartAsset[]) => {
+      this.assetsChart = data;
+      this._drawChart();
+    })
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['assetsChart']) {
