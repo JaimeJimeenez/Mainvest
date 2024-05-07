@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { WalletsMainComponent } from './wallets-main/wallets-main.component';
 import { WalletsHomeComponent } from './wallets-home/wallets-home.component';
+import { ProfileNewWalletComponent } from './profile-new-wallet/profile-new-wallet.component';
 
 const routes : Routes = [
   {
@@ -17,6 +18,10 @@ const routes : Routes = [
       {
         path: 'list/:id',
         component: WalletsHomeComponent,
+      },
+      {
+        path: 'new/:id',
+        component: ProfileNewWalletComponent
       }
     ]
   },

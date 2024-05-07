@@ -4,7 +4,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 
 import { Subscription, findIndex, lastValueFrom } from 'rxjs';
 
-import { DropdownWalletsComponent } from '../../dropdown-wallet/dropdown-wallet.component';
+import { DropdownWalletsComponent } from '../../dropdown/dropdown-wallet/dropdown-wallet.component';
 
 import { numericalValidator } from 'src/app/core/validator/numerical.validator';
 import { InfoTrade } from 'src/app/core/interfaces/trade';
