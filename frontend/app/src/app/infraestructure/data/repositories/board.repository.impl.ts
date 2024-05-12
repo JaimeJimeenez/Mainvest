@@ -99,4 +99,20 @@ export class BoardRepositoryImpl extends BoardRepository {
       throw error;
     }
   }
+
+  override getPost$(id: number): Observable<Post> {
+    try {
+      return this.board.getPost$(id);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  override getResponses$(id: number): Observable<Post[]> {
+    try {
+      return this.board.getResponses$(id);
+    } catch (error) {
+      throw error;
+    }
+  }
 }

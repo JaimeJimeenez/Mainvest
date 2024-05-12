@@ -101,6 +101,24 @@ class DAOBoard {
             throw error;
         }   
     }
+
+    async getPost(id) {
+        try {
+            const sql = 'Select p.id, p.content, p.likes, p .replies, p.created_at, p.id_user, u.username from posts p join users u on u.id = p.id_user where p.id = $1;';
+            return await executeQuery(sql, [id]);
+        } catch (error) {
+            throw error;
+        }   
+    }
+
+    async getResponses(id) {
+        try {
+            const sql = 'Select r.id, r.content, r.likes, r.replies, r.created_at, r.id_user, u.username from replies r join users u on u.id = r.id_user where r.id_post = $1;';
+            return await executeQuery(sql, [id]);
+        } catch (error) {
+            throw error;
+        }    
+    }
 }
 
 module.exports = DAOBoard;

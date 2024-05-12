@@ -3,7 +3,7 @@
     <div class="title">Mis carteras</div>
     <mainvest-wallets-nav [_idUser]="userId"></mainvest-wallets-nav>
   </div>
-  <ng-container *ngFor="let wallet of wallets">
+  <ng-container *ngFor="let wallet of walletsData">
     <mainvest-wallet [wallet]="wallet" [assets]="assets"></mainvest-wallet>
   </ng-container>
 </div>

@@ -7,6 +7,7 @@ export interface Post {
   created_at: string;
   id_user: number;
   isLiked: boolean;
+  isReply?: boolean;
 };
 
 export interface NewPost {

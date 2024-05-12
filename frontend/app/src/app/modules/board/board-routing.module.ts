@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BoardMainComponent } from './board-main/board-main.component';
 import { BoardHomeComponent } from './board-home/board-home.component';
 import { BoardFollowsComponent } from './board-follows/board-follows.component';
+import { BoardPostComponent } from './board-post/board-post.component';
 
 const routes : Routes = [
   {
@@ -22,6 +23,10 @@ const routes : Routes = [
       {
         path: 'follows/:id',
         component: BoardFollowsComponent
+      },
+      {
+        path: 'post/:id',
+        component: BoardPostComponent
       }
     ]
   }

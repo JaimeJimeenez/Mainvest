@@ -11,3 +11,12 @@
     </li>
   </ng-container>
 </ul>
+<form [formGroup]="searchForm" class="search">
+  <div class="search--group group">
+    <input
+      type="text"
+      formControlName="search"
+      class="search--input peer"
+      placeholder="Buscar"/>
+  </div>
+</form>

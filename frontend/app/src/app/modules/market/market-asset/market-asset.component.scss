@@ -1,3 +1,10 @@
+.header {
+  display: flex;
+  padding: 12px;
+  margin: 12px;
+  @apply border-b-2;
+}
+
 .chart {
   margin-left: 20px;
 }

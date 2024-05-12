@@ -6,36 +6,41 @@
   {{ post.content }}
 </div>
 <div class="options">
-  <div
-    class="options--responses text-blue-600"
-    data-bs-toggle="modal"
-    data-bs-target="#replyModal"
-    (click)="showPost()"
-  >
-    <span class="material-symbols-outlined">
-      reply
+  <ng-container *ngIf="!post.isReply">
+    <span class="material-symbols-outlined view" (click)="goToPost()">
+      visibility
     </span>
-    {{ post.replies }}
-  </div>
-  <div class="options--likes text-red-600">
-    <ng-container *ngIf="post.isLiked; else dislike">
-      <span
-        class="material-symbols-outlined"
-        (click)="updateLike(false)"
-      >
-         heart_check
+    <div
+      class="options--responses text-blue-600"
+      data-bs-toggle="modal"
+      data-bs-target="#replyModal"
+      (click)="showPost()"
+    >
+      <span class="material-symbols-outlined">
+        reply
       </span>
-    </ng-container>
-    <ng-template #dislike>
-      <span
-        class="material-symbols-outlined"
-        (click)="updateLike(true)"
-      >
-        heart_plus
-      </span>
-    </ng-template>
-    {{ post.likes }}
-  </div>
+      {{ post.replies }}
+    </div>
+    <div class="options--likes text-red-600">
+      <ng-container *ngIf="post.isLiked; else dislike">
+        <span
+          class="material-symbols-outlined"
+          (click)="updateLike(false)"
+        >
+           heart_check
+        </span>
+      </ng-container>
+      <ng-template #dislike>
+        <span
+          class="material-symbols-outlined"
+          (click)="updateLike(true)"
+        >
+          heart_plus
+        </span>
+      </ng-template>
+      {{ post.likes }}
+    </div>
+  </ng-container>
 </div>
 
 <mainvest-modal-reply></mainvest-modal-reply>
