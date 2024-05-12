@@ -37,7 +37,7 @@ export class NotificationRepliesComponent {
   private async _getRepliesPosts(): Promise<void> {
     try {
       this.posts = await lastValueFrom(this.notificationRepository.getRepliesPosts$(this._userId));
-      console.log(this.posts);
+      this.posts.forEach((post: Post) => post.isReply = true);
     } catch (error) {
       console.error(error);
     }
