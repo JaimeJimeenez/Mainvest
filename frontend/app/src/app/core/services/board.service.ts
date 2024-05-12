@@ -153,4 +153,30 @@ export class BoardService {
       })
     );
   }
+
+  getPost$(id: number): Observable<Post> {
+    return this.http.get<ApiResponse<Post>>(
+      `${this._url}/post/${id}`,
+      { headers: this._headers }
+    ).pipe(
+      map((response: ApiResponse<Post>) => response.data
+      ),
+      catchError((errorResponse: HttpErrorResponse) => {
+        throw errorResponse.error;
+      })
+    );
+  }
+
+  getResponses$(id: number): Observable<Post[]> {
+    return this.http.get<ApiResponse<Post[]>>(
+      `${this._url}/responses/${id}`,
+      { headers: this._headers }
+    ).pipe(
+      map((response: ApiResponse<Post[]>) => response.data
+      ),
+      catchError((errorResponse: HttpErrorResponse) => {
+        throw errorResponse.error;
+      })
+    );
+  }
 }

@@ -6,7 +6,9 @@ const { addLike } = require('../controllers/board/add.like.controller');
 const { deleteLike } = require('../controllers/board/delete.like.controller');
 const { getFollowingsPosts } = require('../controllers/board/get.following_posts');
 const { getLikedPosts } = require('../controllers/board/get.liked_posts.controller');
+const { getPost } = require('../controllers/board/get.post.controller');
 const { getRandomPosts } = require('../controllers/board/get.random_posts.controller');
+const { getResponses } = require('../controllers/board/get.responses.controller');
 const { getUsersLikesPosts } = require('../controllers/board/get.users_likes.controller');
 const { getUsersPosts } = require('../controllers/board/get.users_posts.controller');
 const { newPost } = require('../controllers/board/new.post.controller');
@@ -23,5 +25,7 @@ router.get('/liked_posts/:id', getLikedPosts);
 router.get('/following_posts/:ids', getFollowingsPosts);
 router.get('/get_users/:id', getUsersPosts);
 router.get('/get_users_likes/:id', getUsersLikesPosts);
+router.get('/post/:id', getPost);
+router.get('/responses/:id', getResponses);
 
 module.exports = router;

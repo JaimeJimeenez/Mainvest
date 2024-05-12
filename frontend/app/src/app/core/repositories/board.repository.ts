@@ -12,4 +12,6 @@ export abstract class BoardRepository {
   abstract getFollowingPosts$(ids: number[]): Observable<Post[]>;
   abstract getUsersPosts$(idUser: number): Observable<Post[]>;
   abstract getUsersLikesPosts$(idUser: number): Observable<Post[]>;
+  abstract getPost$(id: number): Observable<Post>;
+  abstract getResponses$(id: number): Observable<Post[]>;
 }

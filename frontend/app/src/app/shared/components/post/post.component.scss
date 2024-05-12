@@ -33,11 +33,16 @@
   justify-content: flex-end;
   gap: 16px;
 
-  &--likes, &--responses {
+  &--likes, &--responses, &--view {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 4px;
     cursor: pointer;
   }
+}
+
+.view {
+  cursor: pointer;
+  @apply text-gray-600;
 }
