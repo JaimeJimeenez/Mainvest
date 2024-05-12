@@ -10,6 +10,7 @@ import { BoardRepositoryImpl } from 'src/app/infraestructure/data/repositories/b
 import { LocalStorage } from 'src/app/core/libs/local.storage';
 import { User } from 'src/app/core/interfaces/user';
 import { NotificationRepositoryImpl } from 'src/app/infraestructure/data/repositories/notification.repository.impl';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'mainvest-post',
@@ -33,7 +34,8 @@ export class PostComponent {
   constructor(
     private boardRepository: BoardRepositoryImpl,
     private notificationRepository: NotificationRepositoryImpl,
-    private postIdObservable: PostIdObservableService
+    private postIdObservable: PostIdObservableService,
+    private router: Router
   ) {}
 
   showPost(): void {
@@ -61,5 +63,9 @@ export class PostComponent {
     } catch (error) {
       throw error;
     }
+  }
+
+  goToPost() {
+    this.router.navigate([`/dashboard/board/post/${this.post.id}`]);
   }
 }

@@ -1,0 +1,12 @@
+<div class="post--box">
+  <div class="header">
+    <div class="title"> Publicación </div>
+  </div>
+  <mainvest-post [post]="post"></mainvest-post>
+  <div class="responses">
+    <span class="responses--title">Respuestas</span>
+    <ng-container *ngFor="let response of responses">
+      <mainvest-post [post]="response"></mainvest-post>
+    </ng-container>
+  </div>
+</div>
