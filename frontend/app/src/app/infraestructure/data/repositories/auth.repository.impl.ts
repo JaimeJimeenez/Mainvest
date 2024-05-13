@@ -21,7 +21,7 @@ export class AuthRepositoryImpl extends AuthRepository {
       const newUser: SignUp = { email, name, username, password };
       const user = await lastValueFrom(this.auth.signUp$(newUser));
       LocalStorage.saveUser(user);
-      this.router.navigate(['/dashboard']);
+      this.router.navigate([`/dashboard/market/home/${user.id}`]);
     } catch (error: any) {
       throw error;
     }
@@ -34,7 +34,7 @@ export class AuthRepositoryImpl extends AuthRepository {
       LocalStorage.saveUser(user);
       if (rememberUser)
         LocalStorage.saveRememberUser(loginUser);
-      this.router.navigate(['/dashboard']);
+      this.router.navigate([`/dashboard/market/home/${user.id}`]);
     } catch (error: any) {
       throw error;
     }

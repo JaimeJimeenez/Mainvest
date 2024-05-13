@@ -1,4 +1,4 @@
-import { ChartAsset } from "../interfaces/chart";
+import { ChartAsset, PredictedChart } from "../interfaces/chart";
 import { Asset, AssetData } from "../interfaces/market";
 import { Time } from "./time";
 
@@ -42,7 +42,8 @@ export abstract class Market {
     return price * amount;
   }
 
-  public static getPredictionData(data: ChartAsset[]): ChartAsset[] {
+  public static getPredictionData(data: ChartAsset[]): PredictedChart[] {
+    const predictionData: PredictedChart[] = [];
     const sortedData: ChartAsset[] = data.sort((a, b) => {
       const dateA = new Date(a.time);
       const dateB = new Date(b.time);
@@ -59,6 +60,14 @@ export abstract class Market {
       }
     });
 
-    return uniqueData;
+
+    uniqueData.forEach((asset: ChartAsset) => {
+      predictionData.push({
+        value: asset['close'],
+        time: asset['time']
+      })
+    });
+
+    return predictionData;
   }
 }
