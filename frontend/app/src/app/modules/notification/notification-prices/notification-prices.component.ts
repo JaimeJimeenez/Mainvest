@@ -47,6 +47,7 @@ export class NotificationPricesComponent {
   private async _getPrices(): Promise<void> {
     try {
       const assetsData = await lastValueFrom(this.marketRepository.getTodayAssetsData$(ASSETS));
+      console.log(assetsData);
       ASSETS.forEach((asset: string) => {
         const price = assetsData.get(asset);
         if (price !== undefined) {
@@ -61,6 +62,7 @@ export class NotificationPricesComponent {
   private async _getAlerts(): Promise<void> {
     try {
       const alerts: Alert[] = await lastValueFrom(this.alertRepository.getUserAlerts$(this._userId));
+      console.log(alerts);
       alerts.forEach((alert: Alert) => {
         const asset = this._assets.get(alert.name);
         if (asset !== undefined && asset >= alert.price) {

@@ -5,3 +5,8 @@ export interface ChartAsset {
   low: number;
   close: number;
 }
+
+export interface PredictedChart {
+  value: number;
+  time: string;
+}

@@ -15,10 +15,10 @@ export class AlertRepositoryImpl extends AlertRepository {
     super();
   }
 
-  override async addAlert$(idUser: number, name: string, price: number): Promise<void> {
+  override addAlert$(idUser: number, name: string, price: number): Observable<boolean> {
     try {
       const alert: Alert = { idUser, name, price }
-      const success = await lastValueFrom(this.alert.addAlert$(alert));
+      return this.alert.addAlert$(alert);
     } catch (error) {
       throw error;
     }

@@ -44,7 +44,6 @@ export class WalletsHomeComponent {
     });
 
     this.searchObservable.search$.subscribe((search: string) => {
-      console.log(search)
       this._searchWallet(search);
     });
   }

@@ -6,6 +6,7 @@ import { numericalValidator } from 'src/app/core/validator/numerical.validator';
 import { AlertRepositoryImpl } from 'src/app/infraestructure/data/repositories/alert.repository.impl';
 import { LocalStorage } from 'src/app/core/libs/local.storage';
 import { User } from 'src/app/core/interfaces/user';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'mainvest-modal-alert',
@@ -24,11 +25,11 @@ export class ModalAlertComponent {
     });
   }
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
     const { price } = this.alertForm.value;
     const user: User | undefined = LocalStorage.getUser();
     if (user !== undefined) {
-      //this.alertRepository.addAlert(user.id, this.asset, price);
+      await lastValueFrom(this.alertRepository.addAlert$(user.id, this.asset, price));
     }
   }
 }
