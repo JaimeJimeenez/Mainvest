@@ -34,6 +34,8 @@ export class AuthRepositoryImpl extends AuthRepository {
       LocalStorage.saveUser(user);
       if (rememberUser)
         LocalStorage.saveRememberUser(loginUser);
+      else
+        LocalStorage.eraseRememberUser();
       this.router.navigate([`/dashboard/market/home/${user.id}`]);
     } catch (error: any) {
       throw error;

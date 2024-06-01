@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 import { Post } from 'src/app/core/interfaces/board';
 import { lastValueFrom } from 'rxjs';
@@ -23,7 +23,8 @@ export class NotificationLikesComponent {
   constructor(
     private route: ActivatedRoute,
     private userIdObservable: UserIdObservableService,
-    private notificationRepository: NotificationRepositoryImpl
+    private notificationRepository: NotificationRepositoryImpl,
+    private router: Router
   ) {
     this.route.paramMap.subscribe((params: ParamMap) => {
       const id: string | null = params.get('id');
@@ -38,6 +39,10 @@ export class NotificationLikesComponent {
   private async _getLikedPosts(): Promise<void> {
     try {
       this.posts = await lastValueFrom(this.notificationRepository.getLikedPosts$(this._userId));
+      this.posts.forEach((post: Post) => {
+        if (post.id_user === this._userId)
+          post.isLiked = true;
+      });
     } catch (error) {
       console.error(error);
     }
@@ -51,5 +56,9 @@ export class NotificationLikesComponent {
     } catch (error) {
       console.error(error);
     }
+  }
+
+  onShowPost(id: number): void {
+    this.router.navigate(['/dashboard/board/post/' + id]);
   }
 }

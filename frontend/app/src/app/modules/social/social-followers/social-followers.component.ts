@@ -33,6 +33,7 @@ export class SocialFollowersComponent {
           this._userId = +id;
           this.userIdObservable.sendUserId(this._userId);
           this.followers = await lastValueFrom(this.socialRepository.getUserFollowers$(this._userId));
+          console.log(this.followers);
           this._updateIsFollowingProperty();
         }
       } catch (error) {
@@ -44,7 +45,6 @@ export class SocialFollowersComponent {
   private async _updateIsFollowingProperty(): Promise<void> {
     try {
       const followings: UserSocial[] = await lastValueFrom(this.socialRepository.getUserFollowings$(this._userId));
-      console.log(followings);
       followings.forEach((user: UserSocial) => {
         const index = this.followers.findIndex((follower: UserSocial) => follower.id === user.id);
         if (index !== -1) {

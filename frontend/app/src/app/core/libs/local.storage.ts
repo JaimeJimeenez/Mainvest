@@ -21,6 +21,10 @@ export class LocalStorage {
     return data !== null ? JSON.parse(data) : undefined;
   }
 
+  static eraseRememberUser(): void {
+    localStorage.removeItem('rememberedUser');
+  }
+
   static getToken(): string | undefined {
     const data: string | null = localStorage.getItem('user');
     return data !== null ? JSON.parse(data).token : undefined;
