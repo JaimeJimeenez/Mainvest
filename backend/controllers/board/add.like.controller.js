@@ -10,6 +10,7 @@ const addLike = async (request, response) => {
         const { idPost, idUser } = like;
 
         const result = await daoBoard.addLikeUser(idPost, idUser);
+        console.log(like);
         response.status(200).json(result);
     } catch (error) {
         console.log(`Error al añadir un me gusta en la tabla users_likes: ${JSON.stringify(error)}`);

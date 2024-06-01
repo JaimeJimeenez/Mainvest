@@ -5,6 +5,10 @@ import { ChartAsset, PredictedChart } from 'src/app/core/interfaces/chart';
 import { Chart } from 'src/app/core/libs/chart';
 import { ChartObservableService } from 'src/app/core/services/observables/chart-observable.service';
 import { ChartPredictedObservableService } from 'src/app/core/services/observables/chart-predicted-observable.service';
+import { Asset } from 'src/app/core/interfaces/market';
+import { lastValueFrom } from 'rxjs';
+import { Market } from 'src/app/core/libs/market';
+import { MarketRepositoryImpl } from 'src/app/infraestructure/external/market.repository.impl';
 
 @Component({
   selector: 'mainvest-chart',
@@ -15,8 +19,9 @@ import { ChartPredictedObservableService } from 'src/app/core/services/observabl
 })
 export class ChartComponent {
   @Input() assetsChart: ChartAsset[] = [];
+  @Input() asset: string = '';
 
-  constructor(private chartObservable: ChartObservableService, private predictedObservable: ChartPredictedObservableService) {
+  constructor(private chartObservable: ChartObservableService, private predictedObservable: ChartPredictedObservableService, private marketRepository: MarketRepositoryImpl) {
     this.chartObservable.chartAsset$.subscribe((data: ChartAsset[]) => {
       this.assetsChart = data;
       this._drawChart();
@@ -26,11 +31,20 @@ export class ChartComponent {
     });
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  async ngOnChanges(changes: SimpleChanges) {
     if (changes['assetsChart']) {
-      this.assetsChart = changes['assetsChart'].currentValue;
+      if (changes['assetsChart'].currentValue.length == 1) {
+        await this._getAssetsData();
+      } else {
+        this.assetsChart = changes['assetsChart'].currentValue;
+      }
       this._drawChart();
     }
+  }
+
+  private async _getAssetsData() {
+    const data: Map<string, Asset[]> = await lastValueFrom(this.marketRepository.getAssetData$(this.asset));
+    this.assetsChart = Market.getChartAssets(data.get(this.asset)!);
   }
 
   private _drawChart() : void {

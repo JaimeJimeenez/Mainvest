@@ -34,6 +34,7 @@ export class BoardFollowsComponent {
         this.userIdObservable.sendUserId(this._userId);
       }
       const ids: number[] = await lastValueFrom(this.socialRepository.getFollowings$(this._userId));
+      console.log(ids);
       this.posts = await lastValueFrom(this.boardRepository.getFollowingPosts$(ids));
     });
   }

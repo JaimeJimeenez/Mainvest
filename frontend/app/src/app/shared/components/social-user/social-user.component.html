@@ -13,17 +13,19 @@
   >
     visibility
   </span>
-  <ng-container *ngIf="user.isFollowing; else follow">
-    <button
-      class="btn btn-danger"
-      (click)="onFollowOptions(false)"
-    >Dejar de seguir</button>
+  <ng-container *ngIf="_userId != user.id">
+    <ng-container *ngIf="user.isFollowing; else follow">
+      <button
+        class="btn btn-danger"
+        (click)="onFollowOptions(false)"
+      >Dejar de seguir</button>
+    </ng-container>
+    <ng-template #follow>
+      <button
+        class="btn btn-primary"
+        (click)="onFollowOptions(true)"
+      >Seguir</button>
+    </ng-template>
   </ng-container>
-  <ng-template #follow>
-    <button
-      class="btn btn-primary"
-      (click)="onFollowOptions(true)"
-    >Seguir</button>
-  </ng-template>
 
 </div>

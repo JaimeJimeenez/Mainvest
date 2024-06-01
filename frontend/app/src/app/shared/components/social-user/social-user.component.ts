@@ -15,7 +15,7 @@ import { lastValueFrom } from 'rxjs';
   styleUrls: ['./social-user.component.scss']
 })
 export class SocialUserComponent {
-  private _userId: number = 0;
+  public _userId: number = 0;
   @Input() user: UserSocial = {
     id: 0,
     username: '',

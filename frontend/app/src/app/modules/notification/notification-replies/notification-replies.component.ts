@@ -38,6 +38,7 @@ export class NotificationRepliesComponent {
     try {
       this.posts = await lastValueFrom(this.notificationRepository.getRepliesPosts$(this._userId));
       this.posts.forEach((post: Post) => post.isReply = true);
+      console.log(this.posts);
     } catch (error) {
       console.error(error);
     }

@@ -39,7 +39,6 @@ export class ModalReplyComponent {
       if (user !== undefined) {
         const id = user.id;
         const data: any[] = await lastValueFrom(this.boardRepository.reply$(this._idPost, +id, content));
-        debugger;
         await lastValueFrom(this.notificationRepository.addNotification$(+id, data[0].id, false));
         window.location.reload();
       }

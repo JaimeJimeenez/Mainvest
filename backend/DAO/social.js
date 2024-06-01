@@ -4,7 +4,7 @@ class DAOSocial {
 
     async getFollowings(idUser) {
         try {
-            const sql = 'Select id_following as id from social where id_follower = $1;';
+            const sql = 'Select u.id from users u join social s on s.id_following = $1 and s.id_follower = u.id;';
             return await executeQuery(sql, [idUser]);
         } catch (error) {
             throw error;
