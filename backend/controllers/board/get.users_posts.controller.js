@@ -7,6 +7,7 @@ const daoBoard = new DAOBoard();
 const getUsersPosts = async (request, response) => {
     try {
         const { id } = request.params;
+        console.log(id);
         const result = await daoBoard.getUsersPosts(id);
         response.status(200).json(result);
     } catch (error) {
