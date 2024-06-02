@@ -39,16 +39,15 @@ export class ProfilePostsComponent {
   }
 
   private async _getUsersPosts(): Promise<void> {
-    this.posts = await lastValueFrom(this.boardRepository.getUsersLikesPosts$(this._userId));
-    const user : User | undefined = LocalStorage.getUser();
+    this.posts = await lastValueFrom(this.boardRepository.getUsersPosts$(this._userId));
+    const user: User | undefined = LocalStorage.getUser();
     if (user !== undefined) {
-      const usersPost = await lastValueFrom(this.boardRepository.getUsersLikesPosts$(user.id))
-      this.posts.forEach((post: Post) => {
-        const findIndex = usersPost.findIndex((userPost: Post) => post.id === userPost.id);
-        if (findIndex !== -1) {
+      const likedPosts: Post[] = await lastValueFrom(this.boardRepository.getUsersLikesPosts$(user.id));
+      likedPosts.forEach((likedPost: Post) => {
+        const findIndex: number = this.posts.findIndex((post: Post) => post.id === likedPost.id);
+        if (findIndex !== -1)
           this.posts[findIndex].isLiked = true;
-        }
-      });
+      })
     }
   }
 }

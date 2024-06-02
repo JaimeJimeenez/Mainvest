@@ -22,7 +22,7 @@ class DAONotification {
 
     async getRepliesPosts(idUser) {
         try {
-            const sql = 'Select r.id, r.content, r.likes, r.replies, r.created_at, r.id_user, u.username from replies r join notifications n on n.id_post = r.id and n.is_liked = false join users u on u.id = n.id_user where r.id_user = $1;';
+            const sql = 'Select r.id, r.content, r.likes, r.replies, r.created_at, r.id_user, u.username from replies r join notifications n on n.id_post = r.id and n.is_liked = false join users u on u.id = n.id_user join posts p on p.id = r.id_post and p.id_user = $1;';
             return await executeQuery(sql, [idUser]);
         } catch (error) {
             throw error;
